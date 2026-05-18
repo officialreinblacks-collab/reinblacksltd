@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reinblacks Creativz — Premium Creative Agency</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg: #000000;
+            --red: #E50914;
+            --red-glow: rgba(229, 9, 20, 0.4);
+            --white: #ffffff;
+            --transition-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior:smooth; background:#000; }
+        body {
+            font-family:'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+            background:#000; color:var(--white); overflow-x:hidden;
+            -webkit-font-smoothing:antialiased; line-height:1.5;
+        }
+
+        /* ─────────────── INTRO ─────────────── */
+        #intro-overlay {
+            position:fixed; top:0; left:0; width:100vw; height:100vh;
+            background:#000; z-index:100000; display:flex; align-items:center;
+            justify-content:center; pointer-events:all; transition:opacity 0.5s;
+        }
+        #intro-overlay.fade-out { opacity:0; pointer-events:none; }
+        #intro-inner { position:relative; display:flex; flex-direction:column; align-items:center; }
+        #intro-glow-ring {
+            position:absolute; width:240px; height:240px; border-radius:50%;
+            background:radial-gradient(circle, rgba(229,9,20,0.25) 0%, transparent 70%);
+            animation:introGlowPulse 2.2s ease-out forwards; pointer-events:none; z-index:0;
+        }
+        #intro-brand {
+            position:relative; z-index:1; font-size:clamp(2rem,5.5vw,3.8rem);
+            font-weight:900; letter-spacing:0.04em; color:#fff; text-align:center;
+            filter:blur(6px); transform:scale(0.92); opacity:0;
+            animation:introReveal 2.2s cubic-bezier(0.22,0.05,0.18,1) forwards;
+            text-shadow:0 0 50px rgba(229,9,20,0.4), 0 0 100px rgba(229,9,20,0.15);
+        }
+        #intro-subtle-line {
+            position:relative; z-index:1; width:0; height:1.2px;
+            background:rgba(229,9,20,0.6); margin-top:14px; border-radius:2px;
+            animation:introLineGrow 2.2s cubic-bezier(0.22,0.05,0.18,1) forwards;
+            box-shadow:0 0 12px rgba(229,9,20,0.3);
+        }
+        @keyframes introGlowPulse {
+            0%{ opacity:0; transform:scale(0.5); }
+            50%{ opacity:0.8; transform:scale(1); }
+            100%{ opacity:0.5; transform:scale(1); }
+        }
+        @keyframes introReveal {
+            0%{ filter:blur(6px); transform:scale(0.92); opacity:0; }
+            35%{ filter:blur(2px); opacity:0.5; }
+            75%{ filter:blur(0px); transform:scale(1); opacity:1; }
+            100%{ filter:blur(0px); transform:scale(1); opacity:1; }
+        }
+        @keyframes introLineGrow {
+            0%{ width:0; opacity:0; }
+            55%{ width:0; opacity:0; }
+            75%{ width:70px; opacity:0.8; }
+            100%{ width:90px; opacity:0.6; }
+        }
+
+        /* ─────────────── MAIN SITE ─────────────── */
+        #main-site { opacity:0; transition:opacity 0.5s; }
+        #main-site.visible { opacity:1; }
+
+        /* ─────────────── TOP NAV ─────────────── */
+        #top-nav {
+            position:fixed; top:0; left:0; right:0; z-index:9000;
+            display:flex; align-items:center; justify-content:space-between;
+            padding:10px 20px; background:rgba(0,0,0,0.55);
+            backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+            border-bottom:1px solid rgba(255,255,255,0.06);
+            transition:background 0.3s, padding 0.3s; gap:12px;
+        }
+        #top-nav.scrolled { background:rgba(0,0,0,0.82); padding:6px 20px; }
+        .nav-left { display:flex; align-items:center; gap:14px; flex-shrink:0; }
+        .nav-logo-stacked {
+            display:flex; flex-direction:column; align-items:center; line-height:1;
+            font-weight:900; font-size:1rem; letter-spacing:0.05em; color:#fff;
+            cursor:pointer; text-shadow:0 0 15px rgba(229,9,20,0.4);
+        }
+        .nav-logo-stacked span { font-size:0.6rem; letter-spacing:0.1em; color:#ccc; }
+        .hamburger-btn {
+            background:none; border:none; color:#fff; font-size:1.4rem;
+            cursor:pointer; padding:6px 8px; border-radius:6px;
+            transition:color 0.3s, background 0.3s; display:flex;
+        }
+        .hamburger-btn:hover { color:var(--red); background:rgba(255,255,255,0.05); }
+        .nav-center { flex:1; max-width:350px; position:relative; display:flex; align-items:center; }
+        .search-icon-btn {
+            background:none; border:none; color:#fff; font-size:1.2rem;
+            cursor:pointer; padding:8px; border-radius:50%; transition:color 0.3s;
+        }
+        .search-icon-btn:hover { color:var(--red); }
+        .nav-search {
+            width:0; padding:8px 0; border-radius:20px;
+            border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.5);
+            color:#fff; font-size:0.85rem; outline:none; transition:width 0.3s, padding 0.3s, border 0.3s;
+            margin-left:8px;
+        }
+        .nav-search.expanded { width:100%; padding:8px 34px 8px 12px; border-color:var(--red); }
+        .nav-search-icon { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:#aaa; font-size:0.8rem; pointer-events:none; }
+        .nav-right { display:flex; align-items:center; gap:12px; flex-shrink:0; }
+        .yt-sub-btn {
+            background:var(--red); border:none; color:#fff; font-size:0.75rem; font-weight:700;
+            padding:8px 14px; border-radius:20px; cursor:pointer; display:flex; align-items:center;
+            gap:6px; transition:all 0.3s; letter-spacing:0.03em; white-space:nowrap;
+            box-shadow:0 0 15px rgba(229,9,20,0.3); text-decoration:none;
+        }
+        .yt-sub-btn:hover { background:#ff1a25; box-shadow:0 0 25px rgba(229,9,20,0.5); transform:translateY(-1px); }
+        .yt-sub-btn i { font-size:0.9rem; }
+
+        @media (max-width:768px) {
+            #top-nav { backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(0,0,0,0.92); }
+            .yt-sub-btn { padding:6px 10px; font-size:0.7rem; }
+            .yt-sub-btn span { display:none; }
+        }
+
+        /* ─────────────── HAMBURGER ─────────────── */
+        #hamburger-overlay {
+            position:fixed; inset:0; background:rgba(0,0,0,0.65); z-index:9050;
+            opacity:0; pointer-events:none; transition:opacity 0.3s;
+        }
+        #hamburger-overlay.active { opacity:1; pointer-events:all; }
+        #hamburger-panel {
+            position:fixed; top:0; left:0; width:280px; max-width:80vw; height:100vh;
+            background:rgba(12,12,12,0.95); border-right:1px solid rgba(255,255,255,0.07);
+            z-index:9060; transform:translateX(-105%);
+            transition:transform 0.35s cubic-bezier(0.22,0.05,0.18,1);
+            display:flex; flex-direction:column; padding:70px 20px 30px; gap:4px;
+        }
+        #hamburger-panel.active { transform:translateX(0); }
+        #hamburger-panel .menu-title { font-size:0.65rem; text-transform:uppercase; letter-spacing:0.12em; color:#888; margin-bottom:10px; }
+        #hamburger-panel a {
+            display:block; color:#ccc; text-decoration:none; font-size:0.95rem; font-weight:500;
+            padding:10px 14px; border-radius:8px; transition:all 0.25s;
+        }
+        #hamburger-panel a:hover, #hamburger-panel a.active-nav {
+            color:#fff; background:rgba(229,9,20,0.2); box-shadow:inset 3px 0 0 var(--red);
+        }
+        #hamburger-panel a.active-nav { font-weight:700; background:rgba(229,9,20,0.3); }
+        #hamburger-close {
+            position:absolute; top:15px; right:15px; background:none; border:none;
+            color:#fff; font-size:1.3rem; cursor:pointer; border-radius:50%; padding:6px;
+        }
+        #hamburger-close:hover { color:var(--red); }
+
+        /* ─────────────── CATEGORY BAR ─────────────── */
+        #category-bar {
+            position:fixed; top:52px; left:0; right:0; z-index:8990;
+            display:flex; gap:8px; padding:8px 20px; overflow-x:auto;
+            background:rgba(10,10,10,0.88); border-bottom:1px solid rgba(255,255,255,0.05);
+            scrollbar-width:none; touch-action:pan-x;
+        }
+        #category-bar::-webkit-scrollbar { display:none; }
+        .cat-btn {
+            flex-shrink:0; padding:7px 18px; border-radius:18px;
+            border:1px solid rgba(255,255,255,0.2); background:rgba(255,255,255,0.06);
+            color:#ddd; font-size:0.78rem; font-weight:600; cursor:pointer;
+            transition:all 0.25s; white-space:nowrap;
+        }
+        .cat-btn:hover, .cat-btn.active-cat {
+            background:var(--red); border-color:var(--red); color:#fff; font-weight:700;
+            box-shadow:0 0 15px rgba(229,9,20,0.3);
+        }
+        .cat-btn.active-cat { background:var(--red); }
+
+        /* ─────────────── HERO ─────────────── */
+        #hero { position:relative; width:100%; height:100vh; overflow:hidden; }
+        .hero-video-wrap { position:absolute; top:0; left:0; width:100%; height:100%; overflow:hidden; pointer-events:none; }
+        .hero-bg-image {
+            position:absolute; top:50%; left:50%; width:100vw; height:100vh;
+            object-fit:cover; transform:translate(-50%,-50%);
+        }
+        .hero-gradient {
+            position:absolute; inset:0;
+            background:linear-gradient(0deg, #000000 0%, transparent 40%, rgba(0,0,0,0.6) 85%, #000000 100%);
+            z-index:2;
+        }
+        .hero-content {
+            position:relative; z-index:3; display:flex; flex-direction:column;
+            justify-content:flex-end; align-items:flex-start; height:100%;
+            padding:100px 30px 70px; max-width:850px;
+        }
+        .hero-tag { font-size:0.8rem; letter-spacing:0.18em; color:#aaa; text-transform:uppercase; margin-bottom:8px; }
+        .hero-title { font-size:clamp(2rem,5vw,3.5rem); font-weight:900; line-height:1.1; margin-bottom:6px; text-shadow:0 0 40px rgba(0,0,0,0.7); }
+        .hero-subtitle { font-size:clamp(0.9rem,2vw,1.1rem); color:#ccc; margin-bottom:20px; text-shadow:0 0 20px rgba(0,0,0,0.7); max-width:700px; }
+        .hero-play-btn {
+            display:inline-flex; align-items:center; gap:8px; padding:12px 28px;
+            background:var(--red); color:#fff; border:none; border-radius:28px;
+            font-size:0.95rem; font-weight:700; cursor:pointer; letter-spacing:0.04em;
+            transition:all 0.3s; box-shadow:0 0 20px rgba(229,9,20,0.4); text-decoration:none;
+        }
+        .hero-play-btn:hover { background:#ff1a25; box-shadow:0 0 35px rgba(229,9,20,0.6); transform:scale(1.03); }
+
+        /* ─────────────── CONTENT SECTIONS ─────────────── */
+        .content-section {
+            padding:40px 20px 25px; scroll-margin-top:110px;
+            content-visibility:auto; contain-intrinsic-size:800px;
+        }
+        .section-header {
+            font-size:1.4rem; font-weight:800; margin-bottom:14px; letter-spacing:0.03em;
+            display:flex; align-items:center; gap:8px;
+        }
+        .section-header .red-accent {
+            width:4px; height:22px; background:var(--red); border-radius:2px;
+            box-shadow:0 0 10px rgba(229,9,20,0.4); flex-shrink:0;
+        }
+        .slider-container { position:relative; }
+        .category-row {
+            display:flex; gap:12px; overflow-x:auto; overflow-y:hidden;
+            scroll-snap-type:x mandatory; touch-action:pan-x; padding-bottom:6px;
+            scrollbar-width:thin; scrollbar-color:rgba(229,9,20,0.3) transparent;
+            cursor:grab; user-select:none; will-change:scroll-position;
+        }
+        .category-row:active { cursor:grabbing; }
+        .category-row::-webkit-scrollbar { height:4px; }
+        .category-row::-webkit-scrollbar-thumb { background:rgba(229,9,20,0.3); border-radius:10px; }
+        .slider-arrow {
+            position:absolute; top:50%; transform:translateY(-50%);
+            background:rgba(0,0,0,0.7); border:none; color:#fff; font-size:1.5rem;
+            cursor:pointer; padding:10px; border-radius:50%; z-index:5;
+            transition:background 0.3s;
+        }
+        .slider-arrow.left { left:5px; }
+        .slider-arrow.right { right:5px; }
+        .slider-arrow:hover { background:var(--red); }
+        @media (max-width:768px) { .slider-arrow { display:none; } }
+
+        .poster-card {
+            flex-shrink:0; scroll-snap-align:start; border-radius:8px; overflow:hidden;
+            cursor:pointer; transition:transform 0.3s ease, opacity 0.3s ease;
+            border:2px solid transparent; position:relative; background:#111;
+            will-change:transform; transform:translateZ(0);
+        }
+        .poster-card:hover {
+            transform:scale(1.06); border-color:var(--red);
+            box-shadow:0 0 15px rgba(229,9,20,0.3), 0 4px 10px rgba(0,0,0,0.5); z-index:5;
+        }
+        .poster-card.wide { width:260px; min-width:240px; aspect-ratio:16/9; }
+        .poster-card.tall { width:170px; min-width:150px; aspect-ratio:2/3; }
+        .poster-card img { width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
+        .poster-card .poster-overlay {
+            position:absolute; inset:0;
+            background:linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 50%);
+            display:flex; align-items:flex-end; padding:10px;
+            font-weight:700; font-size:0.8rem; letter-spacing:0.03em; pointer-events:none;
+        }
+        .poster-card .play-icon-center {
+            position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+            font-size:2.2rem; color:rgba(255,255,255,0.8); text-shadow:0 0 20px rgba(0,0,0,0.6);
+            pointer-events:none; transition:color 0.3s, transform 0.3s;
+        }
+        .poster-card:hover .play-icon-center { color:var(--red); transform:translate(-50%,-50%) scale(1.15); }
+
+        .beat-buttons { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+        .beat-btn {
+            padding:10px 22px; border-radius:24px; background:var(--red); color:#fff;
+            font-weight:700; text-decoration:none; letter-spacing:0.04em;
+            transition:all 0.3s; display:inline-flex; align-items:center; gap:6px;
+            box-shadow:0 0 15px rgba(229,9,20,0.35);
+        }
+        .beat-btn:hover { background:#ff1a25; box-shadow:0 0 30px rgba(229,9,20,0.55); transform:translateY(-2px); }
+        .beat-btn.outline { background:transparent; border:2px solid var(--red); box-shadow:none; }
+        .beat-btn.outline:hover { background:rgba(229,9,20,0.15); }
+
+        /* ─────────────── CONTACT ─────────────── */
+        #contact-section { scroll-margin-top:110px; padding:40px 20px; }
+        .contact-split {
+            display:grid; grid-template-columns:1fr 1fr; gap:25px; max-width:1000px;
+            margin:0 auto; background:rgba(18,18,18,0.75); border-radius:16px; padding:30px;
+            border:1px solid rgba(255,255,255,0.07); box-shadow:0 15px 40px rgba(0,0,0,0.4);
+        }
+        @media (max-width:768px) {
+            .contact-split { grid-template-columns:1fr; padding:20px; }
+            .hero-content { padding:80px 20px 50px; }
+            .poster-card.wide { width:220px; min-width:200px; }
+            .poster-card.tall { width:140px; min-width:130px; }
+        }
+        .agent-card { display:flex; flex-direction:column; align-items:center; text-align:center; gap:10px; }
+        .agent-avatar { width:90px; height:90px; border-radius:50%; border:3px solid var(--red); box-shadow:0 0 20px rgba(229,9,20,0.3); object-fit:cover; }
+        .agent-name { font-weight:800; font-size:1.1rem; }
+        .agent-bio { color:#bbb; font-size:0.85rem; line-height:1.4; max-width:260px; }
+        .agent-chat-btn {
+            padding:10px 22px; background:var(--red); color:#fff; border:none;
+            border-radius:24px; font-weight:700; cursor:pointer; letter-spacing:0.04em;
+            transition:all 0.3s; box-shadow:0 0 15px rgba(229,9,20,0.35);
+        }
+        .agent-chat-btn:hover { background:#ff1a25; box-shadow:0 0 25px rgba(229,9,20,0.5); }
+        .contact-form { display:flex; flex-direction:column; gap:12px; }
+        .contact-form input, .contact-form select, .contact-form textarea {
+            width:100%; padding:11px 14px; border-radius:8px;
+            border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.45);
+            color:#fff; font-size:0.9rem; outline:none; transition:border 0.3s, box-shadow 0.3s;
+        }
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
+            border-color:var(--red); box-shadow:0 0 10px rgba(229,9,20,0.2);
+        }
+        .contact-form textarea { resize:vertical; min-height:90px; }
+        .contact-form select option { background:#111; color:#fff; }
+        .submit-btn {
+            padding:12px; background:var(--red); color:#fff; border:none; border-radius:24px;
+            font-weight:700; font-size:0.95rem; cursor:pointer; letter-spacing:0.04em;
+            transition:all 0.3s; box-shadow:0 0 18px rgba(229,9,20,0.35);
+        }
+        .submit-btn:hover { background:#ff1a25; }
+        .submit-btn.sending { opacity:0.7; pointer-events:none; }
+        .submit-btn.success { background:#2ecc71; box-shadow:0 0 20px rgba(46,204,113,0.4); pointer-events:none; }
+
+        /* ─────────────── MODALS ─────────────── */
+        .modal-overlay {
+            position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9500;
+            display:flex; align-items:center; justify-content:center;
+            opacity:0; pointer-events:none; transition:opacity 0.3s;
+        }
+        .modal-overlay.active { opacity:1; pointer-events:all; }
+        .modal-close {
+            position:absolute; top:18px; right:24px; background:none; border:none;
+            color:#fff; font-size:1.8rem; cursor:pointer; z-index:10;
+        }
+        #video-modal .video-full-wrap { width:100vw; height:100vh; background:#000; }
+        #video-modal .video-full-wrap iframe { width:100%; height:100%; border:none; }
+        #gallery-modal .gallery-grid {
+            display:grid; grid-template-columns:repeat(auto-fill, minmax(180px,1fr));
+            gap:12px; padding:30px; max-width:1100px; width:100%; max-height:85vh;
+            overflow-y:auto; background:rgba(18,18,18,0.85); border-radius:14px;
+            border:1px solid rgba(255,255,255,0.1);
+        }
+        #gallery-modal .gallery-grid img {
+            width:100%; border-radius:6px; cursor:pointer; transition:transform 0.25s;
+            object-fit:cover; aspect-ratio:1/1;
+        }
+        #gallery-modal .gallery-grid img:hover { transform:scale(1.04); box-shadow:0 0 18px rgba(229,9,20,0.4); }
+        #image-fullscreen {
+            position:fixed; inset:0; background:#000; z-index:9700;
+            display:flex; align-items:center; justify-content:center;
+            opacity:0; pointer-events:none; transition:opacity 0.3s;
+        }
+        #image-fullscreen.active { opacity:1; pointer-events:all; }
+        #image-fullscreen img { max-width:95vw; max-height:95vh; object-fit:contain; }
+
+        /* ─────────────── CHAT BUTTON ─────────────── */
+        #floating-chat-btn {
+            position:fixed; bottom:22px; right:22px; z-index:9300;
+            width:50px; height:50px; border-radius:50%; background:#0078FF;
+            border:none; color:#fff; font-size:1.2rem; cursor:pointer;
+            box-shadow:0 4px 18px rgba(0,120,255,0.4);
+            display:flex; align-items:center; justify-content:center;
+        }
+  
+         /* ─────────────── BOTTOM MOBILE NAV ─────────────── */
+        #bottom-mobile-nav {
+            display:none;
+            position:fixed; bottom:0; left:0; right:0; z-index:9200;
+            background:rgba(0,0,0,0.9); border-top:1px solid rgba(255,255,255,0.1);
+            padding:8px 0;
+        }
+        #bottom-mobile-nav .bottom-nav-inner {
+            display:flex; justify-content:space-around; align-items:center;
+        }
+        #bottom-mobile-nav button {
+            background:none; border:none; color:#aaa; font-size:0.75rem;
+            display:flex; flex-direction:column; align-items:center; gap:4px;
+            cursor:pointer; transition:color 0.3s;
+        }
+        #bottom-mobile-nav button:hover { color:#fff; }
+        #bottom-mobile-nav button i { font-size:1.2rem; }
+        @media (max-width:768px) {
+            #bottom-mobile-nav { display:block; }
+            #floating-chat-btn { bottom:70px; }
+        }
+
+        /* ─────────────── BACK TO TOP ─────────────── */
+        #back-to-top {
+            position:fixed; bottom:80px; right:22px; z-index:9400;
+            width:44px; height:44px; border-radius:50%; background:var(--red);
+            border:none; color:#fff; font-size:1.2rem; cursor:pointer;
+            box-shadow:0 4px 15px rgba(229,9,20,0.5);
+            display:none; align-items:center; justify-content:center;
+            transition:transform 0.3s;
+        }
+        #back-to-top:hover { transform:scale(1.1); }
+        @media (max-width:768px) { #back-to-top { bottom:90px; } }
+
+        .search-highlight {
+            background:rgba(229,9,20,0.5); color:#fff; border-radius:2px;
+            padding:1px 2px; animation:highlightFade 2.5s ease-out forwards;
+        }
+        @keyframes highlightFade { 0%{ background:rgba(229,9,20,0.7); } 100%{ background:transparent; } }
+
+        .fade-up-section {
+            opacity:0; transform:translateY(30px);
+            transition:opacity 0.6s ease, transform 0.6s ease;
+        }
+        .fade-up-section.visible { opacity:1; transform:translateY(0); }
+
+        .social-links { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:8px; }
+        .social-btn {
+            display:inline-flex; align-items:center; gap:6px; padding:10px 20px;
+            border-radius:24px; font-weight:700; text-decoration:none; letter-spacing:0.03em;
+            transition:all 0.3s; background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.2); color:#fff;
+        }
+        .social-btn:hover { background:rgba(229,9,20,0.25); border-color:var(--red); }
+
+        .streaming-links { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:10px; }
+        .streaming-btn {
+            display:inline-flex; align-items:center; gap:6px; padding:10px 18px;
+            border-radius:24px; font-weight:700; text-decoration:none; letter-spacing:0.03em;
+            transition:all 0.3s; background:rgba(255,255,255,0.08);
+            border:1px solid rgba(255,255,255,0.2); color:#fff;
+        }
+        .streaming-btn:hover { background:rgba(229,9,20,0.25); border-color:var(--red); }
+
+        footer {
+            text-align:center; padding:30px 20px; color:#666; font-size:0.8rem;
+            border-top:1px solid rgba(255,255,255,0.05);
+        }
+    </style>
+</head>
+<body>
+
+      <div id="intro-overlay">
+        <div id="intro-inner">
+            <div id="intro-glow-ring"></div>
+            <div id="intro-brand">Reinblacks Creativz</div>
+            <div id="intro-subtle-line"></div>
+        </div>
+    </div>
+
+    <div id="main-site">
+
+        <!-- TOP NAVIGATION -->
+        <nav id="top-nav">
+            <div class="nav-left">
+                <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">☰</button>
+                <div class="nav-logo-stacked" onclick="document.getElementById('hero').scrollIntoView({behavior:'smooth'})">R<span>C</span></div>
+            </div>
+            <div class="nav-center">
+                <button class="search-icon-btn" id="search-icon-btn" title="Search"><i class="fas fa-search"></i></button>
+                <input type="text" class="nav-search" id="nav-search" placeholder="Search...">
+                <span class="nav-search-icon"><i class="fas fa-search"></i></span>
+            </div>
+            <div class="nav-right">
+                <a href="https://youtube.com/@reinblacks_music?si=6imR9nJCMDru0zrL" target="_blank" rel="noopener" class="yt-sub-btn">
+                    <i class="fab fa-youtube"></i> <span>Watch more on YouTube</span>
+                </a>
+            </div>
+        </nav>
+
+        <!-- HAMBURGER MENU -->
+        <div id="hamburger-overlay"></div>
+        <div id="hamburger-panel">
+            <button id="hamburger-close">✕</button>
+            <div class="menu-title">Navigation</div>
+            <a href="#section-visualizers" data-nav="visualizers">AI Video Music Visualizers</a>
+            <a href="#section-ads" data-nav="ads">AI Ads Videos</a>
+            <a href="#section-graphics" data-nav="graphics">Graphics Design</a>
+            <a href="#contact-section" data-nav="contact">Apply Now</a>
+        </div>
+
+        <!-- CATEGORY BAR -->
+        <div id="category-bar">
+            <button class="cat-btn active-cat" data-scroll="section-visualizers">AI Visualizers</button>
+            <button class="cat-btn" data-scroll="section-ads">AI Ads</button>
+            <button class="cat-btn" data-scroll="section-photos">AI Photos</button>
+            <button class="cat-btn" data-scroll="section-graphics">Graphics</button>
+            <button class="cat-btn" data-scroll="section-beats">Beats</button>
+            <button class="cat-btn" data-scroll="contact-section">Apply Now</button>
+        </div>
+
+        <!-- HERO SECTION -->
+        <section id="hero">
+            <div class="hero-video-wrap">
+                <img src="https://res.cloudinary.com/datfuxotx/image/upload/w_1500,c_limit,q_auto,f_auto/v1779091225/59e81920-528f-11f1-8980-f50923672664_oqesrd.webp"
+                     alt="Reinblacks Hero" class="hero-bg-image" decoding="async">
+            </div>
+            <div class="hero-gradient"></div>
+            <div class="hero-content fade-up-section">
+                <p class="hero-tag">Pro Editing | 4K HD Quality | Realistic</p>
+                <h1 class="hero-title">Reinblacks Creativz</h1>
+                <p class="hero-subtitle">We create AI music visualizers, cinematic AI video ads, professional photo editing, celebrity-style photo transformations, old photo restoration, photo enhancement, official portrait designs, and premium graphic design services.</p>
+                <p class="hero-subtitle" style="margin-top:-8px;color:#aaa;">Pricing varies depending on your project. Explore more on this site.</p>
+                <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
+            </div>
+        </section>
+
+        <!-- SECTION 1: AI Video Music Visualizers (4 videos) -->
+        <section class="content-section fade-up-section" id="section-visualizers">
+            <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
+            <div class="slider-container">
+                <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
+                <div class="category-row" id="row-visualizers">
+                    <div class="poster-card wide" data-video="Pi05jb9xXtU"><img src="https://img.youtube.com/vi/Pi05jb9xXtU/hqdefault.jpg" alt="Visualizer 1" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer I</div></div>
+                    <div class="poster-card wide" data-video="fLsiRfpwbz8"><img src="https://img.youtube.com/vi/fLsiRfpwbz8/hqdefault.jpg" alt="Visualizer 2" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer II</div></div>
+                    <div class="poster-card wide" data-video="YpjmFiI_6Ms"><img src="https://img.youtube.com/vi/YpjmFiI_6Ms/hqdefault.jpg" alt="Visualizer 3" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer III</div></div>
+                    <div class="poster-card wide" data-video="0lMemK0xYXs"><img src="https://img.youtube.com/vi/0lMemK0xYXs/hqdefault.jpg" alt="Visualizer 4" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer IV</div></div>
+                </div>
+                <button class="slider-arrow right" data-target="row-visualizers"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <p style="color:#aaa; font-size:0.9rem; margin-top:10px;">We create professional cinematic visuals with ultra-realistic storytelling that feels natural, emotional, and human — never artificial. From realistic AI filmmaking to professional music video editing, every frame is crafted with industry-level detail, motion, lighting, and sound design.<br>Discover more visuals, films, and music experiences on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
+        </section>
+
+        <!-- SECTION 2: AI Ads Videos (4 videos) -->
+        <section class="content-section fade-up-section" id="section-ads">
+            <div class="section-header"><span class="red-accent"></span> AI Ads Videos</div>
+            <div class="slider-container">
+                <button class="slider-arrow left" data-target="row-ads"><i class="fas fa-chevron-left"></i></button>
+                <div class="category-row" id="row-ads">
+                    <div class="poster-card wide" data-video="cJjmowtYDYU"><img src="https://img.youtube.com/vi/cJjmowtYDYU/hqdefault.jpg" alt="AI Ad 1" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad I</div></div>
+                    <div class="poster-card wide" data-video="0lMemK0xYXs"><img src="https://img.youtube.com/vi/0lMemK0xYXs/hqdefault.jpg" alt="AI Ad 2" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad II</div></div>
+                    <div class="poster-card wide" data-video="YpjmFiI_6Ms"><img src="https://img.youtube.com/vi/YpjmFiI_6Ms/hqdefault.jpg" alt="AI Ad 3" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad III</div></div>
+                    <div class="poster-card wide" data-video="fLsiRfpwbz8"><img src="https://img.youtube.com/vi/fLsiRfpwbz8/hqdefault.jpg" alt="AI Ad 4" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad IV</div></div>
+                </div>
+                <button class="slider-arrow right" data-target="row-ads"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <p style="color:#aaa; font-size:0.9rem; margin-top:10px;">We create high-converting professional advertising campaigns for brands, businesses, and creators — including Meta Ads, Google Ads, and cinematic promotional content designed to attract real customers and increase engagement. Every campaign is backed by strategic research, audience targeting, and creative storytelling to deliver strong visual impact and measurable results.<br>Explore more advertising visuals and campaign showcases on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
+        </section>
+      
+              <!-- SECTION 3: AI Photos & Cloning -->
+        <section class="content-section fade-up-section" id="section-photos">
+            <div class="section-header"><span class="red-accent"></span> AI Photos &amp; Cloning</div>
+            <div class="category-row" data-row="photos">
+                <div class="poster-card tall" data-gallery="cloning"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg" alt="Photo Cloning" loading="lazy" decoding="async"><div class="poster-overlay">Photo Cloning</div></div>
+                <div class="poster-card tall" data-gallery="editing"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg" alt="AI Photo Editing" loading="lazy" decoding="async"><div class="poster-overlay">AI Photo Editing</div></div>
+            </div>
+            <p style="color:#aaa; font-size:0.9rem; margin-top:10px;">We create professional AI photo editing and realistic AI cloning with high-end cinematic quality, natural skin texture, accurate lighting, and lifelike detail that blends seamlessly with reality. From creative transformations to ultra-realistic portrait enhancement, every edit is crafted to look authentic, polished, and visually powerful — never fake or overprocessed.</p>
+        </section>
+
+        <!-- SECTION 4: Graphics Design -->
+        <section class="content-section fade-up-section" id="section-graphics">
+            <div class="section-header"><span class="red-accent"></span> Graphics Design</div>
+            <div class="category-row" data-row="graphics">
+                <div class="poster-card tall" data-gallery="logos"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg" alt="Logos" loading="lazy" decoding="async"><div class="poster-overlay">Logos</div></div>
+                <div class="poster-card tall" data-gallery="posters"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png" alt="Posters" loading="lazy" decoding="async"><div class="poster-overlay">Posters</div></div>
+                <div class="poster-card tall" data-gallery="branding"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg" alt="Branding" loading="lazy" decoding="async"><div class="poster-overlay">Branding</div></div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: Reinblacks Beats -->
+        <section class="content-section fade-up-section" id="section-beats">
+            <div class="section-header"><span class="red-accent"></span> Reinblacks Beats</div>
+            <div class="beat-buttons">
+                <a href="https://www.beatstars.com/" target="_blank" rel="noopener" class="beat-btn"><i class="fas fa-headphones"></i> BeatStars</a>
+                <a href="https://payhip.com/" target="_blank" rel="noopener" class="beat-btn outline"><i class="fas fa-shopping-cart"></i> Payhip</a>
+            </div>
+            <div style="margin-top:25px;">
+                <div class="section-header" style="font-size:1.1rem;"><span class="red-accent" style="height:18px;"></span> Our music is streamed Allover Major platforms</div>
+                <div class="streaming-links">
+                    <a href="https://open.spotify.com/artist/5BWeOJb7uAVwJpnPckoCu6?si=DTBhfB3aSka2PlP9l96iyw" target="_blank" rel="noopener" class="streaming-btn"><i class="fab fa-spotify"></i> Spotify</a>
+                    <a href="https://www.boomplay.com/artists/105482877?srModel=COPYLINK&srList=WEB&share_content=artist&share_channel=copylink&share_platform=web" target="_blank" rel="noopener" class="streaming-btn"><i class="fas fa-music"></i> Boomplay</a>
+                    <a href="https://music.apple.com/in/artist/reinblacks-music/1792423991" target="_blank" rel="noopener" class="streaming-btn"><i class="fab fa-apple"></i> Apple Music</a>
+                    <a href="https://music.amazon.com/artists/B0DTZ414LC/reinblacks-music?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_kMFgTaZn0JuzLfC4Sc9sZfYJs" target="_blank" rel="noopener" class="streaming-btn"><i class="fab fa-amazon"></i> Amazon Music</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact-section" class="fade-up-section">
+            <div class="contact-split">
+                <div class="agent-card">
+                    <img src="https://ui-avatars.com/api/?name=Agent+R&background=E50914&color=fff&size=120" alt="Agent Reinblacks" class="agent-avatar" loading="lazy" decoding="async">
+                    <div class="agent-name">Agent Reinblacks</div>
+                    <p class="agent-bio">Your dedicated creative concierge. Let's bring your vision to life — from AI visuals to premium editing.</p>
+                    <button class="agent-chat-btn" id="agent-chat-btn"><i class="fas fa-comment-dots"></i> Ask Agent Now</button>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <select name="service" required>
+                        <option value="">Select Service</option>
+                        <option>AI Visualizers</option>
+                        <option>AI Ads</option>
+                        <option>AI Photos & Cloning</option>
+                        <option>Graphics Design</option>
+                        <option>Reinblacks Beats</option>
+                        <option>Other</option>
+                    </select>
+                    <textarea name="message" placeholder="Tell us about your project..." required></textarea>
+                    <button type="submit" class="submit-btn" id="submit-btn"><span class="btn-text">Send Application</span></button>
+                </form>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>Sponsored by Reinblacks Creativz — Since 2025</p>
+            <p style="margin:10px 0;">
+                📧 <a href="mailto:officialreinblacks@gmail.com" style="color:#aaa;">officialreinblacks@gmail.com</a> |
+                💬 <a href="https://wa.me/254794299237" target="_blank" style="color:#aaa;">WhatsApp +254 794 299 237</a> |
+                💼 <a href="https://www.upwork.com/freelancers/~01db27abd06c318e20" target="_blank" style="color:#aaa;">Upwork</a> |
+                📞 Tel: 0711 691 608
+            </p>
+            <p>📍 Africa · Kenya · Nairobi</p>
+            <div style="margin:10px 0; display:flex; gap:12px; justify-content:center;">
+                <a href="https://youtube.com/@reinblacks_music" target="_blank" class="social-btn"><i class="fab fa-youtube"></i></a>
+                <a href="https://www.instagram.com/reinblacks_music" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.tiktok.com/@reinblacks_music" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p>© 2025 Reinblacks Creativz. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- MODALS -->
+    <div class="modal-overlay" id="video-modal"><button class="modal-close" id="video-modal-close">✕</button><div class="video-full-wrap" id="video-modal-content"></div></div>
+    <div class="modal-overlay" id="gallery-modal"><button class="modal-close" id="gallery-modal-close">✕</button><div class="gallery-grid" id="gallery-grid-content"></div></div>
+    <div id="image-fullscreen"><button class="modal-close" id="image-fullscreen-close">✕</button><img src="" alt="Fullscreen" id="image-fullscreen-img"></div>
+
+    <button id="floating-chat-btn" title="Chat"><i class="fas fa-comment"></i></button>
+    <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+    <!-- BOTTOM MOBILE NAV -->
+    <nav id="bottom-mobile-nav">
+        <div class="bottom-nav-inner">
+            <button id="bottom-home"><i class="fas fa-home"></i> Home</button>
+            <button id="bottom-search"><i class="fas fa-search"></i> Search</button>
+            <button id="bottom-top"><i class="fas fa-arrow-up"></i> Top</button>
+        </div>
+    </nav>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            // Tidio delayed
+            window.addEventListener('scroll', function loadTidio() {
+                var s = document.createElement('script');
+                s.src = '//code.tidio.co/dmu9qvhzljut4stjuyoiwxqfjptj1nbj.js';
+                s.async = true;
+                document.body.appendChild(s);
+                window.removeEventListener('scroll', loadTidio);
+            }, { once: true });
+
+            const galleries = {
+                cloning: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg'
+                ],
+                editing: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666587/InCollage_20260513_124952807_prs7y9.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg'
+                ],
+                logos: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778655130025_neq7gu.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654866874_yf3hme.jpg'
+                ],
+                posters: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'
+                ],
+                branding: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688668/1778657276427_iurlnd.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688667/1778657145970_cvp8wc.jpg'
+                ]
+            };
+
+            // Intro
+            const introOverlay = document.getElementById('intro-overlay');
+            const mainSite = document.getElementById('main-site');
+            function completeIntro() {
+                introOverlay.classList.add('fade-out');
+                mainSite.classList.add('visible');
+                setTimeout(() => { if (introOverlay.parentNode) introOverlay.style.display = 'none'; }, 600);
+            }
+            setTimeout(completeIntro, 2600);
+            introOverlay.addEventListener('click', completeIntro);
+
+            // DOM
+            const topNav = document.getElementById('top-nav');
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const hamburgerOverlay = document.getElementById('hamburger-overlay');
+            const hamburgerPanel = document.getElementById('hamburger-panel');
+            const hamburgerClose = document.getElementById('hamburger-close');
+            const searchIconBtn = document.getElementById('search-icon-btn');
+            const navSearch = document.getElementById('nav-search');
+            const floatingChatBtn = document.getElementById('floating-chat-btn');
+            const agentChatBtn = document.getElementById('agent-chat-btn');
+            const videoModal = document.getElementById('video-modal');
+            const videoModalContent = document.getElementById('video-modal-content');
+            const videoModalClose = document.getElementById('video-modal-close');
+            const galleryModal = document.getElementById('gallery-modal');
+            const galleryGridContent = document.getElementById('gallery-grid-content');
+            const galleryModalClose = document.getElementById('gallery-modal-close');
+            const imageFullscreen = document.getElementById('image-fullscreen');
+            const imageFullscreenImg = document.getElementById('image-fullscreen-img');
+            const imageFullscreenClose = document.getElementById('image-fullscreen-close');
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            const allCategoryRows = document.querySelectorAll('.category-row');
+            const allFadeUpSections = document.querySelectorAll('.fade-up-section');
+            const allCatBtns = document.querySelectorAll('.cat-btn');
+            const allHamburgerLinks = document.querySelectorAll('#hamburger-panel a');
+            const backToTopBtn = document.getElementById('back-to-top');
+
+            // Hamburger
+            function openHamburger() {
+                hamburgerOverlay.classList.add('active');
+                hamburgerPanel.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+          function closeHamburger() {
+                hamburgerOverlay.classList.remove('active');
+                hamburgerPanel.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            hamburgerBtn.addEventListener('click', openHamburger);
+            hamburgerClose.addEventListener('click', closeHamburger);
+            hamburgerOverlay.addEventListener('click', e => { if (e.target === hamburgerOverlay) closeHamburger(); });
+            allHamburgerLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    const href = this.getAttribute('href');
+                    if (href && href.startsWith('#')) {
+                        e.preventDefault();
+                        document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
+                    }
+                    closeHamburger();
+                });
+            });
+
+            // Expanding search
+            searchIconBtn.addEventListener('click', () => {
+                navSearch.classList.toggle('expanded');
+                if (navSearch.classList.contains('expanded')) navSearch.focus();
+            });
+
+            // Active nav highlight
+            const navSectionIds = ['section-visualizers','section-ads','section-graphics','contact-section'];
+            const navLinkMap = {
+                'section-visualizers':'visualizers','section-ads':'ads',
+                'section-graphics':'graphics','contact-section':'contact'
+            };
+            function updateActiveNav() {
+                let currentId = null;
+                const scrollPos = window.scrollY + 150;
+                navSectionIds.forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && el.offsetTop <= scrollPos) currentId = id;
+                });
+                allHamburgerLinks.forEach(link => {
+                    link.classList.remove('active-nav');
+                    if (currentId && navLinkMap[currentId] === link.getAttribute('data-nav')) link.classList.add('active-nav');
+                });
+            }
+            function onPageScroll() {
+                topNav.classList.toggle('scrolled', window.scrollY > 40);
+                updateActiveNav();
+                backToTopBtn.style.display = window.scrollY > 500 ? 'flex' : 'none';
+            }
+            window.addEventListener('scroll', onPageScroll, { passive: true });
+
+            // Fade-up sections
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+                });
+            }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+            allFadeUpSections.forEach(s => observer.observe(s));
+
+            // Wheel handler for category rows
+            allCategoryRows.forEach(row => {
+                row.addEventListener('wheel', function(e) {
+                    const atStart = row.scrollLeft <= 0;
+                    const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 1;
+                    if ((e.deltaY < 0 && !atStart) || (e.deltaY > 0 && !atEnd)) {
+                        e.preventDefault();
+                        row.scrollLeft += e.deltaY;
+                    }
+                }, { passive: false });
+            });
+
+            // Slider arrows
+            document.querySelectorAll('.slider-arrow').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const row = document.getElementById(btn.dataset.target);
+                    if (row) row.scrollBy({ left: btn.classList.contains('left') ? -300 : 300, behavior: 'smooth' });
+                });
+            });
+
+            // Category buttons
+            allCatBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const target = document.getElementById(this.getAttribute('data-scroll'));
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                    allCatBtns.forEach(b => b.classList.remove('active-cat'));
+                    this.classList.add('active-cat');
+                });
+            });
+            function updateActiveCatBtn() {
+                let activeIdx = null;
+                const scrollPos = window.scrollY + 160;
+                const map = ['section-visualizers','section-ads','section-photos','section-graphics','section-beats','contact-section'];
+                map.forEach((id, i) => {
+                    const el = document.getElementById(id);
+                    if (el && el.offsetTop <= scrollPos) activeIdx = i;
+                });
+                if (activeIdx !== null) allCatBtns.forEach((b,i) => b.classList.toggle('active-cat', i === activeIdx));
+            }
+            window.addEventListener('scroll', updateActiveCatBtn, { passive: true });
+
+            // Video modal
+            function openVideoModal(videoId) {
+                videoModalContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeVideoModal() {
+                videoModal.classList.remove('active');
+                videoModalContent.innerHTML = '';
+                document.body.style.overflow = '';
+            }
+            videoModalClose.addEventListener('click', closeVideoModal);
+            videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
+
+            // Gallery modal
+            let currentGalleryKey = null;
+            function openGalleryModal(key) {
+                currentGalleryKey = key;
+                const images = galleries[key] || [];
+                galleryGridContent.innerHTML = images.map(src => `<img src="${src}" alt="gallery" loading="lazy" decoding="async">`).join('');
+                galleryModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeGalleryModal() {
+                galleryModal.classList.remove('active');
+                galleryGridContent.innerHTML = '';
+                document.body.style.overflow = '';
+                currentGalleryKey = null;
+            }
+            galleryModalClose.addEventListener('click', closeGalleryModal);
+            galleryModal.addEventListener('click', e => { if (e.target === galleryModal) closeGalleryModal(); });
+            galleryGridContent.addEventListener('click', e => {
+                if (e.target.tagName === 'IMG') openImageFullscreen(e.target.src);
+            });
+
+            // Image fullscreen
+            function openImageFullscreen(src) {
+                imageFullscreenImg.src = src;
+                imageFullscreen.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeImageFullscreen() {
+                imageFullscreen.classList.remove('active');
+                imageFullscreenImg.src = '';
+                document.body.style.overflow = '';
+            }
+            imageFullscreenClose.addEventListener('click', closeImageFullscreen);
+            imageFullscreen.addEventListener('click', e => { if (e.target === imageFullscreen) closeImageFullscreen(); });
+
+            // Poster click handler
+            document.addEventListener('click', function(e) {
+                const card = e.target.closest('.poster-card');
+                if (!card) return;
+                const videoId = card.getAttribute('data-video');
+                const galleryKey = card.getAttribute('data-gallery');
+                if (videoId) openVideoModal(videoId);
+                else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey);
+            });
+
+            // Search (page search)
+            let searchHighlightSpans = [];
+            function clearHighlights() {
+                searchHighlightSpans.forEach(span => {
+                    const parent = span.parentNode;
+                    if (parent) { parent.replaceChild(document.createTextNode(span.textContent), span); parent.normalize(); }
+                });
+                searchHighlightSpans = [];
+            }
+            function searchAndScroll(query) {
+                clearHighlights();
+                if (!query || query.trim().length < 2) return;
+                const q = query.trim().toLowerCase();
+                const walker = document.createTreeWalker(document.getElementById('main-site'), NodeFilter.SHOW_TEXT, null, false);
+                const textNodes = [];
+                while (walker.nextNode()) {
+                    const node = walker.currentNode;
+                    if (node.textContent.toLowerCase().includes(q) && node.parentElement &&
+                        !['SCRIPT','STYLE','IFRAME','NOSCRIPT'].includes(node.parentElement.tagName) &&
+                        node.parentElement.offsetParent) textNodes.push(node);
+                }
+                if (!textNodes.length) return;
+                const firstNode = textNodes[0];
+                const text = firstNode.textContent;
+                const idx = text.toLowerCase().indexOf(q);
+                if (idx >= 0) {
+                    const span = document.createElement('span'); span.className = 'search-highlight';
+                    span.textContent = text.slice(idx, idx+q.length);
+                    const frag = document.createDocumentFragment();
+                    frag.appendChild(document.createTextNode(text.slice(0, idx)));
+                    frag.appendChild(span);
+                    frag.appendChild(document.createTextNode(text.slice(idx+q.length)));
+                    firstNode.parentNode.replaceChild(frag, firstNode);
+                    searchHighlightSpans.push(span);
+                    span.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    setTimeout(clearHighlights, 2800);
+                }
+            }
+            navSearch.addEventListener('keydown', e => {
+                if (e.key === 'Enter') { e.preventDefault(); searchAndScroll(navSearch.value); }
+            });
+            navSearch.addEventListener('input', function() {
+                if (navSearch.value.trim().length >= 3) {
+                    clearTimeout(navSearch._debounce);
+                    navSearch._debounce = setTimeout(() => searchAndScroll(navSearch.value), 400);
+                } else clearHighlights();
+            });
+
+            // Chat
+            floatingChatBtn.addEventListener('click', () => {
+                if (window.tidioChatApi?.show) { window.tidioChatApi.show(); window.tidioChatApi.open(); }
+            });
+            agentChatBtn.addEventListener('click', () => {
+                if (window.tidioChatApi?.show) { window.tidioChatApi.show(); window.tidioChatApi.open(); }
+            });
+
+            // EmailJS
+            emailjs.init('xw4PXGpbb_tEf_ilH');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const btnText = submitBtn.querySelector('.btn-text');
+                const original = btnText.textContent;
+                submitBtn.classList.add('sending');
+                btnText.textContent = 'Sending...';
+                emailjs.send('service_3x6pyyq', 'template_hddk7oj', {
+                    from_name: contactForm.name.value,
+                    reply_to: contactForm.email.value,
+                    service: contactForm.service.value,
+                    message: contactForm.message.value,
+                }).then(() => {
+                    submitBtn.classList.remove('sending');
+                    submitBtn.classList.add('success');
+                    btnText.textContent = 'Application Sent! ✓';
+                    contactForm.reset();
+                    setTimeout(() => { submitBtn.classList.remove('success'); btnText.textContent = original; }, 3500);
+                }).catch(() => {
+                    submitBtn.classList.remove('sending');
+                    btnText.textContent = 'Error — Try Again';
+                    setTimeout(() => { btnText.textContent = original; }, 2500);
+                });
+            });
+          
+                    // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    if (imageFullscreen.classList.contains('active')) closeImageFullscreen();
+                    else if (galleryModal.classList.contains('active')) closeGalleryModal();
+                    else if (videoModal.classList.contains('active')) closeVideoModal();
+                    else if (hamburgerPanel.classList.contains('active')) closeHamburger();
+                }
+                if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement !== navSearch)) {
+                    e.preventDefault(); navSearch.focus();
+                }
+            });
+
+            // Back to top
+            backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            document.getElementById('bottom-home').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+            document.getElementById('bottom-search').addEventListener('click', () => {
+                navSearch.classList.add('expanded');
+                navSearch.focus();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            document.getElementById('bottom-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+            // Init
+            setTimeout(() => {
+                document.querySelector('#hero .fade-up-section')?.classList.add('visible');
+            }, 2800);
+            onPageScroll();
+            updateActiveCatBtn();
+        })();
+    </script>
+</body>
+</html>
