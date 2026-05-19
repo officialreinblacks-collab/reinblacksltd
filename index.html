@@ -638,47 +638,52 @@
                 window.removeEventListener('scroll', loadTidio);
             }, { once: true });
 
-            cloning: [
-    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg',
-    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg',
-    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg',
-    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666631/InCollage_20260513_122126172_fswgee.jpg',
-    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666672/InCollage_20260513_123021610_yegew8.jpg',
-    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666681/InCollage_20260513_122923395_tabaye.jpg',
-    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg',
-    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666607/InCollage_20260513_122756844_w7xzeg.jpg'
-],
-                editing: [
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666587/InCollage_20260513_124952807_prs7y9.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666601/InCollage_20260513_125222266_ps9ns0.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123901457_pjncvz.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123322422_k064go.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666608/InCollage_20260513_122415667_dhvmfc.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124826854_mr1uqt.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124609559_vj0ns8.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666597/InCollage_20260513_124255345_ah7oej.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666584/InCollage_20260513_125034406_tnoth1.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666591/InCollage_20260513_125512053_vkoytx.jpg'
-                ],
-                logos: [
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778655130025_neq7gu.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654866874_yf3hme.jpg'
-                ],
-                posters: [
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'
-                ],
-                branding: [
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688668/1778657276427_iurlnd.jpg',
-                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688667/1778657145970_cvp8wc.jpg'
-                ]
-            };
+            const galleries = {
+    cloning: [
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666631/InCollage_20260513_122126172_fswgee.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666672/InCollage_20260513_123021610_yegew8.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666681/InCollage_20260513_122923395_tabaye.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666607/InCollage_20260513_122756844_w7xzeg.jpg'
+    ],
+    editing: [
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666587/InCollage_20260513_124952807_prs7y9.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666601/InCollage_20260513_125222266_ps9ns0.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123901457_pjncvz.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123322422_k064go.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666608/InCollage_20260513_122415667_dhvmfc.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124826854_mr1uqt.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124609559_vj0ns8.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666597/InCollage_20260513_124255345_ah7oej.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666584/InCollage_20260513_125034406_tnoth1.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666591/InCollage_20260513_125512053_vkoytx.jpg'
+    ],
+    logos: [
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778655130025_neq7gu.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655941235_fhbadb.jpg',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655309934_q5h3sl.jpg'
+    ],
+    posters: [
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'
+    ],
+    branding: [
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688512/1778656906608_q7ekkl.png',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688511/1778657055403_swp3qs.png',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657206860_z9gonp.png',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688508/1778656989394_uwmfwp.png',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657276427_fswuhy.png',
+        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688513/1778657145970_h7kutd.png'
+    ]
+};
 
             // Intro
             const introOverlay = document.getElementById('intro-overlay');
