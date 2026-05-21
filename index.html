@@ -264,6 +264,19 @@
         .slider-arrow:hover { background:var(--red); }
         @media (max-width:768px) { .slider-arrow { display:none; } }
 
+        /* ── Swipe hint arrow ── */
+        .swipe-hint {
+            position:absolute; top:50%; right:15px; transform:translateY(-50%);
+            color:rgba(255,255,255,0.7); font-size:1.8rem; z-index:6;
+            pointer-events:none; animation:swipePulse 1.8s ease-in-out infinite;
+            transition:opacity 0.5s;
+        }
+        .swipe-hint.hidden { opacity:0; }
+        @keyframes swipePulse {
+            0%,100%{ transform:translateY(-50%) translateX(0); opacity:0.6; }
+            50%{ transform:translateY(-50%) translateX(8px); opacity:1; }
+        }
+
         .poster-card {
             flex-shrink:0; scroll-snap-align:start; border-radius:8px; overflow:hidden;
             cursor:pointer; transition:transform 0.3s ease, opacity 0.3s ease;
@@ -333,7 +346,7 @@
         .submit-btn:hover { background:#ff1a25; }
         .submit-btn:disabled { opacity:0.6; pointer-events:none; }
 
-     /* ─────────────── MODALS ─────────────── */
+      /* ─────────────── MODALS ─────────────── */
         .modal-overlay {
             position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9500;
             display:flex; align-items:center; justify-content:center;
@@ -496,8 +509,8 @@
                 <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
             </div>
         </section>
-      
-              <section class="content-section fade-up-section" id="section-visualizers">
+
+        <section class="content-section fade-up-section" id="section-visualizers">
             <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
             <div class="slider-container">
                 <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
@@ -545,12 +558,12 @@
                 <div class="poster-card tall" data-gallery="branding"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg" alt="Branding" loading="lazy" decoding="async"><div class="poster-overlay">Branding</div></div>
             </div>
         </section>
-
-        <section id="contact-section" class="fade-up-section">
+      
+              <section id="contact-section" class="fade-up-section">
             <div class="contact-split">
                 <div class="agent-card">
-                    <img src="https://ui-avatars.com/api/?name=Agent+R&background=E50914&color=fff&size=120" alt="Agent Reinblacks" class="agent-avatar" loading="lazy" decoding="async">
-                    <div class="agent-name">Agent Reinblacks</div>
+                    <img src="https://res.cloudinary.com/dmnwlnpr5/image/upload/w_200,h_200,c_fill,g_auto,q_auto,f_auto/v1779377239/1779377042276_wm4vey.png" alt="Live Support" class="agent-avatar" loading="lazy" decoding="async">
+                    <div class="agent-name">Live support chat 24/7</div>
                     <p class="agent-bio">Your dedicated creative concierge. Let's bring your vision to life — from AI visuals to premium editing.</p>
                     <button class="agent-chat-btn" id="agent-chat-btn"><i class="fas fa-comment-dots"></i> Ask Agent Now</button>
                 </div>
@@ -573,8 +586,8 @@
                 </form>
             </div>
         </section>
-      
-              <section class="content-section fade-up-section" id="find-us">
+
+        <section class="content-section fade-up-section" id="find-us">
             <div class="section-header"><span class="red-accent"></span> Find us Via</div>
             <div class="social-links">
                 <a href="https://wa.me/254794299237" target="_blank" rel="noopener" class="social-btn" style="background:#25D366;border-color:#25D366;"><i class="fab fa-whatsapp"></i> WhatsApp +254 7942 99237</a>
@@ -733,7 +746,7 @@
                 });
             });
 
-          searchIconBtn.addEventListener('click', () => {
+            searchIconBtn.addEventListener('click', () => {
                 navSearch.classList.toggle('expanded');
                 if (navSearch.classList.contains('expanded')) navSearch.focus();
             });
@@ -769,22 +782,52 @@
             }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
             allFadeUpSections.forEach(s => observer.observe(s));
 
+            // Improved wheel handler
             allCategoryRows.forEach(row => {
                 row.addEventListener('wheel', function(e) {
-                    const atStart = row.scrollLeft <= 0;
-                    const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 1;
-                    if ((e.deltaY < 0 && !atStart) || (e.deltaY > 0 && !atEnd)) {
+                    const hasOverflow = row.scrollWidth > row.clientWidth;
+                    if (!hasOverflow) return;
+                    const absX = Math.abs(e.deltaX);
+                    const absY = Math.abs(e.deltaY);
+                    if (absY > absX && absY > 10) {
+                        const atStart = row.scrollLeft <= 0;
+                        const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 2;
+                        if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
+                            e.preventDefault();
+                            row.scrollLeft += e.deltaY * 0.8;
+                        }
+                        return;
+                    }
+                    if (absX > 5) {
                         e.preventDefault();
-                        row.scrollLeft += e.deltaY;
+                        row.scrollLeft += e.deltaX;
                     }
                 }, { passive: false });
             });
 
+            // Slider arrow buttons
             document.querySelectorAll('.slider-arrow').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const row = document.getElementById(btn.dataset.target);
                     if (row) row.scrollBy({ left: btn.classList.contains('left') ? -300 : 300, behavior: 'smooth' });
                 });
+            });
+            // Swipe hint arrows
+            document.querySelectorAll('.slider-container').forEach(container => {
+                const row = container.querySelector('.category-row');
+                if (!row) return;
+                const hint = document.createElement('div');
+                hint.className = 'swipe-hint';
+                hint.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                container.appendChild(hint);
+                function hideHint() { hint.classList.add('hidden'); }
+                row.addEventListener('scroll', function() {
+                    const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 10;
+                    if (atEnd) hint.classList.add('hidden');
+                    else hint.classList.remove('hidden');
+                }, { passive: true });
+                row.addEventListener('touchstart', hideHint, { once: true });
+                row.addEventListener('wheel', hideHint, { once: true });
             });
 
             allCatBtns.forEach(btn => {
@@ -807,8 +850,9 @@
             }
             window.addEventListener('scroll', updateActiveCatBtn, { passive: true });
 
+            // Fixed video modal
             function openVideoModal(videoId) {
-                videoModalContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                videoModalContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&enablejsapi=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
                 videoModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
@@ -916,7 +960,7 @@
                 if (window.tidioChatApi?.show) { window.tidioChatApi.show(); window.tidioChatApi.open(); }
             });
 
-            // Web3Forms form handling
+            // Web3Forms
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('submit-btn');
             contactForm.addEventListener('submit', async function(e) {
