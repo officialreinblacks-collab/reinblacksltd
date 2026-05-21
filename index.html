@@ -49,9 +49,7 @@
             box-shadow:0 0 12px rgba(229,9,20,0.3);
         }
         @keyframes introGlowPulse {
-            0%{ opacity:0; transform:scale(0.5); }
-            50%{ opacity:0.8; transform:scale(1); }
-            100%{ opacity:0.5; transform:scale(1); }
+            0%{ opacity:0; transform:scale(0.5); } 50%{ opacity:0.8; transform:scale(1); } 100%{ opacity:0.5; transform:scale(1); }
         }
         @keyframes introReveal {
             0%{ filter:blur(6px); transform:scale(0.92); opacity:0; }
@@ -60,10 +58,8 @@
             100%{ filter:blur(0px); transform:scale(1); opacity:1; }
         }
         @keyframes introLineGrow {
-            0%{ width:0; opacity:0; }
-            55%{ width:0; opacity:0; }
-            75%{ width:70px; opacity:0.8; }
-            100%{ width:90px; opacity:0.6; }
+            0%{ width:0; opacity:0; } 55%{ width:0; opacity:0; }
+            75%{ width:70px; opacity:0.8; } 100%{ width:90px; opacity:0.6; }
         }
 
         /* ─────────────── MAIN SITE ─────────────── */
@@ -106,7 +102,8 @@
             margin-left:8px;
         }
         .nav-search.expanded { width:100%; padding:8px 34px 8px 12px; border-color:var(--red); }
-        .nav-search-icon { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:#aaa; font-size:0.8rem; pointer-events:none; }
+        .nav-search-icon { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:#aaa; font-size:0.8rem; pointer-events:none; display:none; }
+        .nav-search.expanded ~ .nav-search-icon { display:block; }
         .nav-right { display:flex; align-items:center; gap:12px; flex-shrink:0; }
         .yt-sub-btn {
             background:var(--red); border:none; color:#fff; font-size:0.75rem; font-weight:700;
@@ -184,12 +181,39 @@
             background:linear-gradient(0deg, #000000 0%, transparent 40%, rgba(0,0,0,0.6) 85%, #000000 100%);
             z-index:2;
         }
+        .hero-smoke {
+            position:absolute; bottom:0; left:0; width:100%; height:40%;
+            pointer-events:none; z-index:1; overflow:hidden;
+        }
+        .hero-smoke::before,
+        .hero-smoke::after {
+            content:''; position:absolute; bottom:0; width:200%; height:100%;
+            background:radial-gradient(ellipse at 50% 100%, rgba(255,255,255,0.12) 0%, transparent 60%);
+            animation:smokeDriftA 12s ease-in-out infinite;
+        }
+        .hero-smoke::after {
+            background:radial-gradient(ellipse at 30% 80%, rgba(255,255,255,0.08) 0%, transparent 50%);
+            animation:smokeDriftB 18s ease-in-out infinite; opacity:0.7;
+        }
+        @keyframes smokeDriftA {
+            0%{ transform:translateX(-10%) scaleY(1); opacity:0.4; }
+            25%{ transform:translateX(5%) scaleY(1.4); opacity:0.7; }
+            50%{ transform:translateX(15%) scaleY(1); opacity:0.3; }
+            75%{ transform:translateX(0%) scaleY(1.6); opacity:0.6; }
+            100%{ transform:translateX(-10%) scaleY(1); opacity:0.4; }
+        }
+        @keyframes smokeDriftB {
+            0%{ transform:translateX(5%) scaleY(1.2); opacity:0.3; }
+            33%{ transform:translateX(-8%) scaleY(1.5); opacity:0.5; }
+            66%{ transform:translateX(10%) scaleY(1); opacity:0.2; }
+            100%{ transform:translateX(5%) scaleY(1.2); opacity:0.3; }
+        }
         .hero-content {
             position:relative; z-index:3; display:flex; flex-direction:column;
             justify-content:flex-end; align-items:flex-start; height:100%;
             padding:100px 30px 70px; max-width:850px;
         }
-        .hero-tag { font-size:0.8rem; letter-spacing:0.18em; color:#aaa; text-transform:uppercase; margin-bottom:8px; }
+        .hero-tag { font-size:0.8rem; letter-spacing:0.18em; color:var(--red); text-transform:uppercase; margin-bottom:8px; font-weight:700; text-shadow:0 0 10px rgba(0,0,0,0.5); }
         .hero-title { font-size:clamp(2rem,5vw,3.5rem); font-weight:900; line-height:1.1; margin-bottom:6px; text-shadow:0 0 40px rgba(0,0,0,0.7); }
         .hero-subtitle { font-size:clamp(0.9rem,2vw,1.1rem); color:#ccc; margin-bottom:20px; text-shadow:0 0 20px rgba(0,0,0,0.7); max-width:700px; }
         .hero-play-btn {
@@ -214,9 +238,15 @@
             box-shadow:0 0 10px rgba(229,9,20,0.4); flex-shrink:0;
         }
         .slider-container { position:relative; }
+        .slider-container::after {
+            content:''; position:absolute; top:0; right:0; width:60px; height:100%;
+            background:linear-gradient(to right, transparent, rgba(0,0,0,0.7));
+            pointer-events:none; z-index:4; border-radius:0 8px 8px 0;
+        }
         .category-row {
             display:flex; gap:12px; overflow-x:auto; overflow-y:hidden;
             scroll-snap-type:x mandatory; touch-action:pan-x; padding-bottom:6px;
+            padding-right:40px;
             scrollbar-width:thin; scrollbar-color:rgba(229,9,20,0.3) transparent;
             cursor:grab; user-select:none; will-change:scroll-position;
         }
@@ -260,17 +290,6 @@
         }
         .poster-card:hover .play-icon-center { color:var(--red); transform:translate(-50%,-50%) scale(1.15); }
 
-        .beat-buttons { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
-        .beat-btn {
-            padding:10px 22px; border-radius:24px; background:var(--red); color:#fff;
-            font-weight:700; text-decoration:none; letter-spacing:0.04em;
-            transition:all 0.3s; display:inline-flex; align-items:center; gap:6px;
-            box-shadow:0 0 15px rgba(229,9,20,0.35);
-        }
-        .beat-btn:hover { background:#ff1a25; box-shadow:0 0 30px rgba(229,9,20,0.55); transform:translateY(-2px); }
-        .beat-btn.outline { background:transparent; border:2px solid var(--red); box-shadow:none; }
-        .beat-btn.outline:hover { background:rgba(229,9,20,0.15); }
-
         /* ─────────────── CONTACT ─────────────── */
         #contact-section { scroll-margin-top:110px; padding:40px 20px; }
         .contact-split {
@@ -299,6 +318,7 @@
             width:100%; padding:11px 14px; border-radius:8px;
             border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.45);
             color:#fff; font-size:0.9rem; outline:none; transition:border 0.3s, box-shadow 0.3s;
+            font-family:inherit;
         }
         .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus {
             border-color:var(--red); box-shadow:0 0 10px rgba(229,9,20,0.2);
@@ -311,10 +331,9 @@
             transition:all 0.3s; box-shadow:0 0 18px rgba(229,9,20,0.35);
         }
         .submit-btn:hover { background:#ff1a25; }
-        .submit-btn.sending { opacity:0.7; pointer-events:none; }
-        .submit-btn.success { background:#2ecc71; box-shadow:0 0 20px rgba(46,204,113,0.4); pointer-events:none; }
+        .submit-btn:disabled { opacity:0.6; pointer-events:none; }
 
-        /* ─────────────── MODALS ─────────────── */
+     /* ─────────────── MODALS ─────────────── */
         .modal-overlay {
             position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9500;
             display:flex; align-items:center; justify-content:center;
@@ -354,17 +373,15 @@
             box-shadow:0 4px 18px rgba(0,120,255,0.4);
             display:flex; align-items:center; justify-content:center;
         }
-  
-         /* ─────────────── BOTTOM MOBILE NAV ─────────────── */
+
+        /* ─────────────── BOTTOM MOBILE NAV ─────────────── */
         #bottom-mobile-nav {
             display:none;
             position:fixed; bottom:0; left:0; right:0; z-index:9200;
             background:rgba(0,0,0,0.9); border-top:1px solid rgba(255,255,255,0.1);
             padding:8px 0;
         }
-        #bottom-mobile-nav .bottom-nav-inner {
-            display:flex; justify-content:space-around; align-items:center;
-        }
+        #bottom-mobile-nav .bottom-nav-inner { display:flex; justify-content:space-around; align-items:center; }
         #bottom-mobile-nav button {
             background:none; border:none; color:#aaa; font-size:0.75rem;
             display:flex; flex-direction:column; align-items:center; gap:4px;
@@ -410,15 +427,6 @@
         }
         .social-btn:hover { background:rgba(229,9,20,0.25); border-color:var(--red); }
 
-        .streaming-links { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-top:10px; }
-        .streaming-btn {
-            display:inline-flex; align-items:center; gap:6px; padding:10px 18px;
-            border-radius:24px; font-weight:700; text-decoration:none; letter-spacing:0.03em;
-            transition:all 0.3s; background:rgba(255,255,255,0.08);
-            border:1px solid rgba(255,255,255,0.2); color:#fff;
-        }
-        .streaming-btn:hover { background:rgba(229,9,20,0.25); border-color:var(--red); }
-
         footer {
             text-align:center; padding:30px 20px; color:#666; font-size:0.8rem;
             border-top:1px solid rgba(255,255,255,0.05);
@@ -427,7 +435,7 @@
 </head>
 <body>
 
-      <div id="intro-overlay">
+    <div id="intro-overlay">
         <div id="intro-inner">
             <div id="intro-glow-ring"></div>
             <div id="intro-brand">Reinblacks Creativz</div>
@@ -437,7 +445,6 @@
 
     <div id="main-site">
 
-        <!-- TOP NAVIGATION -->
         <nav id="top-nav">
             <div class="nav-left">
                 <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">☰</button>
@@ -455,33 +462,31 @@
             </div>
         </nav>
 
-        <!-- HAMBURGER MENU -->
         <div id="hamburger-overlay"></div>
         <div id="hamburger-panel">
             <button id="hamburger-close">✕</button>
             <div class="menu-title">Navigation</div>
-            <a href="#section-visualizers" data-nav="visualizers">AI Video Music Visualizers</a>
-            <a href="#section-ads" data-nav="ads">AI Ads Videos</a>
-            <a href="#section-graphics" data-nav="graphics">Graphics Design</a>
-            <a href="#contact-section" data-nav="contact">Apply Now</a>
+            <a href="#section-visualizers" data-nav="visualizers">AI Visualizers</a>
+            <a href="#section-ads" data-nav="ads">AI Ads</a>
+            <a href="#section-photos" data-nav="photos">AI Photos</a>
+            <a href="#section-graphics" data-nav="graphics">Graphics</a>
+            <a href="#contact-section" data-nav="contact">Contact</a>
         </div>
 
-        <!-- CATEGORY BAR -->
         <div id="category-bar">
             <button class="cat-btn active-cat" data-scroll="section-visualizers">AI Visualizers</button>
             <button class="cat-btn" data-scroll="section-ads">AI Ads</button>
             <button class="cat-btn" data-scroll="section-photos">AI Photos</button>
             <button class="cat-btn" data-scroll="section-graphics">Graphics</button>
-            <button class="cat-btn" data-scroll="section-beats">Beats</button>
             <button class="cat-btn" data-scroll="contact-section">Apply Now</button>
         </div>
 
-        <!-- HERO SECTION -->
         <section id="hero">
             <div class="hero-video-wrap">
                 <img src="https://res.cloudinary.com/datfuxotx/image/upload/w_1500,c_limit,q_auto,f_auto/v1779091225/59e81920-528f-11f1-8980-f50923672664_oqesrd.webp"
                      alt="Reinblacks Hero" class="hero-bg-image" decoding="async">
             </div>
+            <div class="hero-smoke"></div>
             <div class="hero-gradient"></div>
             <div class="hero-content fade-up-section">
                 <p class="hero-tag">Pro Editing | 4K HD Quality | Realistic</p>
@@ -491,50 +496,47 @@
                 <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
             </div>
         </section>
-
-<!-- SECTION 1: AI Video Music Visualizers -->
-<section class="content-section fade-up-section" id="section-visualizers">
-    <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
-    <div class="slider-container">
-        <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
-        <div class="category-row" id="row-visualizers">
-            <div class="poster-card wide" data-video="cJjmowtYDYU"><img src="https://img.youtube.com/vi/cJjmowtYDYU/hqdefault.jpg" alt="Visualizer 1" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer I</div></div>
-            <div class="poster-card wide" data-video="0lMemK0xYXs"><img src="https://img.youtube.com/vi/0lMemK0xYXs/hqdefault.jpg" alt="Visualizer 2" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer II</div></div>
-            <div class="poster-card wide" data-video="YpjmFiI_6Ms"><img src="https://img.youtube.com/vi/YpjmFiI_6Ms/hqdefault.jpg" alt="Visualizer 3" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer III</div></div>
-            <div class="poster-card wide" data-video="fLsiRfpwbz8"><img src="https://img.youtube.com/vi/fLsiRfpwbz8/hqdefault.jpg" alt="Visualizer 4" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer IV</div></div>
-            <div class="poster-card wide" data-video="Pi05jb9xXtU"><img src="https://img.youtube.com/vi/Pi05jb9xXtU/hqdefault.jpg" alt="Visualizer 5" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer V</div></div>
-        </div>
-        <button class="slider-arrow right" data-target="row-visualizers"><i class="fas fa-chevron-right"></i></button>
-    </div>
-    <p style="color:#aaa; font-size:0.9rem; margin-top:10px;">We create professional cinematic visuals with ultra-realistic storytelling that feels natural, emotional, and human — never artificial. From realistic AI filmmaking to professional music video editing, every frame is crafted with industry-level detail, motion, lighting, and sound design.<br>Discover more visuals, films, and music experiences on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
-</section>
-<!-- SECTION 2: AI Ads Videos -->
-<section class="content-section fade-up-section" id="section-ads">
-    <div class="section-header"><span class="red-accent"></span> AI Ads Videos</div>
-    <div class="slider-container">
-        <button class="slider-arrow left" data-target="row-ads"><i class="fas fa-chevron-left"></i></button>
-        <div class="category-row" id="row-ads">
-            <div class="poster-card wide" data-video="TnKSGkY5Hds"><img src="https://img.youtube.com/vi/TnKSGkY5Hds/hqdefault.jpg" alt="AI Ad 1" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad I</div></div>
-            <div class="poster-card wide" data-video="zIUotjon9PI"><img src="https://img.youtube.com/vi/zIUotjon9PI/hqdefault.jpg" alt="AI Ad 2" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad II</div></div>
-            <div class="poster-card wide" data-video="0fYn1A5CxGQ"><img src="https://img.youtube.com/vi/0fYn1A5CxGQ/hqdefault.jpg" alt="AI Ad 3" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad III</div></div>
-            <div class="poster-card wide" data-video="s6cpSzRMfw8"><img src="https://img.youtube.com/vi/s6cpSzRMfw8/hqdefault.jpg" alt="AI Ad 4" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad IV</div></div>
-        </div>
-        <button class="slider-arrow right" data-target="row-ads"><i class="fas fa-chevron-right"></i></button>
-    </div>
-    <p style="color:#aaa; font-size:0.9rem; margin-top:10px;">We create high-converting professional advertising campaigns for brands, businesses, and creators — including Meta Ads, Google Ads, and cinematic promotional content designed to attract real customers and increase engagement. Every campaign is backed by strategic research, audience targeting, and creative storytelling to deliver strong visual impact and measurable results.<br>Explore more advertising visuals and campaign showcases on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
-</section>
       
-              <!-- SECTION 3: AI Photos & Cloning -->
+              <section class="content-section fade-up-section" id="section-visualizers">
+            <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
+            <div class="slider-container">
+                <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
+                <div class="category-row" id="row-visualizers">
+                    <div class="poster-card wide" data-video="cJjmowtYDYU"><img src="https://img.youtube.com/vi/cJjmowtYDYU/hqdefault.jpg" alt="Visualizer 1" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer I</div></div>
+                    <div class="poster-card wide" data-video="0lMemK0xYXs"><img src="https://img.youtube.com/vi/0lMemK0xYXs/hqdefault.jpg" alt="Visualizer 2" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer II</div></div>
+                    <div class="poster-card wide" data-video="YpjmFiI_6Ms"><img src="https://img.youtube.com/vi/YpjmFiI_6Ms/hqdefault.jpg" alt="Visualizer 3" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer III</div></div>
+                    <div class="poster-card wide" data-video="fLsiRfpwbz8"><img src="https://img.youtube.com/vi/fLsiRfpwbz8/hqdefault.jpg" alt="Visualizer 4" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer IV</div></div>
+                    <div class="poster-card wide" data-video="Pi05jb9xXtU"><img src="https://img.youtube.com/vi/Pi05jb9xXtU/hqdefault.jpg" alt="Visualizer 5" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">Visualizer V</div></div>
+                </div>
+                <button class="slider-arrow right" data-target="row-visualizers"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional cinematic visuals with ultra-realistic storytelling that feels natural, emotional, and human — never artificial. From realistic AI filmmaking to professional music video editing, every frame is crafted with industry-level detail, motion, lighting, and sound design.<br>Discover more visuals, films, and music experiences on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
+        </section>
+
+        <section class="content-section fade-up-section" id="section-ads">
+            <div class="section-header"><span class="red-accent"></span> AI Ads Videos</div>
+            <div class="slider-container">
+                <button class="slider-arrow left" data-target="row-ads"><i class="fas fa-chevron-left"></i></button>
+                <div class="category-row" id="row-ads">
+                    <div class="poster-card wide" data-video="TnKSGkY5Hds"><img src="https://img.youtube.com/vi/TnKSGkY5Hds/hqdefault.jpg" alt="AI Ad 1" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad I</div></div>
+                    <div class="poster-card wide" data-video="zIUotjon9PI"><img src="https://img.youtube.com/vi/zIUotjon9PI/hqdefault.jpg" alt="AI Ad 2" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad II</div></div>
+                    <div class="poster-card wide" data-video="0fYn1A5CxGQ"><img src="https://img.youtube.com/vi/0fYn1A5CxGQ/hqdefault.jpg" alt="AI Ad 3" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad III</div></div>
+                    <div class="poster-card wide" data-video="s6cpSzRMfw8"><img src="https://img.youtube.com/vi/s6cpSzRMfw8/hqdefault.jpg" alt="AI Ad 4" loading="lazy" decoding="async"><div class="play-icon-center"><i class="fas fa-play-circle"></i></div><div class="poster-overlay">AI Ad IV</div></div>
+                </div>
+                <button class="slider-arrow right" data-target="row-ads"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create high-converting professional advertising campaigns for brands, businesses, and creators — including Meta Ads, Google Ads, and cinematic promotional content designed to attract real customers and increase engagement. Every campaign is backed by strategic research, audience targeting, and creative storytelling to deliver strong visual impact and measurable results.<br>Explore more advertising visuals and campaign showcases on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
+        </section>
+
         <section class="content-section fade-up-section" id="section-photos">
             <div class="section-header"><span class="red-accent"></span> AI Photos &amp; Cloning</div>
             <div class="category-row" data-row="photos">
                 <div class="poster-card tall" data-gallery="cloning"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg" alt="Photo Cloning" loading="lazy" decoding="async"><div class="poster-overlay">Photo Cloning</div></div>
                 <div class="poster-card tall" data-gallery="editing"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg" alt="AI Photo Editing" loading="lazy" decoding="async"><div class="poster-overlay">AI Photo Editing</div></div>
             </div>
-            <p style="color:#aaa; font-size:0.9rem; margin-top:10px;">We create professional AI photo editing and realistic AI cloning with high-end cinematic quality, natural skin texture, accurate lighting, and lifelike detail that blends seamlessly with reality. From creative transformations to ultra-realistic portrait enhancement, every edit is crafted to look authentic, polished, and visually powerful — never fake or overprocessed.</p>
+            <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional AI photo editing and realistic AI cloning with high-end cinematic quality, natural skin texture, accurate lighting, and lifelike detail that blends seamlessly with reality. From creative transformations to ultra-realistic portrait enhancement, every edit is crafted to look authentic, polished, and visually powerful — never fake or overprocessed.</p>
         </section>
 
-        <!-- SECTION 4: Graphics Design -->
         <section class="content-section fade-up-section" id="section-graphics">
             <div class="section-header"><span class="red-accent"></span> Graphics Design</div>
             <div class="category-row" data-row="graphics">
@@ -544,25 +546,6 @@
             </div>
         </section>
 
-        <!-- SECTION 5: Reinblacks Beats -->
-        <section class="content-section fade-up-section" id="section-beats">
-            <div class="section-header"><span class="red-accent"></span> Reinblacks Beats</div>
-            <div class="beat-buttons">
-                <a href="https://www.beatstars.com/" target="_blank" rel="noopener" class="beat-btn"><i class="fas fa-headphones"></i> BeatStars</a>
-                <a href="https://payhip.com/" target="_blank" rel="noopener" class="beat-btn outline"><i class="fas fa-shopping-cart"></i> Payhip</a>
-            </div>
-            <div style="margin-top:25px;">
-                <div class="section-header" style="font-size:1.1rem;"><span class="red-accent" style="height:18px;"></span> Our music is streamed Allover Major platforms</div>
-                <div class="streaming-links">
-                    <a href="https://open.spotify.com/artist/5BWeOJb7uAVwJpnPckoCu6?si=DTBhfB3aSka2PlP9l96iyw" target="_blank" rel="noopener" class="streaming-btn"><i class="fab fa-spotify"></i> Spotify</a>
-                    <a href="https://www.boomplay.com/artists/105482877?srModel=COPYLINK&srList=WEB&share_content=artist&share_channel=copylink&share_platform=web" target="_blank" rel="noopener" class="streaming-btn"><i class="fas fa-music"></i> Boomplay</a>
-                    <a href="https://music.apple.com/in/artist/reinblacks-music/1792423991" target="_blank" rel="noopener" class="streaming-btn"><i class="fab fa-apple"></i> Apple Music</a>
-                    <a href="https://music.amazon.com/artists/B0DTZ414LC/reinblacks-music?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_kMFgTaZn0JuzLfC4Sc9sZfYJs" target="_blank" rel="noopener" class="streaming-btn"><i class="fab fa-amazon"></i> Amazon Music</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
         <section id="contact-section" class="fade-up-section">
             <div class="contact-split">
                 <div class="agent-card">
@@ -571,27 +554,39 @@
                     <p class="agent-bio">Your dedicated creative concierge. Let's bring your vision to life — from AI visuals to premium editing.</p>
                     <button class="agent-chat-btn" id="agent-chat-btn"><i class="fas fa-comment-dots"></i> Ask Agent Now</button>
                 </div>
-                <form class="contact-form" id="contact-form">
+                <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
+                    <input type="hidden" name="access_key" value="5dc1b1ae-2315-45f5-853f-2ccd8d270b56">
+                    <input type="hidden" name="subject" value="New Application from Reinblacks Creativz">
+                    <input type="hidden" name="redirect" value="false">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <select name="service" required>
                         <option value="">Select Service</option>
-                        <option>AI Visualizers</option>
-                        <option>AI Ads</option>
-                        <option>AI Photos & Cloning</option>
-                        <option>Graphics Design</option>
-                        <option>Reinblacks Beats</option>
-                        <option>Other</option>
+                        <option value="AI Visualizers">AI Visualizers</option>
+                        <option value="AI Ads">AI Ads</option>
+                        <option value="AI Photos & Cloning">AI Photos & Cloning</option>
+                        <option value="Graphics Design">Graphics Design</option>
+                        <option value="Other">Other</option>
                     </select>
                     <textarea name="message" placeholder="Tell us about your project..." required></textarea>
                     <button type="submit" class="submit-btn" id="submit-btn"><span class="btn-text">Send Application</span></button>
                 </form>
             </div>
         </section>
+      
+              <section class="content-section fade-up-section" id="find-us">
+            <div class="section-header"><span class="red-accent"></span> Find us Via</div>
+            <div class="social-links">
+                <a href="https://wa.me/254794299237" target="_blank" rel="noopener" class="social-btn" style="background:#25D366;border-color:#25D366;"><i class="fab fa-whatsapp"></i> WhatsApp +254 7942 99237</a>
+                <a href="https://www.upwork.com/freelancers/~01db27abd06c318e20" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-upwork"></i> Upwork</a>
+                <a href="https://www.instagram.com/reinblacks_music?igsh=YmdwaXZ1MHAydjlj" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+                <a href="https://www.facebook.com/share/18ZF3Sapc1/" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-facebook-f"></i> Facebook</a>
+                <a href="https://www.tiktok.com/@reinblacks_music?_r=1&_t=ZS-96RaDIzg9QX" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-tiktok"></i> TikTok</a>
+            </div>
+        </section>
 
-        <!-- FOOTER -->
         <footer>
-            <p>Sponsored by Reinblacks Creativz — Since 2025</p>
+            <p>Sponsored by Reinblacks Music</p>
             <p style="margin:10px 0;">
                 📧 <a href="mailto:officialreinblacks@gmail.com" style="color:#aaa;">officialreinblacks@gmail.com</a> |
                 💬 <a href="https://wa.me/254794299237" target="_blank" style="color:#aaa;">WhatsApp +254 794 299 237</a> |
@@ -599,7 +594,7 @@
                 📞 Tel: 0711 691 608
             </p>
             <p>📍 Africa · Kenya · Nairobi</p>
-            <div style="margin:10px 0; display:flex; gap:12px; justify-content:center;">
+            <div style="margin:10px 0;display:flex;gap:12px;justify-content:center;">
                 <a href="https://youtube.com/@reinblacks_music" target="_blank" class="social-btn"><i class="fab fa-youtube"></i></a>
                 <a href="https://www.instagram.com/reinblacks_music" target="_blank" class="social-btn"><i class="fab fa-instagram"></i></a>
                 <a href="https://www.tiktok.com/@reinblacks_music" target="_blank" class="social-btn"><i class="fab fa-tiktok"></i></a>
@@ -608,7 +603,6 @@
         </footer>
     </div>
 
-    <!-- MODALS -->
     <div class="modal-overlay" id="video-modal"><button class="modal-close" id="video-modal-close">✕</button><div class="video-full-wrap" id="video-modal-content"></div></div>
     <div class="modal-overlay" id="gallery-modal"><button class="modal-close" id="gallery-modal-close">✕</button><div class="gallery-grid" id="gallery-grid-content"></div></div>
     <div id="image-fullscreen"><button class="modal-close" id="image-fullscreen-close">✕</button><img src="" alt="Fullscreen" id="image-fullscreen-img"></div>
@@ -616,7 +610,6 @@
     <button id="floating-chat-btn" title="Chat"><i class="fas fa-comment"></i></button>
     <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
-    <!-- BOTTOM MOBILE NAV -->
     <nav id="bottom-mobile-nav">
         <div class="bottom-nav-inner">
             <button id="bottom-home"><i class="fas fa-home"></i> Home</button>
@@ -625,11 +618,8 @@
         </div>
     </nav>
 
-    <!-- SCRIPTS -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script>
         (function() {
-            // Tidio delayed
             window.addEventListener('scroll', function loadTidio() {
                 var s = document.createElement('script');
                 s.src = '//code.tidio.co/dmu9qvhzljut4stjuyoiwxqfjptj1nbj.js';
@@ -639,53 +629,52 @@
             }, { once: true });
 
             const galleries = {
-    cloning: [
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666631/InCollage_20260513_122126172_fswgee.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666672/InCollage_20260513_123021610_yegew8.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666681/InCollage_20260513_122923395_tabaye.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666607/InCollage_20260513_122756844_w7xzeg.jpg'
-    ],
-    editing: [
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666587/InCollage_20260513_124952807_prs7y9.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666601/InCollage_20260513_125222266_ps9ns0.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123901457_pjncvz.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123322422_k064go.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666608/InCollage_20260513_122415667_dhvmfc.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124826854_mr1uqt.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124609559_vj0ns8.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666597/InCollage_20260513_124255345_ah7oej.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666584/InCollage_20260513_125034406_tnoth1.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666591/InCollage_20260513_125512053_vkoytx.jpg'
-    ],
-    logos: [
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778655130025_neq7gu.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655941235_fhbadb.jpg',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655309934_q5h3sl.jpg'
-    ],
-    posters: [
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'
-    ],
-    branding: [
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688512/1778656906608_q7ekkl.png',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688511/1778657055403_swp3qs.png',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657206860_z9gonp.png',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688508/1778656989394_uwmfwp.png',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657276427_fswuhy.png',
-        'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688513/1778657145970_h7kutd.png'
-    ]
-};
+                cloning: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666631/InCollage_20260513_122126172_fswgee.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666672/InCollage_20260513_123021610_yegew8.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666681/InCollage_20260513_122923395_tabaye.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666607/InCollage_20260513_122756844_w7xzeg.jpg'
+                ],
+                editing: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666587/InCollage_20260513_124952807_prs7y9.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666601/InCollage_20260513_125222266_ps9ns0.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123901457_pjncvz.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123322422_k064go.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666608/InCollage_20260513_122415667_dhvmfc.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124826854_mr1uqt.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124609559_vj0ns8.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666597/InCollage_20260513_124255345_ah7oej.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666584/InCollage_20260513_125034406_tnoth1.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666591/InCollage_20260513_125512053_vkoytx.jpg'
+                ],
+                logos: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778655130025_neq7gu.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655941235_fhbadb.jpg',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655309934_q5h3sl.jpg'
+                ],
+                posters: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'
+                ],
+                branding: [
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688512/1778656906608_q7ekkl.png',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688511/1778657055403_swp3qs.png',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657206860_z9gonp.png',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688508/1778656989394_uwmfwp.png',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657276427_fswuhy.png',
+                    'https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688513/1778657145970_h7kutd.png'
+                ]
+            };
 
-            // Intro
             const introOverlay = document.getElementById('intro-overlay');
             const mainSite = document.getElementById('main-site');
             function completeIntro() {
@@ -696,7 +685,6 @@
             setTimeout(completeIntro, 2600);
             introOverlay.addEventListener('click', completeIntro);
 
-            // DOM
             const topNav = document.getElementById('top-nav');
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const hamburgerOverlay = document.getElementById('hamburger-overlay');
@@ -715,21 +703,18 @@
             const imageFullscreen = document.getElementById('image-fullscreen');
             const imageFullscreenImg = document.getElementById('image-fullscreen-img');
             const imageFullscreenClose = document.getElementById('image-fullscreen-close');
-            const contactForm = document.getElementById('contact-form');
-            const submitBtn = document.getElementById('submit-btn');
             const allCategoryRows = document.querySelectorAll('.category-row');
             const allFadeUpSections = document.querySelectorAll('.fade-up-section');
             const allCatBtns = document.querySelectorAll('.cat-btn');
             const allHamburgerLinks = document.querySelectorAll('#hamburger-panel a');
             const backToTopBtn = document.getElementById('back-to-top');
 
-            // Hamburger
             function openHamburger() {
                 hamburgerOverlay.classList.add('active');
                 hamburgerPanel.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
-          function closeHamburger() {
+            function closeHamburger() {
                 hamburgerOverlay.classList.remove('active');
                 hamburgerPanel.classList.remove('active');
                 document.body.style.overflow = '';
@@ -748,17 +733,15 @@
                 });
             });
 
-            // Expanding search
-            searchIconBtn.addEventListener('click', () => {
+          searchIconBtn.addEventListener('click', () => {
                 navSearch.classList.toggle('expanded');
                 if (navSearch.classList.contains('expanded')) navSearch.focus();
             });
 
-            // Active nav highlight
-            const navSectionIds = ['section-visualizers','section-ads','section-graphics','contact-section'];
+            const navSectionIds = ['section-visualizers','section-ads','section-photos','section-graphics','contact-section'];
             const navLinkMap = {
                 'section-visualizers':'visualizers','section-ads':'ads',
-                'section-graphics':'graphics','contact-section':'contact'
+                'section-photos':'photos','section-graphics':'graphics','contact-section':'contact'
             };
             function updateActiveNav() {
                 let currentId = null;
@@ -779,7 +762,6 @@
             }
             window.addEventListener('scroll', onPageScroll, { passive: true });
 
-            // Fade-up sections
             const observer = new IntersectionObserver(entries => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
@@ -787,7 +769,6 @@
             }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
             allFadeUpSections.forEach(s => observer.observe(s));
 
-            // Wheel handler for category rows
             allCategoryRows.forEach(row => {
                 row.addEventListener('wheel', function(e) {
                     const atStart = row.scrollLeft <= 0;
@@ -799,7 +780,6 @@
                 }, { passive: false });
             });
 
-            // Slider arrows
             document.querySelectorAll('.slider-arrow').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const row = document.getElementById(btn.dataset.target);
@@ -807,7 +787,6 @@
                 });
             });
 
-            // Category buttons
             allCatBtns.forEach(btn => {
                 btn.addEventListener('click', function() {
                     const target = document.getElementById(this.getAttribute('data-scroll'));
@@ -819,7 +798,7 @@
             function updateActiveCatBtn() {
                 let activeIdx = null;
                 const scrollPos = window.scrollY + 160;
-                const map = ['section-visualizers','section-ads','section-photos','section-graphics','section-beats','contact-section'];
+                const map = ['section-visualizers','section-ads','section-photos','section-graphics','contact-section'];
                 map.forEach((id, i) => {
                     const el = document.getElementById(id);
                     if (el && el.offsetTop <= scrollPos) activeIdx = i;
@@ -828,7 +807,6 @@
             }
             window.addEventListener('scroll', updateActiveCatBtn, { passive: true });
 
-            // Video modal
             function openVideoModal(videoId) {
                 videoModalContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
                 videoModal.classList.add('active');
@@ -842,7 +820,6 @@
             videoModalClose.addEventListener('click', closeVideoModal);
             videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
 
-            // Gallery modal
             let currentGalleryKey = null;
             function openGalleryModal(key) {
                 currentGalleryKey = key;
@@ -863,7 +840,6 @@
                 if (e.target.tagName === 'IMG') openImageFullscreen(e.target.src);
             });
 
-            // Image fullscreen
             function openImageFullscreen(src) {
                 imageFullscreenImg.src = src;
                 imageFullscreen.classList.add('active');
@@ -877,7 +853,6 @@
             imageFullscreenClose.addEventListener('click', closeImageFullscreen);
             imageFullscreen.addEventListener('click', e => { if (e.target === imageFullscreen) closeImageFullscreen(); });
 
-            // Poster click handler
             document.addEventListener('click', function(e) {
                 const card = e.target.closest('.poster-card');
                 if (!card) return;
@@ -887,7 +862,6 @@
                 else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey);
             });
 
-            // Search (page search)
             let searchHighlightSpans = [];
             function clearHighlights() {
                 searchHighlightSpans.forEach(span => {
@@ -935,7 +909,6 @@
                 } else clearHighlights();
             });
 
-            // Chat
             floatingChatBtn.addEventListener('click', () => {
                 if (window.tidioChatApi?.show) { window.tidioChatApi.show(); window.tidioChatApi.open(); }
             });
@@ -943,33 +916,40 @@
                 if (window.tidioChatApi?.show) { window.tidioChatApi.show(); window.tidioChatApi.open(); }
             });
 
-            // EmailJS
-            emailjs.init('xw4PXGpbb_tEf_ilH');
-            contactForm.addEventListener('submit', function(e) {
+            // Web3Forms form handling
+            const contactForm = document.getElementById('contact-form');
+            const submitBtn = document.getElementById('submit-btn');
+            contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 const btnText = submitBtn.querySelector('.btn-text');
                 const original = btnText.textContent;
-                submitBtn.classList.add('sending');
+                submitBtn.disabled = true;
                 btnText.textContent = 'Sending...';
-                emailjs.send('service_3x6pyyq', 'template_hddk7oj', {
-                    from_name: contactForm.name.value,
-                    reply_to: contactForm.email.value,
-                    service: contactForm.service.value,
-                    message: contactForm.message.value,
-                }).then(() => {
-                    submitBtn.classList.remove('sending');
-                    submitBtn.classList.add('success');
-                    btnText.textContent = 'Application Sent! ✓';
-                    contactForm.reset();
-                    setTimeout(() => { submitBtn.classList.remove('success'); btnText.textContent = original; }, 3500);
-                }).catch(() => {
-                    submitBtn.classList.remove('sending');
+                try {
+                    const response = await fetch('https://api.web3forms.com/submit', {
+                        method: 'POST',
+                        body: new FormData(contactForm)
+                    });
+                    const result = await response.json();
+                    if (result.success) {
+                        btnText.textContent = 'Application Sent! ✓';
+                        submitBtn.style.background = '#2ecc71';
+                        contactForm.reset();
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            btnText.textContent = original;
+                            submitBtn.style.background = '';
+                        }, 3500);
+                    } else {
+                        throw new Error('Submission failed');
+                    }
+                } catch (error) {
                     btnText.textContent = 'Error — Try Again';
+                    submitBtn.disabled = false;
                     setTimeout(() => { btnText.textContent = original; }, 2500);
-                });
+                }
             });
-          
-                    // Keyboard shortcuts
+
             document.addEventListener('keydown', function(e) {
                 if (e.key === 'Escape') {
                     if (imageFullscreen.classList.contains('active')) closeImageFullscreen();
@@ -982,7 +962,6 @@
                 }
             });
 
-            // Back to top
             backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             document.getElementById('bottom-home').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             document.getElementById('bottom-search').addEventListener('click', () => {
@@ -992,7 +971,6 @@
             });
             document.getElementById('bottom-top').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-            // Init
             setTimeout(() => {
                 document.querySelector('#hero .fade-up-section')?.classList.add('visible');
             }, 2800);
