@@ -634,12 +634,17 @@
     <script>
         (function() {
             window.addEventListener('scroll', function loadTidio() {
-                var s = document.createElement('script');
-                s.src = '//code.tidio.co/dmu9qvhzljut4stjuyoiwxqfjptj1nbj.js';
-                s.async = true;
-                document.body.appendChild(s);
-                window.removeEventListener('scroll', loadTidio);
-            }, { once: true });
+    var s = document.createElement('script');
+    s.src = '//code.tidio.co/dmu9qvhzljut4stjuyoiwxqfjptj1nbj.js';
+    s.async = true;
+    s.onload = function() {
+        if (window.tidioChatApi) {
+            window.tidioChatApi.hide();
+        }
+    };
+    document.body.appendChild(s);
+    window.removeEventListener('scroll', loadTidio);
+}, { once: true });
 
             const galleries = {
                 cloning: [
