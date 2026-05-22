@@ -154,7 +154,7 @@
             position:fixed; top:52px; left:0; right:0; z-index:8990;
             display:flex; gap:8px; padding:8px 20px; overflow-x:auto;
             background:rgba(10,10,10,0.88); border-bottom:1px solid rgba(255,255,255,0.05);
-            scrollbar-width:none; touch-action:pan-x;
+            scrollbar-width:none;
         }
         #category-bar::-webkit-scrollbar { display:none; }
         .cat-btn {
@@ -245,7 +245,7 @@
         }
         .category-row {
             display:flex; gap:12px; overflow-x:auto; overflow-y:hidden;
-            scroll-snap-type:x mandatory; touch-action:pan-x; padding-bottom:6px;
+            scroll-snap-type:x mandatory; padding-bottom:6px;
             padding-right:40px;
             scrollbar-width:thin; scrollbar-color:rgba(229,9,20,0.3) transparent;
             cursor:grab; user-select:none; will-change:scroll-position;
@@ -264,7 +264,6 @@
         .slider-arrow:hover { background:var(--red); }
         @media (max-width:768px) { .slider-arrow { display:none; } }
 
-        /* ── Swipe hint arrow ── */
         .swipe-hint {
             position:absolute; top:50%; right:15px; transform:translateY(-50%);
             color:rgba(255,255,255,0.7); font-size:1.8rem; z-index:6;
@@ -346,7 +345,7 @@
         .submit-btn:hover { background:#ff1a25; }
         .submit-btn:disabled { opacity:0.6; pointer-events:none; }
 
-      /* ─────────────── MODALS ─────────────── */
+          /* ─────────────── MODALS ─────────────── */
         .modal-overlay {
             position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9500;
             display:flex; align-items:center; justify-content:center;
@@ -495,21 +494,21 @@
         </div>
 
         <section id="hero">
-    <div class="hero-video-wrap">
-        <img src="https://res.cloudinary.com/datfuxotx/image/upload/w_1500,c_limit,q_auto,f_auto/v1779427174/710d9ce0-559d-11f1-8075-a726d8a81aeb_wom7ks.png" alt="Reinblacks Hero" class="hero-bg-image" decoding="async">
-    </div>
-    <div class="hero-smoke"></div>
-    <div class="hero-gradient"></div>
-    <div class="hero-content fade-up-section">
-        <p class="hero-tag">Pro Editing | 4K HD Quality | Realistic</p>
-        <h1 class="hero-title">Reinblacks Creativz</h1>
-        <p class="hero-subtitle">We create AI music visualizers, cinematic AI video ads, professional photo editing, celebrity-style photo transformations, old photo restoration, photo enhancement, official portrait designs, and premium graphic design services.</p>
-        <p class="hero-subtitle" style="margin-top:-8px;color:#aaa;">Pricing varies depending on your project. Explore more on this site.</p>
-        <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
-    </div>
-</section>
-   
-        <section class="content-section fade-up-section" id="section-visualizers">
+            <div class="hero-video-wrap">
+                <img src="https://res.cloudinary.com/datfuxotx/image/upload/w_1500,c_limit,q_auto,f_auto/v1779427174/710d9ce0-559d-11f1-8075-a726d8a81aeb_wom7ks.png" alt="Reinblacks Hero" class="hero-bg-image" decoding="async">
+            </div>
+            <div class="hero-smoke"></div>
+            <div class="hero-gradient"></div>
+            <div class="hero-content fade-up-section">
+                <p class="hero-tag">Pro Editing | 4K HD Quality | Realistic</p>
+                <h1 class="hero-title">Reinblacks Creativz</h1>
+                <p class="hero-subtitle">We create AI music visualizers, cinematic AI video ads, professional photo editing, celebrity-style photo transformations, old photo restoration, photo enhancement, official portrait designs, and premium graphic design services.</p>
+                <p class="hero-subtitle" style="margin-top:-8px;color:#aaa;">Pricing varies depending on your project. Explore more on this site.</p>
+                <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
+            </div>
+        </section>
+
+         <section class="content-section fade-up-section" id="section-visualizers">
             <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
             <div class="slider-container">
                 <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
@@ -557,14 +556,14 @@
                 <div class="poster-card tall" data-gallery="branding"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg" alt="Branding" loading="lazy" decoding="async"><div class="poster-overlay">Branding</div></div>
             </div>
         </section>
-      
-              <section id="contact-section" class="fade-up-section">
+
+        <section id="contact-section" class="fade-up-section">
             <div class="contact-split">
                 <div class="agent-card">
                     <img src="https://res.cloudinary.com/dmnwlnpr5/image/upload/w_200,h_200,c_fill,g_auto,q_auto,f_auto/v1779377239/1779377042276_wm4vey.png" alt="Live Support" class="agent-avatar" loading="lazy" decoding="async">
-                    <div class="agent-name">Live support chat 24/7</div>
-                    <p class="agent-bio">Your dedicated creative concierge. Let's bring your vision to life — from AI visuals to premium editing.</p>
-                    <button class="agent-chat-btn" id="agent-chat-btn"><i class="fas fa-comment-dots"></i> Ask Agent Now</button>
+                    <div class="agent-name">Live Support Chat</div>
+                    <p class="agent-bio">Need help? Chat with us live. We're here to answer your questions and bring your creative vision to life.</p>
+                    <button class="agent-chat-btn" id="agent-chat-btn"><i class="fas fa-comment-dots"></i> Chat Now</button>
                 </div>
                 <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" id="contact-form">
                     <input type="hidden" name="access_key" value="5dc1b1ae-2315-45f5-853f-2ccd8d270b56">
@@ -632,18 +631,19 @@
 
     <script>
         (function() {
+            // Tidio hidden until scroll
             window.addEventListener('scroll', function loadTidio() {
-    var s = document.createElement('script');
-    s.src = '//code.tidio.co/dmu9qvhzljut4stjuyoiwxqfjptj1nbj.js';
-    s.async = true;
-    s.onload = function() {
-        if (window.tidioChatApi) {
-            window.tidioChatApi.hide();
-        }
-    };
-    document.body.appendChild(s);
-    window.removeEventListener('scroll', loadTidio);
-}, { once: true });
+                var s = document.createElement('script');
+                s.src = '//code.tidio.co/dmu9qvhzljut4stjuyoiwxqfjptj1nbj.js';
+                s.async = true;
+                s.onload = function() {
+                    if (window.tidioChatApi) {
+                        window.tidioChatApi.hide();
+                    }
+                };
+                document.body.appendChild(s);
+                window.removeEventListener('scroll', loadTidio);
+            }, { once: true });
 
             const galleries = {
                 cloning: [
@@ -702,7 +702,7 @@
             setTimeout(completeIntro, 2600);
             introOverlay.addEventListener('click', completeIntro);
 
-            const topNav = document.getElementById('top-nav');
+          const topNav = document.getElementById('top-nav');
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const hamburgerOverlay = document.getElementById('hamburger-overlay');
             const hamburgerPanel = document.getElementById('hamburger-panel');
@@ -786,29 +786,6 @@
             }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
             allFadeUpSections.forEach(s => observer.observe(s));
 
-            // Improved wheel handler
-            allCategoryRows.forEach(row => {
-                row.addEventListener('wheel', function(e) {
-                    const hasOverflow = row.scrollWidth > row.clientWidth;
-                    if (!hasOverflow) return;
-                    const absX = Math.abs(e.deltaX);
-                    const absY = Math.abs(e.deltaY);
-                    if (absY > absX && absY > 10) {
-                        const atStart = row.scrollLeft <= 0;
-                        const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 2;
-                        if ((e.deltaY > 0 && !atEnd) || (e.deltaY < 0 && !atStart)) {
-                            e.preventDefault();
-                            row.scrollLeft += e.deltaY * 0.8;
-                        }
-                        return;
-                    }
-                    if (absX > 5) {
-                        e.preventDefault();
-                        row.scrollLeft += e.deltaX;
-                    }
-                }, { passive: false });
-            });
-
             // Slider arrow buttons
             document.querySelectorAll('.slider-arrow').forEach(btn => {
                 btn.addEventListener('click', () => {
@@ -816,6 +793,7 @@
                     if (row) row.scrollBy({ left: btn.classList.contains('left') ? -300 : 300, behavior: 'smooth' });
                 });
             });
+
             // Swipe hint arrows
             document.querySelectorAll('.slider-container').forEach(container => {
                 const row = container.querySelector('.category-row');
@@ -854,7 +832,7 @@
             }
             window.addEventListener('scroll', updateActiveCatBtn, { passive: true });
 
-            // Fixed video modal
+            // Video modal
             function openVideoModal(videoId) {
                 videoModalContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&enablejsapi=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
                 videoModal.classList.add('active');
