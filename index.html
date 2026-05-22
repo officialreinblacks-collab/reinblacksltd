@@ -345,43 +345,36 @@
         .submit-btn:hover { background:#ff1a25; }
         .submit-btn:disabled { opacity:0.6; pointer-events:none; }
 
-                /* ─────────────── EXPANDED CARD PLAYER ─────────────── */
+     /* ─────────────── EXPANDED CARD PLAYER ─────────────── */
         .card-player-overlay {
-            position:fixed; inset:0; background:rgba(0,0,0,0.9);
+            position:fixed; inset:0; background:rgba(0,0,0,0.75);
+            backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
             z-index:9400; display:flex; align-items:center; justify-content:center;
             opacity:0; pointer-events:none; transition:opacity 0.35s ease;
         }
         .card-player-overlay.active { opacity:1; pointer-events:all; }
         .card-player-container {
-            position:relative; width:85vw; max-width:900px;
+            position:relative; width:95vw; max-width:1000px;
             background:#000; border-radius:12px; overflow:hidden;
             box-shadow:0 20px 60px rgba(0,0,0,0.8);
             animation:cardExpand 0.35s ease-out forwards;
         }
         @keyframes cardExpand {
-            0%{ transform:scale(0.3); opacity:0; }
+            0%{ transform:scale(0.4); opacity:0; }
             100%{ transform:scale(1); opacity:1; }
         }
         .card-player-container iframe {
             width:100%; aspect-ratio:16/9; border:none; display:block;
         }
         .card-player-close {
-            position:absolute; top:10px; right:10px;
-            background:rgba(0,0,0,0.7); border:none; color:#fff;
-            width:36px; height:36px; border-radius:50%; font-size:1.2rem;
+            position:absolute; top:12px; right:12px;
+            background:rgba(0,0,0,0.65); border:none; color:#fff;
+            width:38px; height:38px; border-radius:50%; font-size:1.2rem;
             cursor:pointer; z-index:5; display:flex;
             align-items:center; justify-content:center;
             transition:background 0.3s;
         }
         .card-player-close:hover { background:var(--red); }
-        .card-player-fullscreen {
-            position:absolute; bottom:10px; right:10px;
-            background:rgba(0,0,0,0.75); border:1px solid rgba(255,255,255,0.3);
-            color:#fff; padding:8px 16px; border-radius:6px;
-            font-size:0.8rem; cursor:pointer; z-index:5;
-            transition:background 0.3s; display:flex; align-items:center; gap:6px;
-        }
-        .card-player-fullscreen:hover { background:var(--red); }
 
         /* ─────────────── MODALS ─────────────── */
         .modal-overlay {
@@ -587,7 +580,7 @@
             </div>
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional AI photo editing and realistic AI cloning with high-end cinematic quality, natural skin texture, accurate lighting, and lifelike detail that blends seamlessly with reality. From creative transformations to ultra-realistic portrait enhancement, every edit is crafted to look authentic, polished, and visually powerful — never fake or overprocessed.</p>
         </section>
-      
+
         <section class="content-section fade-up-section" id="section-graphics">
             <div class="section-header"><span class="red-accent"></span> Graphics Design</div>
             <div class="category-row" data-row="graphics">
@@ -625,7 +618,7 @@
             </div>
         </section>
 
-        <section class="content-section fade-up-section" id="find-us">
+              <section class="content-section fade-up-section" id="find-us">
             <div class="section-header"><span class="red-accent"></span> Find us Via</div>
             <div class="social-links">
                 <a href="https://wa.me/254794299237" target="_blank" rel="noopener" class="social-btn" style="background:#25D366;border-color:#25D366;"><i class="fab fa-whatsapp"></i> WhatsApp +254 7942 99237</a>
@@ -659,7 +652,6 @@
         <div class="card-player-container" id="card-player-container">
             <button class="card-player-close" id="card-player-close">✕</button>
             <div id="card-player-content"></div>
-            <button class="card-player-fullscreen" id="card-player-fullscreen"><i class="fas fa-expand"></i> Full Screen</button>
         </div>
     </div>
 
@@ -739,7 +731,7 @@
                 ]
             };
 
-                      const introOverlay = document.getElementById('intro-overlay');
+            const introOverlay = document.getElementById('intro-overlay');
             const mainSite = document.getElementById('main-site');
             function completeIntro() {
                 introOverlay.classList.add('fade-out');
@@ -767,17 +759,14 @@
             const imageFullscreen = document.getElementById('image-fullscreen');
             const imageFullscreenImg = document.getElementById('image-fullscreen-img');
             const imageFullscreenClose = document.getElementById('image-fullscreen-close');
-            const allCategoryRows = document.querySelectorAll('.category-row');
             const allFadeUpSections = document.querySelectorAll('.fade-up-section');
             const allCatBtns = document.querySelectorAll('.cat-btn');
             const allHamburgerLinks = document.querySelectorAll('#hamburger-panel a');
             const backToTopBtn = document.getElementById('back-to-top');
 
-            // Expanded card player
             const cardPlayerOverlay = document.getElementById('card-player-overlay');
             const cardPlayerContent = document.getElementById('card-player-content');
             const cardPlayerClose = document.getElementById('card-player-close');
-            const cardPlayerFullscreen = document.getElementById('card-player-fullscreen');
             let currentPlayerVideoId = null;
 
             function openHamburger() {
@@ -884,10 +873,10 @@
             }
             window.addEventListener('scroll', updateActiveCatBtn, { passive: true });
 
-            // Expanded card player — opens when clicking a video card
             function openCardPlayer(videoId) {
                 currentPlayerVideoId = videoId;
-                cardPlayerContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=0&showinfo=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+                // controls=1 so user can change quality, but they auto-hide via YouTube's player
+                cardPlayerContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
                 cardPlayerOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
@@ -899,14 +888,7 @@
             }
             cardPlayerClose.addEventListener('click', closeCardPlayer);
             cardPlayerOverlay.addEventListener('click', e => { if (e.target === cardPlayerOverlay) closeCardPlayer(); });
-            cardPlayerFullscreen.addEventListener('click', () => {
-                if (currentPlayerVideoId) {
-                    closeCardPlayer();
-                    openVideoModal(currentPlayerVideoId);
-                }
-            });
 
-            // Full screen modal
             function openVideoModal(videoId) {
                 videoModalContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&enablejsapi=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
                 videoModal.classList.add('active');
@@ -928,7 +910,7 @@
                 galleryModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
-            function closeGalleryModal() {
+                    function closeGalleryModal() {
                 galleryModal.classList.remove('active');
                 galleryGridContent.innerHTML = '';
                 document.body.style.overflow = '';
@@ -1080,3 +1062,4 @@
     </script>
 </body>
 </html>
+            
