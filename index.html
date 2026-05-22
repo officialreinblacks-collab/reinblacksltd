@@ -345,36 +345,47 @@
         .submit-btn:hover { background:#ff1a25; }
         .submit-btn:disabled { opacity:0.6; pointer-events:none; }
 
-            /* ─────────────── QUICK PREVIEW OVERLAY ─────────────── */
-        .quick-preview-overlay {
-            position:fixed; inset:0; background:rgba(0,0,0,0.85);
-            backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
-            z-index:9450; display:flex; align-items:center; justify-content:center;
-            opacity:0; pointer-events:none; transition:opacity 0.3s;
+                /* ─────────────── EXPANDED CARD PLAYER ─────────────── */
+        .card-player-overlay {
+            position:fixed; inset:0; background:rgba(0,0,0,0.9);
+            z-index:9400; display:flex; align-items:center; justify-content:center;
+            opacity:0; pointer-events:none; transition:opacity 0.35s ease;
         }
-        .quick-preview-overlay.active { opacity:1; pointer-events:all; }
-        .quick-preview-inner {
-            position:relative; width:90vw; max-width:800px; aspect-ratio:16/9;
-            background:#000; border-radius:8px; overflow:hidden;
+        .card-player-overlay.active { opacity:1; pointer-events:all; }
+        .card-player-container {
+            position:relative; width:85vw; max-width:900px;
+            background:#000; border-radius:12px; overflow:hidden;
+            box-shadow:0 20px 60px rgba(0,0,0,0.8);
+            animation:cardExpand 0.35s ease-out forwards;
         }
-        .quick-preview-inner iframe { width:100%; height:100%; border:none; }
-        .quick-preview-close {
-            position:absolute; top:-40px; right:0; background:rgba(0,0,0,0.6);
-            border:none; color:#fff; font-size:1.2rem; cursor:pointer;
-            width:32px; height:32px; border-radius:50%; display:flex;
-            align-items:center; justify-content:center; z-index:5;
+        @keyframes cardExpand {
+            0%{ transform:scale(0.3); opacity:0; }
+            100%{ transform:scale(1); opacity:1; }
         }
-        .quick-fullscreen-btn {
-            position:absolute; bottom:10px; right:10px; background:rgba(0,0,0,0.7);
-            border:1px solid rgba(255,255,255,0.3); color:#fff;
-            padding:8px 14px; border-radius:6px; font-size:0.8rem;
-            cursor:pointer; z-index:5; transition:background 0.3s;
+        .card-player-container iframe {
+            width:100%; aspect-ratio:16/9; border:none; display:block;
         }
-        .quick-fullscreen-btn:hover { background:var(--red); }
+        .card-player-close {
+            position:absolute; top:10px; right:10px;
+            background:rgba(0,0,0,0.7); border:none; color:#fff;
+            width:36px; height:36px; border-radius:50%; font-size:1.2rem;
+            cursor:pointer; z-index:5; display:flex;
+            align-items:center; justify-content:center;
+            transition:background 0.3s;
+        }
+        .card-player-close:hover { background:var(--red); }
+        .card-player-fullscreen {
+            position:absolute; bottom:10px; right:10px;
+            background:rgba(0,0,0,0.75); border:1px solid rgba(255,255,255,0.3);
+            color:#fff; padding:8px 16px; border-radius:6px;
+            font-size:0.8rem; cursor:pointer; z-index:5;
+            transition:background 0.3s; display:flex; align-items:center; gap:6px;
+        }
+        .card-player-fullscreen:hover { background:var(--red); }
 
         /* ─────────────── MODALS ─────────────── */
         .modal-overlay {
-            position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9500;
+            position:fixed; inset:0; background:rgba(0,0,0,0.95); z-index:9600;
             display:flex; align-items:center; justify-content:center;
             opacity:0; pointer-events:none; transition:opacity 0.3s;
         }
@@ -536,8 +547,8 @@
                 <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
             </div>
         </section>
-      
-      <section class="content-section fade-up-section" id="section-visualizers">
+
+        <section class="content-section fade-up-section" id="section-visualizers">
             <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
             <div class="slider-container">
                 <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
@@ -576,7 +587,7 @@
             </div>
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional AI photo editing and realistic AI cloning with high-end cinematic quality, natural skin texture, accurate lighting, and lifelike detail that blends seamlessly with reality. From creative transformations to ultra-realistic portrait enhancement, every edit is crafted to look authentic, polished, and visually powerful — never fake or overprocessed.</p>
         </section>
-
+      
         <section class="content-section fade-up-section" id="section-graphics">
             <div class="section-header"><span class="red-accent"></span> Graphics Design</div>
             <div class="category-row" data-row="graphics">
@@ -642,17 +653,17 @@
             <p>© 2025 Reinblacks Creativz. All rights reserved.</p>
         </footer>
     </div>
-  
-      <!-- QUICK PREVIEW OVERLAY -->
-    <div class="quick-preview-overlay" id="quick-preview">
-        <div class="quick-preview-inner">
-            <button class="quick-preview-close" id="quick-preview-close">✕</button>
-            <div id="quick-preview-content"></div>
-            <button class="quick-fullscreen-btn" id="quick-fullscreen-btn"><i class="fas fa-expand"></i> Full Screen</button>
+
+    <!-- EXPANDED CARD PLAYER -->
+    <div class="card-player-overlay" id="card-player-overlay">
+        <div class="card-player-container" id="card-player-container">
+            <button class="card-player-close" id="card-player-close">✕</button>
+            <div id="card-player-content"></div>
+            <button class="card-player-fullscreen" id="card-player-fullscreen"><i class="fas fa-expand"></i> Full Screen</button>
         </div>
     </div>
 
-    <!-- MODALS -->
+    <!-- FULL SCREEN MODAL -->
     <div class="modal-overlay" id="video-modal"><button class="modal-close" id="video-modal-close">✕</button><div class="video-full-wrap" id="video-modal-content"></div></div>
     <div class="modal-overlay" id="gallery-modal"><button class="modal-close" id="gallery-modal-close">✕</button><div class="gallery-grid" id="gallery-grid-content"></div></div>
     <div id="image-fullscreen"><button class="modal-close" id="image-fullscreen-close">✕</button><img src="" alt="Fullscreen" id="image-fullscreen-img"></div>
@@ -670,15 +681,12 @@
 
     <script>
         (function() {
-            // Tidio hidden until scroll
             window.addEventListener('scroll', function loadTidio() {
                 var s = document.createElement('script');
                 s.src = '//code.tidio.co/dmu9qvhzljut4stjuyoiwxqfjptj1nbj.js';
                 s.async = true;
                 s.onload = function() {
-                    if (window.tidioChatApi) {
-                        window.tidioChatApi.hide();
-                    }
+                    if (window.tidioChatApi) window.tidioChatApi.hide();
                 };
                 document.body.appendChild(s);
                 window.removeEventListener('scroll', loadTidio);
@@ -731,7 +739,7 @@
                 ]
             };
 
-            const introOverlay = document.getElementById('intro-overlay');
+                      const introOverlay = document.getElementById('intro-overlay');
             const mainSite = document.getElementById('main-site');
             function completeIntro() {
                 introOverlay.classList.add('fade-out');
@@ -765,12 +773,12 @@
             const allHamburgerLinks = document.querySelectorAll('#hamburger-panel a');
             const backToTopBtn = document.getElementById('back-to-top');
 
-            // Quick preview elements
-            const quickPreview = document.getElementById('quick-preview');
-            const quickPreviewContent = document.getElementById('quick-preview-content');
-            const quickPreviewClose = document.getElementById('quick-preview-close');
-            const quickFullscreenBtn = document.getElementById('quick-fullscreen-btn');
-            let currentVideoId = null;
+            // Expanded card player
+            const cardPlayerOverlay = document.getElementById('card-player-overlay');
+            const cardPlayerContent = document.getElementById('card-player-content');
+            const cardPlayerClose = document.getElementById('card-player-close');
+            const cardPlayerFullscreen = document.getElementById('card-player-fullscreen');
+            let currentPlayerVideoId = null;
 
             function openHamburger() {
                 hamburgerOverlay.classList.add('active');
@@ -832,7 +840,6 @@
             }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
             allFadeUpSections.forEach(s => observer.observe(s));
 
-            // Slider arrow buttons
             document.querySelectorAll('.slider-arrow').forEach(btn => {
                 btn.addEventListener('click', () => {
                     const row = document.getElementById(btn.dataset.target);
@@ -840,7 +847,6 @@
                 });
             });
 
-            // Swipe hint arrows
             document.querySelectorAll('.slider-container').forEach(container => {
                 const row = container.querySelector('.category-row');
                 if (!row) return;
@@ -878,29 +884,29 @@
             }
             window.addEventListener('scroll', updateActiveCatBtn, { passive: true });
 
-            // Quick preview (lightweight) - opens first when clicking video cards
-            function openQuickPreview(videoId) {
-                currentVideoId = videoId;
-                quickPreviewContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
-                quickPreview.classList.add('active');
+            // Expanded card player — opens when clicking a video card
+            function openCardPlayer(videoId) {
+                currentPlayerVideoId = videoId;
+                cardPlayerContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=0&showinfo=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
+                cardPlayerOverlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
-            function closeQuickPreview() {
-                quickPreview.classList.remove('active');
-                quickPreviewContent.innerHTML = '';
+            function closeCardPlayer() {
+                cardPlayerOverlay.classList.remove('active');
+                cardPlayerContent.innerHTML = '';
                 document.body.style.overflow = '';
-                currentVideoId = null;
+                currentPlayerVideoId = null;
             }
-            quickPreviewClose.addEventListener('click', closeQuickPreview);
-            quickPreview.addEventListener('click', e => { if (e.target === quickPreview) closeQuickPreview(); });
-            quickFullscreenBtn.addEventListener('click', () => {
-                if (currentVideoId) {
-                    closeQuickPreview();
-                    openVideoModal(currentVideoId);
+            cardPlayerClose.addEventListener('click', closeCardPlayer);
+            cardPlayerOverlay.addEventListener('click', e => { if (e.target === cardPlayerOverlay) closeCardPlayer(); });
+            cardPlayerFullscreen.addEventListener('click', () => {
+                if (currentPlayerVideoId) {
+                    closeCardPlayer();
+                    openVideoModal(currentPlayerVideoId);
                 }
             });
-          
-                      // Full screen modal (opens from quick preview)
+
+            // Full screen modal
             function openVideoModal(videoId) {
                 videoModalContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&enablejsapi=1" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`;
                 videoModal.classList.add('active');
@@ -914,7 +920,6 @@
             videoModalClose.addEventListener('click', closeVideoModal);
             videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
 
-            // Gallery modal
             let currentGalleryKey = null;
             function openGalleryModal(key) {
                 currentGalleryKey = key;
@@ -935,7 +940,6 @@
                 if (e.target.tagName === 'IMG') openImageFullscreen(e.target.src);
             });
 
-            // Image fullscreen
             function openImageFullscreen(src) {
                 imageFullscreenImg.src = src;
                 imageFullscreen.classList.add('active');
@@ -949,17 +953,15 @@
             imageFullscreenClose.addEventListener('click', closeImageFullscreen);
             imageFullscreen.addEventListener('click', e => { if (e.target === imageFullscreen) closeImageFullscreen(); });
 
-            // Poster click → opens quick preview
             document.addEventListener('click', function(e) {
                 const card = e.target.closest('.poster-card');
                 if (!card) return;
                 const videoId = card.getAttribute('data-video');
                 const galleryKey = card.getAttribute('data-gallery');
-                if (videoId) openQuickPreview(videoId);
+                if (videoId) openCardPlayer(videoId);
                 else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey);
             });
 
-            // Search
             let searchHighlightSpans = [];
             function clearHighlights() {
                 searchHighlightSpans.forEach(span => {
@@ -1007,7 +1009,6 @@
                 } else clearHighlights();
             });
 
-            // Chat
             floatingChatBtn.addEventListener('click', () => {
                 if (window.tidioChatApi?.show) { window.tidioChatApi.show(); window.tidioChatApi.open(); }
             });
@@ -1015,7 +1016,6 @@
                 if (window.tidioChatApi?.show) { window.tidioChatApi.show(); window.tidioChatApi.open(); }
             });
 
-            // Web3Forms
             const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('submit-btn');
             contactForm.addEventListener('submit', async function(e) {
@@ -1054,7 +1054,7 @@
                     if (imageFullscreen.classList.contains('active')) closeImageFullscreen();
                     else if (galleryModal.classList.contains('active')) closeGalleryModal();
                     else if (videoModal.classList.contains('active')) closeVideoModal();
-                    else if (quickPreview.classList.contains('active')) closeQuickPreview();
+                    else if (cardPlayerOverlay.classList.contains('active')) closeCardPlayer();
                     else if (hamburgerPanel.classList.contains('active')) closeHamburger();
                 }
                 if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement !== navSearch)) {
