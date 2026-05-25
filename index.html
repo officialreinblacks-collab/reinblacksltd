@@ -203,8 +203,8 @@
         .addon-item::before { content:'➕'; font-size:10px; color:var(--red); }
         .addon-price { color:#ccc; font-weight:500; }
         .bottom-note { text-align:center; font-size:12.5px; color:#444; font-weight:300; margin-top:20px; }
-
-        /* ─────────────── TESTIMONIALS ─────────────── */
+  
+          /* ─────────────── TESTIMONIALS ─────────────── */
         #section-testimonials { background:#060606; padding:60px 0 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:800px; }
         #section-testimonials::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--red),transparent); }
         #section-testimonials::after { content:'"'; font-family:'Bebas Neue',sans-serif; font-size:400px; color:rgba(229,9,20,0.03); position:absolute; top:-60px; left:-30px; line-height:1; pointer-events:none; user-select:none; }
@@ -306,8 +306,8 @@
         #image-fullscreen { position:fixed; inset:0; background:#000; z-index:9700; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.3s; }
         #image-fullscreen.active { opacity:1; pointer-events:all; }
         #image-fullscreen img { max-width:95vw; max-height:95vh; object-fit:contain; }
-  
-          /* ─────────────── CHAT BUTTON ─────────────── */
+
+        /* ─────────────── CHAT BUTTON ─────────────── */
         #floating-chat-btn { position:fixed; bottom:22px; right:22px; z-index:9300; width:50px; height:50px; border-radius:50%; background:#0078FF; border:none; color:#fff; font-size:1.2rem; cursor:pointer; box-shadow:0 4px 18px rgba(0,120,255,0.4); display:flex; align-items:center; justify-content:center; }
 
         /* ─────────────── BOTTOM MOBILE NAV ─────────────── */
@@ -317,8 +317,8 @@
         #bottom-mobile-nav button:hover { color:#fff; }
         #bottom-mobile-nav button i { font-size:1.2rem; }
         @media (max-width:768px) { #bottom-mobile-nav { display:block; } #floating-chat-btn { bottom:70px; } }
-
-        /* ─────────────── BACK TO TOP ─────────────── */
+  
+          /* ─────────────── BACK TO TOP ─────────────── */
         #back-to-top { position:fixed; bottom:80px; left:22px; z-index:9400; width:44px; height:44px; border-radius:50%; background:var(--red); border:none; color:#fff; font-size:1.2rem; cursor:pointer; box-shadow:0 4px 15px var(--accent-glow); display:none; align-items:center; justify-content:center; transition:transform 0.3s; }
         #back-to-top:hover { transform:scale(1.1); }
         @media (max-width:768px) { #back-to-top { bottom:90px; } }
@@ -402,8 +402,8 @@
                 <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
             </div>
         </section>
-
-        <section class="content-section fade-up-section" id="section-visualizers">
+      
+              <section class="content-section fade-up-section" id="section-visualizers">
             <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
             <div class="slider-container">
                 <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
@@ -419,7 +419,7 @@
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional cinematic visuals with ultra-realistic storytelling that feels natural, emotional, and human — never artificial. From realistic AI filmmaking to professional music video editing, every frame is crafted with industry-level detail, motion, lighting, and sound design.<br>Discover more visuals, films, and music experiences on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
         </section>
 
-              <section class="content-section fade-up-section" id="section-ads">
+        <section class="content-section fade-up-section" id="section-ads">
             <div class="section-header"><span class="red-accent"></span> AI Ads Videos</div>
             <div class="slider-container">
                 <button class="slider-arrow left" data-target="row-ads"><i class="fas fa-chevron-left"></i></button>
@@ -433,8 +433,8 @@
             </div>
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create high-converting professional advertising campaigns for brands, businesses, and creators — including Meta Ads, Google Ads, and cinematic promotional content designed to attract real customers and increase engagement. Every campaign is backed by strategic research, audience targeting, and creative storytelling to deliver strong visual impact and measurable results.<br>Explore more advertising visuals and campaign showcases on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
         </section>
-
-        <section class="content-section fade-up-section" id="section-photos">
+      
+              <section class="content-section fade-up-section" id="section-photos">
             <div class="section-header"><span class="red-accent"></span> AI Photos &amp; Cloning</div>
             <div class="category-row" data-row="photos">
                 <div class="poster-card tall" data-gallery="cloning"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg" alt="Photo Cloning" loading="lazy" decoding="async"><div class="poster-overlay">Photo Cloning</div></div>
@@ -467,7 +467,7 @@
                         <ul class="card-features">
                             <li>1–3 minute visualizer</li><li>1080p Full HD delivery</li><li>AI-generated cinematic scenes</li><li>Basic motion graphics & transitions</li><li>Audio synchronized edits</li><li>1 revision round</li><li>3–5 day turnaround</li><li>YouTube & social media ready</li>
                         </ul>
-                        <a href="#contact-section" class="card-cta outline">Get a Quote</a>
+                        <a href="#contact-section" class="card-cta outline pricing-cta" data-package="Starter AI Music Visualizers — From $25">Get a Quote</a>
                     </div>
                     <div class="pricing-card featured">
                         <p class="card-tier">Standard</p>
@@ -477,7 +477,7 @@
                         <ul class="card-features">
                             <li>2–5 minute visualizer</li><li>4K UHD delivery</li><li>Ultra-realistic AI human visuals</li><li>Cinematic scene composition</li><li>Advanced beat synchronization</li><li>Motion typography & FX</li><li>Custom color grading</li><li>2 revision rounds</li><li>4–7 day turnaround</li><li>YouTube, TikTok & Instagram ready</li>
                         </ul>
-                        <a href="#contact-section" class="card-cta red">Get a Quote</a>
+                        <a href="#contact-section" class="card-cta red pricing-cta" data-package="Standard AI Music Visualizers — From $60">Get a Quote</a>
                     </div>
                     <div class="pricing-card featured best-value">
                         <p class="card-tier">Premium</p>
@@ -487,7 +487,7 @@
                         <ul class="card-features">
                             <li>3–8 minute visualizer</li><li>4K Ultra HD cinematic output</li><li>Film-level AI visuals</li><li>Story-driven creative direction</li><li>Advanced VFX & transitions</li><li>Custom character consistency</li><li>Professional cinematic color grading</li><li>Social media cutdowns included</li><li>Priority delivery</li><li>Unlimited minor revisions</li>
                         </ul>
-                        <a href="#contact-section" class="card-cta red">Get a Quote</a>
+                        <a href="#contact-section" class="card-cta red pricing-cta" data-package="Premium AI Music Visualizers — From $120">Get a Quote</a>
                     </div>
                 </div>
                 <p class="addons-title" style="text-align:center; margin-top:20px;">Optional Add‑ons</p>
@@ -515,7 +515,7 @@
                         <ul class="card-features">
                             <li>10–30 second AI advertisement</li><li>1080p HD delivery</li><li>Basic cinematic editing</li><li>AI-generated promotional visuals</li><li>Social media optimized format</li><li>Basic motion graphics</li><li>1 revision round</li><li>3–5 day turnaround</li>
                         </ul>
-                        <a href="#contact-section" class="card-cta outline">Start Project</a>
+                        <a href="#contact-section" class="card-cta outline pricing-cta" data-package="Starter AI Video Ads — From $30">Start Project</a>
                     </div>
                     <div class="pricing-card featured">
                         <p class="card-tier">Professional</p>
@@ -525,7 +525,7 @@
                         <ul class="card-features">
                             <li>15–60 second cinematic advertisement</li><li>4K Ultra HD delivery</li><li>Script & storyboard included</li><li>AI-generated ultra-realistic visuals</li><li>Professional cinematic editing</li><li>Platform-optimized export formats</li><li>Motion graphics & transitions</li><li>Brand-focused creative direction</li><li>2 revision rounds</li><li>2–4 day turnaround</li>
                         </ul>
-                        <a href="#contact-section" class="card-cta red">Start Project</a>
+                        <a href="#contact-section" class="card-cta red pricing-cta" data-package="Professional AI Video Ads — From $60">Start Project</a>
                     </div>
                 </div>
                 <p class="addons-title" style="text-align:center; margin-top:20px;">Optional Add‑ons</p>
@@ -553,12 +553,12 @@
                         <ul class="card-features" style="text-align:left;">
                             <li>AI photo cloning & editing</li><li>Old photo restoration</li><li>Skin & lighting correction</li><li>High-res PNG / JPG output</li><li>24–48 hr delivery</li>
                         </ul>
-                        <a href="#contact-section" class="card-cta red">Get a Quote</a>
+                        <a href="#contact-section" class="card-cta red pricing-cta" data-package="AI Photos & Cloning — From $2/photo">Get a Quote</a>
                     </div>
                 </div>
             </div>
-
-            <div class="pricing-service-section">
+          
+                      <div class="pricing-service-section">
                 <p class="service-label">Graphics Design</p>
                 <h2 class="service-heading">Branding & Graphics</h2>
                 <p class="service-sub">Professional branding and graphic design solutions crafted for businesses, creators, and modern digital brands.</p>
@@ -571,7 +571,7 @@
                         <ul class="card-features" style="text-align:left;">
                             <li>Logo design (3 concepts)</li><li>Poster & flyer design</li><li>Brand identity kits</li><li>Social media templates</li><li>High-resolution exports</li><li>Vector source files included</li><li>Modern typography & layout styling</li><li>Print & digital ready formats</li><li>Professional creative direction</li><li>Fast turnaround</li>
                         </ul>
-                        <a href="#contact-section" class="card-cta red">Get a Quote</a>
+                        <a href="#contact-section" class="card-cta red pricing-cta" data-package="Graphics Design — From $15/design">Get a Quote</a>
                     </div>
                 </div>
                 <p class="addons-title" style="text-align:center; margin-top:20px;">Optional Add‑ons</p>
@@ -586,8 +586,8 @@
                 <p class="bottom-note">Final pricing depends on project complexity, number of deliverables, branding requirements, and creative direction.</p>
             </div>
         </section>
-      
-              <!-- TESTIMONIALS -->
+
+        <!-- TESTIMONIALS -->
         <section id="section-testimonials" class="fade-up-section">
             <p class="testi-label">Client Reviews</p>
             <h2 class="testi-heading">What Clients Say</h2>
@@ -605,7 +605,7 @@
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">Reinblacks produced an AI ad for our brand launch that looked like it cost 10x more. The storytelling and visuals were on another level. Highly recommended.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">AM</div><div><p class="testi-name">Amira M.</p><p class="testi-role">Brand Manager, Nairobi</p></div><span class="testi-service-tag">AI Ads</span></div></div>
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">I sent them an old photo of my late father, blurry and damaged. They restored it perfectly — sharp, natural, like it was taken yesterday. I cried. Thank you.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">SN</div><div><p class="testi-name">Sharon N.</p><p class="testi-role">Client, Kenya</p></div><span class="testi-service-tag">AI Photos</span></div></div>
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">My logo and brand kit came out exactly as I imagined — actually better. Fast delivery, professional files, and they listened to every feedback. Will use again.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">TO</div><div><p class="testi-name">Tunde O.</p><p class="testi-role">Entrepreneur, Nigeria</p></div><span class="testi-service-tag">Graphics</span></div></div>
-                    <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">Booked them through Upwork for a Meta Ads campaign. The conversion rate on the video they made was above 4% — our best performing ad ever. Seriously talented team.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">RB</div><div><p class="testi-name">Rachel B.</p><p class="testi-role">E-commerce Owner, UK</p></div><span class="testi-service-tag">AI Ads</span></div></div>
+                                      <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">Booked them through Upwork for a Meta Ads campaign. The conversion rate on the video they made was above 4% — our best performing ad ever. Seriously talented team.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">RB</div><div><p class="testi-name">Rachel B.</p><p class="testi-role">E-commerce Owner, UK</p></div><span class="testi-service-tag">AI Ads</span></div></div>
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">Quick turnaround, stunning quality. The AI photo cloning of my artist shot looked completely real — used it for my album cover and got so many compliments.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">DL</div><div><p class="testi-name">Dami L.</p><p class="testi-role">Recording Artist, Lagos</p></div><span class="testi-service-tag">AI Photos</span></div></div>
                 </div>
             </div>
@@ -620,7 +620,7 @@
             </div>
         </section>
 
-             <!-- FAQ -->
+        <!-- FAQ -->
         <section id="section-faq" class="fade-up-section">
             <div class="faq-inner">
                 <p class="faq-label">Got Questions?</p>
@@ -654,6 +654,8 @@
                     <input type="hidden" name="access_key" value="5dc1b1ae-2315-45f5-853f-2ccd8d270b56">
                     <input type="hidden" name="subject" value="New Application from Reinblacks Creativz">
                     <input type="hidden" name="redirect" value="false">
+                    <!-- Hidden field to capture selected pricing package -->
+                    <input type="hidden" name="pricing_package" id="pricing-package" value="">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Your Email" required>
                     <select name="service" required>
@@ -706,7 +708,7 @@
             <div id="card-player-content"></div>
         </div>
     </div>
-  
+
     <!-- FULL SCREEN MODAL -->
     <div class="modal-overlay" id="video-modal"><button class="modal-close" id="video-modal-close">✕</button><div class="video-full-wrap" id="video-modal-content"></div></div>
     <div class="modal-overlay" id="gallery-modal"><button class="modal-close" id="gallery-modal-close">✕</button><div class="gallery-grid" id="gallery-grid-content"></div></div>
@@ -733,13 +735,12 @@
                 document.body.appendChild(s);
                 window.removeEventListener('scroll', loadTidio);
             }, { once: true });
-
-            const galleries = {
+          
+                      const galleries = {
                 cloning: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666631/InCollage_20260513_122126172_fswgee.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666672/InCollage_20260513_123021610_yegew8.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666681/InCollage_20260513_122923395_tabaye.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666607/InCollage_20260513_122756844_w7xzeg.jpg'],
                 editing: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666587/InCollage_20260513_124952807_prs7y9.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666601/InCollage_20260513_125222266_ps9ns0.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123901457_pjncvz.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123322422_k064go.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666608/InCollage_20260513_122415667_dhvmfc.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124826854_mr1uqt.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124609559_vj0ns8.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666597/InCollage_20260513_124255345_ah7oej.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666584/InCollage_20260513_125034406_tnoth1.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666591/InCollage_20260513_125512053_vkoytx.jpg'],
                 logos: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778655130025_neq7gu.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655941235_fhbadb.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655309934_q5h3sl.jpg'],
                 posters: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'],
-              posters: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'],
                 branding: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688512/1778656906608_q7ekkl.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688511/1778657055403_swp3qs.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657206860_z9gonp.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688508/1778656989394_uwmfwp.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657276427_fswuhy.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688513/1778657145970_h7kutd.png']
             };
 
@@ -776,9 +777,11 @@
             const cardPlayerClose = document.getElementById('card-player-close');
             let currentPlayerVideoId = null;
 
-            const reviewForm = document.getElementById('review-form');
+                      const reviewForm = document.getElementById('review-form');
             const reviewConfirmation = document.getElementById('review-confirmation');
             const reviewSubmitBtn = document.getElementById('review-submit-btn');
+
+            const pricingPackageInput = document.getElementById('pricing-package');
 
             function openHamburger() { hamburgerOverlay.classList.add('active'); hamburgerPanel.classList.add('active'); document.body.style.overflow = 'hidden'; }
             function closeHamburger() { hamburgerOverlay.classList.remove('active'); hamburgerPanel.classList.remove('active'); document.body.style.overflow = ''; }
@@ -807,6 +810,16 @@
 
             document.querySelectorAll('.faq-question').forEach(btn => { btn.addEventListener('click', function() { const item = this.closest('.faq-item'); const isOpen = item.classList.contains('open'); document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open')); if (!isOpen) item.classList.add('open'); }); });
 
+            // Pricing package capture
+            document.querySelectorAll('.pricing-cta').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const packageName = this.getAttribute('data-package');
+                    if (packageName && pricingPackageInput) {
+                        pricingPackageInput.value = packageName;
+                    }
+                });
+            });
+
             function openCardPlayer(videoId) { currentPlayerVideoId = videoId; cardPlayerContent.innerHTML = `<iframe src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&controls=1&showinfo=0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>`; cardPlayerOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
             function closeCardPlayer() { cardPlayerOverlay.classList.remove('active'); cardPlayerContent.innerHTML = ''; document.body.style.overflow = ''; currentPlayerVideoId = null; }
             cardPlayerClose.addEventListener('click', closeCardPlayer);
@@ -823,9 +836,14 @@
             galleryModal.addEventListener('click', e => { if (e.target === galleryModal) closeGalleryModal(); });
             galleryGridContent.addEventListener('click', e => { if (e.target.tagName === 'IMG') openImageFullscreen(e.target.src); });
 
-                      document.addEventListener('click', function(e) { const card = e.target.closest('.poster-card'); if (!card) return; const videoId = card.getAttribute('data-video'); const galleryKey = card.getAttribute('data-gallery'); if (videoId) openCardPlayer(videoId); else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey); });
+            function openImageFullscreen(src) { imageFullscreenImg.src = src; imageFullscreen.classList.add('active'); document.body.style.overflow = 'hidden'; }
+            function closeImageFullscreen() { imageFullscreen.classList.remove('active'); imageFullscreenImg.src = ''; document.body.style.overflow = ''; }
+            imageFullscreenClose.addEventListener('click', closeImageFullscreen);
+            imageFullscreen.addEventListener('click', e => { if (e.target === imageFullscreen) closeImageFullscreen(); });
 
-            // Review submission: no scrolling, show confirmation message inline
+            document.addEventListener('click', function(e) { const card = e.target.closest('.poster-card'); if (!card) return; const videoId = card.getAttribute('data-video'); const galleryKey = card.getAttribute('data-gallery'); if (videoId) openCardPlayer(videoId); else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey); });
+
+            // Review submission: no scrolling
             if (reviewSubmitBtn) {
                 reviewSubmitBtn.addEventListener('click', function() {
                     const name = document.getElementById('review-name').value.trim();
@@ -841,8 +859,8 @@
                     }, 4000);
                 });
             }
-
-            let searchHighlightSpans = [];
+          
+                      let searchHighlightSpans = [];
             function clearHighlights() { searchHighlightSpans.forEach(span => { const parent = span.parentNode; if (parent) { parent.replaceChild(document.createTextNode(span.textContent), span); parent.normalize(); } }); searchHighlightSpans = []; }
             function searchAndScroll(query) { clearHighlights(); if (!query || query.trim().length < 2) return; const q = query.trim().toLowerCase(); const walker = document.createTreeWalker(document.getElementById('main-site'), NodeFilter.SHOW_TEXT, null, false); const textNodes = []; while (walker.nextNode()) { const node = walker.currentNode; if (node.textContent.toLowerCase().includes(q) && node.parentElement && !['SCRIPT','STYLE','IFRAME','NOSCRIPT'].includes(node.parentElement.tagName) && node.parentElement.offsetParent) textNodes.push(node); } if (!textNodes.length) return; const firstNode = textNodes[0]; const text = firstNode.textContent; const idx = text.toLowerCase().indexOf(q); if (idx >= 0) { const span = document.createElement('span'); span.className = 'search-highlight'; span.textContent = text.slice(idx, idx+q.length); const frag = document.createDocumentFragment(); frag.appendChild(document.createTextNode(text.slice(0, idx))); frag.appendChild(span); frag.appendChild(document.createTextNode(text.slice(idx+q.length))); firstNode.parentNode.replaceChild(frag, firstNode); searchHighlightSpans.push(span); span.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(clearHighlights, 2800); } }
             navSearch.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); searchAndScroll(navSearch.value); } });
