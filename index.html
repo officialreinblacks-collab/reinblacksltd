@@ -174,6 +174,7 @@
         .service-sub { text-align:center; color:#888; font-size:14px; font-weight:300; margin-bottom:40px; max-width:550px; margin-left:auto; margin-right:auto; }
         .pricing-grid { display:grid; gap:20px; max-width:1000px; margin:0 auto; }
         .pricing-grid.three-cols { grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); }
+        .pricing-grid.two-cols { grid-template-columns:repeat(auto-fit, minmax(280px,1fr)); max-width:650px; }
         .pricing-card { position:relative; background:#0f0f0f; border:1px solid #1e1e1e; border-radius:8px; padding:32px 28px 30px; transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease; }
         .pricing-card:hover { transform:translateY(-4px); border-color:var(--red); box-shadow:0 20px 50px rgba(229,9,20,0.08); }
         .pricing-card.featured { border-color:var(--red); background:linear-gradient(145deg,#120808,#0f0f0f); }
@@ -203,7 +204,7 @@
         .addon-price { color:#ccc; font-weight:500; }
         .bottom-note { text-align:center; font-size:12.5px; color:#444; font-weight:300; margin-top:20px; }
 
-          /* ─────────────── TESTIMONIALS ─────────────── */
+        /* ─────────────── TESTIMONIALS ─────────────── */
         #section-testimonials { background:#060606; padding:60px 0 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:800px; }
         #section-testimonials::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--red),transparent); }
         #section-testimonials::after { content:'"'; font-family:'Bebas Neue',sans-serif; font-size:400px; color:rgba(229,9,20,0.03); position:absolute; top:-60px; left:-30px; line-height:1; pointer-events:none; user-select:none; }
@@ -264,8 +265,8 @@
         .faq-cta-btn { display:inline-flex; align-items:center; gap:10px; padding:13px 28px; background:var(--red); color:#fff; font-size:11px; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; text-decoration:none; border-radius:2px; white-space:nowrap; transition:all 0.25s ease; flex-shrink:0; }
         .faq-cta-btn:hover { background:transparent; color:var(--red); box-shadow:inset 0 0 0 1px var(--red); }
         @media (max-width:600px) { .faq-question { padding:18px 20px; } .faq-a-inner { padding:0 20px 20px; } .faq-cta-box { padding:28px 22px; flex-direction:column; } }
-
-        /* ─────────────── CONTACT ─────────────── */
+  
+          /* ─────────────── CONTACT ─────────────── */
         #contact-section { scroll-margin-top:110px; padding:40px 20px; }
         .contact-split { display:grid; grid-template-columns:1fr 1fr; gap:25px; max-width:1000px; margin:0 auto; background:rgba(18,18,18,0.75); border-radius:16px; padding:30px; border:1px solid rgba(255,255,255,0.07); box-shadow:0 15px 40px rgba(0,0,0,0.4); }
         @media (max-width:768px) { .contact-split { grid-template-columns:1fr; padding:20px; } .hero-content { padding:80px 20px 50px; } .poster-card.wide { width:220px; min-width:200px; } .poster-card.tall { width:140px; min-width:130px; } }
@@ -318,7 +319,7 @@
         @media (max-width:768px) { #bottom-mobile-nav { display:block; } #floating-chat-btn { bottom:70px; } }
 
         /* ─────────────── BACK TO TOP ─────────────── */
-        #back-to-top { position:fixed; bottom:80px; right:22px; z-index:9400; width:44px; height:44px; border-radius:50%; background:var(--red); border:none; color:#fff; font-size:1.2rem; cursor:pointer; box-shadow:0 4px 15px var(--accent-glow); display:none; align-items:center; justify-content:center; transition:transform 0.3s; }
+        #back-to-top { position:fixed; bottom:80px; left:22px; z-index:9400; width:44px; height:44px; border-radius:50%; background:var(--red); border:none; color:#fff; font-size:1.2rem; cursor:pointer; box-shadow:0 4px 15px var(--accent-glow); display:none; align-items:center; justify-content:center; transition:transform 0.3s; }
         #back-to-top:hover { transform:scale(1.1); }
         @media (max-width:768px) { #back-to-top { bottom:90px; } }
 
@@ -418,7 +419,7 @@
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional cinematic visuals with ultra-realistic storytelling that feels natural, emotional, and human — never artificial. From realistic AI filmmaking to professional music video editing, every frame is crafted with industry-level detail, motion, lighting, and sound design.<br>Discover more visuals, films, and music experiences on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
         </section>
 
-        <section class="content-section fade-up-section" id="section-ads">
+              <section class="content-section fade-up-section" id="section-ads">
             <div class="section-header"><span class="red-accent"></span> AI Ads Videos</div>
             <div class="slider-container">
                 <button class="slider-arrow left" data-target="row-ads"><i class="fas fa-chevron-left"></i></button>
@@ -433,7 +434,7 @@
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create high-converting professional advertising campaigns for brands, businesses, and creators — including Meta Ads, Google Ads, and cinematic promotional content designed to attract real customers and increase engagement. Every campaign is backed by strategic research, audience targeting, and creative storytelling to deliver strong visual impact and measurable results.<br>Explore more advertising visuals and campaign showcases on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
         </section>
 
-              <section class="content-section fade-up-section" id="section-photos">
+        <section class="content-section fade-up-section" id="section-photos">
             <div class="section-header"><span class="red-accent"></span> AI Photos &amp; Cloning</div>
             <div class="category-row" data-row="photos">
                 <div class="poster-card tall" data-gallery="cloning"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg" alt="Photo Cloning" loading="lazy" decoding="async"><div class="poster-overlay">Photo Cloning</div></div>
@@ -505,13 +506,23 @@
                 <p class="service-label">AI Video Ads</p>
                 <h2 class="service-heading">Advertising Campaigns</h2>
                 <p class="service-sub">High-converting cinematic AI advertisements crafted for brands, businesses, products, and social media campaigns.</p>
-                <div class="pricing-grid" style="max-width:450px; margin:0 auto;">
-                    <div class="pricing-card featured" style="text-align:center;">
+                <div class="pricing-grid two-cols">
+                    <div class="pricing-card">
+                        <p class="card-tier">Starter</p>
+                        <div class="card-price"><span class="currency">From $</span><span class="amount">30</span><span class="period">/ project</span></div>
+                        <p class="card-desc">Affordable cinematic AI advertisement package perfect for startups, personal brands, and small promotional campaigns.</p>
+                        <div class="card-divider"></div>
+                        <ul class="card-features">
+                            <li>10–30 second AI advertisement</li><li>1080p HD delivery</li><li>Basic cinematic editing</li><li>AI-generated promotional visuals</li><li>Social media optimized format</li><li>Basic motion graphics</li><li>1 revision round</li><li>3–5 day turnaround</li>
+                        </ul>
+                        <a href="#contact-section" class="card-cta outline">Start Project</a>
+                    </div>
+                    <div class="pricing-card featured">
                         <p class="card-tier">Professional</p>
-                        <div class="card-price" style="justify-content:center;"><span class="currency">From $</span><span class="amount">60</span><span class="period">/ project</span></div>
+                        <div class="card-price"><span class="currency">From $</span><span class="amount">60</span><span class="period">/ project</span></div>
                         <p class="card-desc">High-converting cinematic AI ad designed for Meta, Google, TikTok, and modern digital campaigns.</p>
                         <div class="card-divider"></div>
-                        <ul class="card-features" style="text-align:left;">
+                        <ul class="card-features">
                             <li>15–60 second cinematic advertisement</li><li>4K Ultra HD delivery</li><li>Script & storyboard included</li><li>AI-generated ultra-realistic visuals</li><li>Professional cinematic editing</li><li>Platform-optimized export formats</li><li>Motion graphics & transitions</li><li>Brand-focused creative direction</li><li>2 revision rounds</li><li>2–4 day turnaround</li>
                         </ul>
                         <a href="#contact-section" class="card-cta red">Start Project</a>
@@ -575,8 +586,8 @@
                 <p class="bottom-note">Final pricing depends on project complexity, number of deliverables, branding requirements, and creative direction.</p>
             </div>
         </section>
-
-        <!-- TESTIMONIALS -->
+      
+              <!-- TESTIMONIALS -->
         <section id="section-testimonials" class="fade-up-section">
             <p class="testi-label">Client Reviews</p>
             <h2 class="testi-heading">What Clients Say</h2>
@@ -589,7 +600,7 @@
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">My logo and brand kit came out exactly as I imagined — actually better. Fast delivery, professional files, and they listened to every feedback. Will use again.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">TO</div><div><p class="testi-name">Tunde O.</p><p class="testi-role">Entrepreneur, Nigeria</p></div><span class="testi-service-tag">Graphics</span></div></div>
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">Booked them through Upwork for a Meta Ads campaign. The conversion rate on the video they made was above 4% — our best performing ad ever. Seriously talented team.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">RB</div><div><p class="testi-name">Rachel B.</p><p class="testi-role">E-commerce Owner, UK</p></div><span class="testi-service-tag">AI Ads</span></div></div>
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">Quick turnaround, stunning quality. The AI photo cloning of my artist shot looked completely real — used it for my album cover and got so many compliments.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">DL</div><div><p class="testi-name">Dami L.</p><p class="testi-role">Recording Artist, Lagos</p></div><span class="testi-service-tag">AI Photos</span></div></div>
-                                       <!-- Duplicates -->
+                    <!-- Duplicates -->
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">The visualizer they created for my track was insane — cinematic quality I didn't expect at this price. My YouTube engagement doubled after posting it.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">JK</div><div><p class="testi-name">James K.</p><p class="testi-role">Independent Artist, Uganda</p></div><span class="testi-service-tag">Visualizer</span></div></div>
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">Reinblacks produced an AI ad for our brand launch that looked like it cost 10x more. The storytelling and visuals were on another level. Highly recommended.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">AM</div><div><p class="testi-name">Amira M.</p><p class="testi-role">Brand Manager, Nairobi</p></div><span class="testi-service-tag">AI Ads</span></div></div>
                     <div class="testi-card"><div class="testi-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div><p class="testi-quote">I sent them an old photo of my late father, blurry and damaged. They restored it perfectly — sharp, natural, like it was taken yesterday. I cried. Thank you.</p><div class="testi-divider"></div><div class="testi-client"><div class="testi-avatar">SN</div><div><p class="testi-name">Sharon N.</p><p class="testi-role">Client, Kenya</p></div><span class="testi-service-tag">AI Photos</span></div></div>
@@ -605,11 +616,11 @@
                     <textarea id="review-text" placeholder="Write your review..." required></textarea>
                     <button class="review-submit-btn" id="review-submit-btn">Submit Review</button>
                 </div>
-                <div class="review-confirmation" id="review-confirmation">Your review has been submitted and will be posted soon. Thank you for your feedback!</div>
+                <div class="review-confirmation" id="review-confirmation">Your review has been submitted and will be posted soon. Thank you!</div>
             </div>
         </section>
 
-              <!-- FAQ -->
+             <!-- FAQ -->
         <section id="section-faq" class="fade-up-section">
             <div class="faq-inner">
                 <p class="faq-label">Got Questions?</p>
@@ -695,7 +706,7 @@
             <div id="card-player-content"></div>
         </div>
     </div>
-
+  
     <!-- FULL SCREEN MODAL -->
     <div class="modal-overlay" id="video-modal"><button class="modal-close" id="video-modal-close">✕</button><div class="video-full-wrap" id="video-modal-content"></div></div>
     <div class="modal-overlay" id="gallery-modal"><button class="modal-close" id="gallery-modal-close">✕</button><div class="gallery-grid" id="gallery-grid-content"></div></div>
@@ -723,11 +734,12 @@
                 window.removeEventListener('scroll', loadTidio);
             }, { once: true });
 
-                      const galleries = {
+            const galleries = {
                 cloning: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666631/InCollage_20260513_122126172_fswgee.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666672/InCollage_20260513_123021610_yegew8.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666681/InCollage_20260513_122923395_tabaye.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666607/InCollage_20260513_122756844_w7xzeg.jpg'],
                 editing: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666587/InCollage_20260513_124952807_prs7y9.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666601/InCollage_20260513_125222266_ps9ns0.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123901457_pjncvz.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123322422_k064go.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666608/InCollage_20260513_122415667_dhvmfc.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124826854_mr1uqt.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124609559_vj0ns8.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666597/InCollage_20260513_124255345_ah7oej.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666584/InCollage_20260513_125034406_tnoth1.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666591/InCollage_20260513_125512053_vkoytx.jpg'],
                 logos: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778655130025_neq7gu.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655941235_fhbadb.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656538/1778655309934_q5h3sl.jpg'],
                 posters: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'],
+              posters: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687901/02f54ce0-4edf-11f1-b7e2-7d1a1e38f683_wkdbjm.png'],
                 branding: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688512/1778656906608_q7ekkl.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688511/1778657055403_swp3qs.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657206860_z9gonp.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688508/1778656989394_uwmfwp.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657276427_fswuhy.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688513/1778657145970_h7kutd.png']
             };
 
@@ -763,8 +775,8 @@
             const cardPlayerContent = document.getElementById('card-player-content');
             const cardPlayerClose = document.getElementById('card-player-close');
             let currentPlayerVideoId = null;
-          
-                      const reviewForm = document.getElementById('review-form');
+
+            const reviewForm = document.getElementById('review-form');
             const reviewConfirmation = document.getElementById('review-confirmation');
             const reviewSubmitBtn = document.getElementById('review-submit-btn');
 
@@ -811,14 +823,9 @@
             galleryModal.addEventListener('click', e => { if (e.target === galleryModal) closeGalleryModal(); });
             galleryGridContent.addEventListener('click', e => { if (e.target.tagName === 'IMG') openImageFullscreen(e.target.src); });
 
-            function openImageFullscreen(src) { imageFullscreenImg.src = src; imageFullscreen.classList.add('active'); document.body.style.overflow = 'hidden'; }
-            function closeImageFullscreen() { imageFullscreen.classList.remove('active'); imageFullscreenImg.src = ''; document.body.style.overflow = ''; }
-            imageFullscreenClose.addEventListener('click', closeImageFullscreen);
-            imageFullscreen.addEventListener('click', e => { if (e.target === imageFullscreen) closeImageFullscreen(); });
+                      document.addEventListener('click', function(e) { const card = e.target.closest('.poster-card'); if (!card) return; const videoId = card.getAttribute('data-video'); const galleryKey = card.getAttribute('data-gallery'); if (videoId) openCardPlayer(videoId); else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey); });
 
-            document.addEventListener('click', function(e) { const card = e.target.closest('.poster-card'); if (!card) return; const videoId = card.getAttribute('data-video'); const galleryKey = card.getAttribute('data-gallery'); if (videoId) openCardPlayer(videoId); else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey); });
-
-            // Review submission
+            // Review submission: no scrolling, show confirmation message inline
             if (reviewSubmitBtn) {
                 reviewSubmitBtn.addEventListener('click', function() {
                     const name = document.getElementById('review-name').value.trim();
@@ -834,8 +841,8 @@
                     }, 4000);
                 });
             }
-          
-                      let searchHighlightSpans = [];
+
+            let searchHighlightSpans = [];
             function clearHighlights() { searchHighlightSpans.forEach(span => { const parent = span.parentNode; if (parent) { parent.replaceChild(document.createTextNode(span.textContent), span); parent.normalize(); } }); searchHighlightSpans = []; }
             function searchAndScroll(query) { clearHighlights(); if (!query || query.trim().length < 2) return; const q = query.trim().toLowerCase(); const walker = document.createTreeWalker(document.getElementById('main-site'), NodeFilter.SHOW_TEXT, null, false); const textNodes = []; while (walker.nextNode()) { const node = walker.currentNode; if (node.textContent.toLowerCase().includes(q) && node.parentElement && !['SCRIPT','STYLE','IFRAME','NOSCRIPT'].includes(node.parentElement.tagName) && node.parentElement.offsetParent) textNodes.push(node); } if (!textNodes.length) return; const firstNode = textNodes[0]; const text = firstNode.textContent; const idx = text.toLowerCase().indexOf(q); if (idx >= 0) { const span = document.createElement('span'); span.className = 'search-highlight'; span.textContent = text.slice(idx, idx+q.length); const frag = document.createDocumentFragment(); frag.appendChild(document.createTextNode(text.slice(0, idx))); frag.appendChild(span); frag.appendChild(document.createTextNode(text.slice(idx+q.length))); firstNode.parentNode.replaceChild(frag, firstNode); searchHighlightSpans.push(span); span.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(clearHighlights, 2800); } }
             navSearch.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); searchAndScroll(navSearch.value); } });
