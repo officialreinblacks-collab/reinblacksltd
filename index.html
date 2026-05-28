@@ -203,7 +203,7 @@
         .addon-item::before { content:'➕'; font-size:10px; color:var(--red); }
         .addon-price { color:#ccc; font-weight:500; }
         .bottom-note { text-align:center; font-size:12.5px; color:#444; font-weight:300; margin-top:20px; }
-
+  
           /* ─────────────── TESTIMONIALS ─────────────── */
         #section-testimonials { background:#060606; padding:60px 0 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:800px; }
         #section-testimonials::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--red),transparent); }
@@ -215,7 +215,6 @@
         .testi-track { display:flex; gap:24px; width:max-content; animation:testi-scroll 40s linear infinite; }
         @keyframes testi-scroll { 0%{ transform:translateX(0); } 100%{ transform:translateX(-50%); } }
         .testi-card { background:#0d0d0d; border:1px solid #1c1c1c; border-radius:4px; padding:32px 30px 28px; width:320px; flex-shrink:0; position:relative; }
-        .testi-card:hover { border-color:rgba(229,9,20,0.35); box-shadow:0 16px 48px rgba(229,9,20,0.06); }
         .testi-stars { display:flex; gap:3px; margin-bottom:18px; }
         .testi-stars span { color:var(--red); font-size:13px; }
         .testi-quote { font-size:14px; font-weight:300; color:#bbb; line-height:1.7; font-style:italic; margin-bottom:24px; position:relative; }
@@ -255,7 +254,7 @@
         .faq-cta-box p { font-size:15px; color:#aaa; font-weight:300; line-height:1.6; margin:0; }
         .faq-cta-box strong { display:block; font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:0.05em; color:#fff; margin-bottom:6px; }
         @media (max-width:600px) { .faq-question { padding:18px 20px; } .faq-a-inner { padding:0 20px 20px; } .faq-cta-box { padding:28px 22px; flex-direction:column; } }
-  
+
         /* ─────────────── CONTACT ─────────────── */
         #contact-section { scroll-margin-top:110px; padding:40px 20px; }
         .contact-split { display:grid; grid-template-columns:1fr 1fr; gap:25px; max-width:1000px; margin:0 auto; background:rgba(18,18,18,0.75); border-radius:16px; padding:30px; border:1px solid rgba(255,255,255,0.07); box-shadow:0 15px 40px rgba(0,0,0,0.4); }
@@ -274,8 +273,8 @@
         .submit-btn { padding:12px; background:var(--red); color:#fff; border:none; border-radius:24px; font-weight:700; font-size:0.95rem; cursor:pointer; letter-spacing:0.04em; transition:all 0.3s; box-shadow:0 0 18px var(--accent-glow); }
         .submit-btn:hover { background:#ff1a25; }
         .submit-btn:disabled { opacity:0.6; pointer-events:none; }
-
-        /* ─────────────── EXPANDED CARD PLAYER ─────────────── */
+  
+          /* ─────────────── EXPANDED CARD PLAYER ─────────────── */
         .card-player-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); z-index:9400; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.35s ease; }
         .card-player-overlay.active { opacity:1; pointer-events:all; }
         .card-player-container { position:relative; width:95vw; max-width:1000px; background:#000; border-radius:12px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.8); animation:cardExpand 0.35s ease-out forwards; }
@@ -317,9 +316,6 @@
         @keyframes highlightFade { 0%{ background:rgba(229,9,20,0.7); } 100%{ background:transparent; } }
 
         .fade-up-section { opacity:0; transform:translateY(30px); transition:opacity 0.6s ease, transform 0.6s ease; }
-        .fade-up-section.visible { opacity:1; transform:translateY(0); }
-  
-          .fade-up-section { opacity:0; transform:translateY(30px); transition:opacity 0.6s ease, transform 0.6s ease; }
         .fade-up-section.visible { opacity:1; transform:translateY(0); }
 
         .social-links { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; margin-top:8px; }
@@ -395,8 +391,8 @@
                 <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
             </div>
         </section>
-
-        <section class="content-section fade-up-section" id="section-visualizers">
+      
+              <section class="content-section fade-up-section" id="section-visualizers">
             <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
             <div class="slider-container">
                 <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
@@ -426,22 +422,24 @@
             </div>
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create high-converting professional advertising campaigns for brands, businesses, and creators — including Meta Ads, Google Ads, and cinematic promotional content designed to attract real customers and increase engagement. Every campaign is backed by strategic research, audience targeting, and creative storytelling to deliver strong visual impact and measurable results.<br>Explore more advertising visuals and campaign showcases on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
         </section>
-      
-              <section class="content-section fade-up-section" id="section-photos">
+
+        <!-- AI Photos & Cloning — Fixed poster images using q_auto,f_auto like the JS galleries -->
+        <section class="content-section fade-up-section" id="section-photos">
             <div class="section-header"><span class="red-accent"></span> AI Photos &amp; Cloning</div>
             <div class="category-row" data-row="photos">
-                <div class="poster-card tall" data-gallery="cloning"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg" alt="Photo Cloning" loading="lazy" decoding="async"><div class="poster-overlay">Photo Cloning</div></div>
-                <div class="poster-card tall" data-gallery="editing"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg" alt="AI Photo Editing" loading="lazy" decoding="async"><div class="poster-overlay">AI Photo Editing</div></div>
+                <div class="poster-card tall" data-gallery="cloning"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg" alt="Photo Cloning" loading="lazy" decoding="async"><div class="poster-overlay">Photo Cloning</div></div>
+                <div class="poster-card tall" data-gallery="editing"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg" alt="AI Photo Editing" loading="lazy" decoding="async"><div class="poster-overlay">AI Photo Editing</div></div>
             </div>
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional AI photo editing and realistic AI cloning with high-end cinematic quality, natural skin texture, accurate lighting, and lifelike detail that blends seamlessly with reality. From creative transformations to ultra-realistic portrait enhancement, every edit is crafted to look authentic, polished, and visually powerful — never fake or overprocessed.</p>
         </section>
 
+        <!-- Graphics Design — Fixed poster images -->
         <section class="content-section fade-up-section" id="section-graphics">
             <div class="section-header"><span class="red-accent"></span> Graphics Design</div>
             <div class="category-row" data-row="graphics">
-                <div class="poster-card tall" data-gallery="logos"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg" alt="Logos" loading="lazy" decoding="async"><div class="poster-overlay">Logos</div></div>
-                <div class="poster-card tall" data-gallery="posters"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png" alt="Posters" loading="lazy" decoding="async"><div class="poster-overlay">Posters</div></div>
-                <div class="poster-card tall" data-gallery="branding"><img src="https://res.cloudinary.com/datfuxotx/image/upload/w_400,c_limit,q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg" alt="Branding" loading="lazy" decoding="async"><div class="poster-overlay">Branding</div></div>
+                <div class="poster-card tall" data-gallery="logos"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg" alt="Logos" loading="lazy" decoding="async"><div class="poster-overlay">Logos</div></div>
+                <div class="poster-card tall" data-gallery="posters"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png" alt="Posters" loading="lazy" decoding="async"><div class="poster-overlay">Posters</div></div>
+                <div class="poster-card tall" data-gallery="branding"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg" alt="Branding" loading="lazy" decoding="async"><div class="poster-overlay">Branding</div></div>
             </div>
         </section>
 
@@ -483,8 +481,7 @@
                 <div class="pricing-grid two-cols">
                     <div class="pricing-card"><p class="card-tier">Starter</p><div class="card-price"><span class="currency">From $</span><span class="amount">30</span><span class="period">/ project</span></div><p class="card-desc">Affordable cinematic AI advertisement package perfect for startups, personal brands, and small promotional campaigns.</p><div class="card-divider"></div><ul class="card-features"><li>10–30 second AI advertisement</li><li>1080p HD delivery</li><li>Basic cinematic editing</li><li>AI-generated promotional visuals</li><li>Social media optimized format</li><li>Basic motion graphics</li><li>1 revision round</li><li>3–5 day turnaround</li></ul><a href="#contact-section" class="card-cta outline pricing-cta" data-package="Starter AI Video Ads — From $30">Start Project</a></div>
                     <div class="pricing-card featured"><p class="card-tier">Professional</p><div class="card-price"><span class="currency">From $</span><span class="amount">60</span><span class="period">/ project</span></div><p class="card-desc">High-converting cinematic AI ad designed for Meta, Google, TikTok, and modern digital campaigns.</p><div class="card-divider"></div><ul class="card-features"><li>15–60 second cinematic advertisement</li><li>4K Ultra HD delivery</li><li>Script & storyboard included</li><li>AI-generated ultra-realistic visuals</li><li>Professional cinematic editing</li><li>Platform-optimized export formats</li><li>Motion graphics & transitions</li><li>Brand-focused creative direction</li><li>2 revision rounds</li><li>2–4 day turnaround</li></ul><a href="#contact-section" class="card-cta red pricing-cta" data-package="Professional AI Video Ads — From $60">Start Project</a></div>
-                  
-                                  </div>
+                   </div>
                 <p class="addons-title" style="text-align:center; margin-top:20px;">Optional Add‑ons</p>
                 <div class="addons-grid" style="justify-content:center;"><span class="addon-item">Extra ad variations <span class="addon-price">From $20</span></span><span class="addon-item">Voice‑over integration <span class="addon-price">From $25</span></span><span class="addon-item">Social media cutdowns <span class="addon-price">From $15</span></span><span class="addon-item">Thumbnail design <span class="addon-price">From $10</span></span><span class="addon-item">Additional revisions <span class="addon-price">From $10</span></span><span class="addon-item">Express 24hr delivery <span class="addon-price">From $30</span></span></div>
                 <p class="bottom-note">Final pricing depends on ad complexity, runtime, scripting requirements, and creative direction.</p>
@@ -503,8 +500,8 @@
                 <p class="bottom-note">Final pricing depends on project complexity, number of deliverables, branding requirements, and creative direction.</p>
             </div>
         </section>
-      
-              <!-- TESTIMONIALS -->
+
+        <!-- TESTIMONIALS -->
         <section id="section-testimonials" class="fade-up-section">
             <p class="testi-label">Client Reviews</p>
             <h2 class="testi-heading">What Clients Say</h2>
@@ -551,8 +548,8 @@
                 </div>
             </div>
         </section>
-      
-              <section id="contact-section" class="fade-up-section">
+
+        <section id="contact-section" class="fade-up-section">
             <div class="contact-split">
                 <div class="agent-card">
                     <img src="https://res.cloudinary.com/dmnwlnpr5/image/upload/w_200,h_200,c_fill,g_auto,q_auto,f_auto/v1779377239/1779377042276_wm4vey.png" alt="Live Support" class="agent-avatar" loading="lazy" decoding="async">
@@ -594,8 +591,8 @@
                 <a href="https://www.tiktok.com/@reinblacks_music?_r=1&_t=ZS-96RaDIzg9QX" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-tiktok"></i> TikTok</a>
             </div>
         </section>
-      
-              <footer>
+
+        <footer>
             <p>Sponsored by Reinblacks Music</p>
             <p style="margin:10px 0;">
                 📧 <a href="mailto:officialreinblacks@gmail.com" style="color:#aaa;">officialreinblacks@gmail.com</a> |
@@ -637,7 +634,7 @@
         </div>
     </nav>
 
-      <script>
+    <script>
         (function() {
             const galleries = {
                 cloning: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666631/InCollage_20260513_122126172_fswgee.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666672/InCollage_20260513_123021610_yegew8.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666681/InCollage_20260513_122923395_tabaye.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666607/InCollage_20260513_122756844_w7xzeg.jpg'],
@@ -647,13 +644,13 @@
                 branding: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688512/1778656906608_q7ekkl.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688511/1778657055403_swp3qs.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657206860_z9gonp.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688508/1778656989394_uwmfwp.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657276427_fswuhy.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688513/1778657145970_h7kutd.png']
             };
 
-            const introOverlay = document.getElementById('intro-overlay');
+                        const introOverlay = document.getElementById('intro-overlay');
             const mainSite = document.getElementById('main-site');
             function completeIntro() { introOverlay.classList.add('fade-out'); mainSite.classList.add('visible'); setTimeout(() => { if (introOverlay.parentNode) introOverlay.style.display = 'none'; }, 600); }
             setTimeout(completeIntro, 2600);
             introOverlay.addEventListener('click', completeIntro);
-          
-                      const topNav = document.getElementById('top-nav');
+
+            const topNav = document.getElementById('top-nav');
             const hamburgerBtn = document.getElementById('hamburger-btn');
             const hamburgerOverlay = document.getElementById('hamburger-overlay');
             const hamburgerPanel = document.getElementById('hamburger-panel');
@@ -718,15 +715,46 @@
             function closeVideoModal() { videoModal.classList.remove('active'); videoModalContent.innerHTML = ''; document.body.style.overflow = ''; }
             videoModalClose.addEventListener('click', closeVideoModal);
             videoModal.addEventListener('click', e => { if (e.target === videoModal) closeVideoModal(); });
-          
-                      function openImageFullscreen(src) { imageFullscreenImg.src = src; imageFullscreen.classList.add('active'); document.body.style.overflow = 'hidden'; }
+
+            let currentGalleryKey = null;
+            function openGalleryModal(key) {
+                currentGalleryKey = key;
+                const images = galleries[key] || [];
+                galleryGridContent.innerHTML = images.map(src => `<img src="${src}" alt="gallery" loading="lazy" decoding="async">`).join('');
+                galleryModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+            function closeGalleryModal() {
+                galleryModal.classList.remove('active');
+                galleryGridContent.innerHTML = '';
+                document.body.style.overflow = '';
+                currentGalleryKey = null;
+            }
+            galleryModalClose.addEventListener('click', closeGalleryModal);
+            galleryModal.addEventListener('click', e => { if (e.target === galleryModal) closeGalleryModal(); });
+            galleryGridContent.addEventListener('click', e => {
+                if (e.target.tagName === 'IMG') openImageFullscreen(e.target.src);
+            });
+
+            function openImageFullscreen(src) { imageFullscreenImg.src = src; imageFullscreen.classList.add('active'); document.body.style.overflow = 'hidden'; }
             function closeImageFullscreen() { imageFullscreen.classList.remove('active'); imageFullscreenImg.src = ''; document.body.style.overflow = ''; }
             imageFullscreenClose.addEventListener('click', closeImageFullscreen);
             imageFullscreen.addEventListener('click', e => { if (e.target === imageFullscreen) closeImageFullscreen(); });
 
-            document.addEventListener('click', function(e) { const card = e.target.closest('.poster-card'); if (!card) return; const videoId = card.getAttribute('data-video'); const galleryKey = card.getAttribute('data-gallery'); if (videoId) openCardPlayer(videoId); else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey); });
-
-            // Search
+            // Poster card click handler — opens gallery or video
+            document.addEventListener('click', function(e) {
+                const card = e.target.closest('.poster-card');
+                if (!card) return;
+                const videoId = card.getAttribute('data-video');
+                const galleryKey = card.getAttribute('data-gallery');
+                if (videoId) {
+                    openCardPlayer(videoId);
+                } else if (galleryKey && galleries[galleryKey]) {
+                    openGalleryModal(galleryKey);
+                }
+            });
+            
+                       // Search
             let searchHighlightSpans = [];
             function clearHighlights() { searchHighlightSpans.forEach(span => { const parent = span.parentNode; if (parent) { parent.replaceChild(document.createTextNode(span.textContent), span); parent.normalize(); } }); searchHighlightSpans = []; }
             function searchAndScroll(query) { clearHighlights(); if (!query || query.trim().length < 2) return; const q = query.trim().toLowerCase(); const walker = document.createTreeWalker(document.getElementById('main-site'), NodeFilter.SHOW_TEXT, null, false); const textNodes = []; while (walker.nextNode()) { const node = walker.currentNode; if (node.textContent.toLowerCase().includes(q) && node.parentElement && !['SCRIPT','STYLE','IFRAME','NOSCRIPT'].includes(node.parentElement.tagName) && node.parentElement.offsetParent) textNodes.push(node); } if (!textNodes.length) return; const firstNode = textNodes[0]; const text = firstNode.textContent; const idx = text.toLowerCase().indexOf(q); if (idx >= 0) { const span = document.createElement('span'); span.className = 'search-highlight'; span.textContent = text.slice(idx, idx+q.length); const frag = document.createDocumentFragment(); frag.appendChild(document.createTextNode(text.slice(0, idx))); frag.appendChild(span); frag.appendChild(document.createTextNode(text.slice(idx+q.length))); firstNode.parentNode.replaceChild(frag, firstNode); searchHighlightSpans.push(span); span.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(clearHighlights, 2800); } }
@@ -751,7 +779,7 @@
                 } catch (error) { btnText.textContent = 'Error — Try Again'; submitBtn.disabled = false; setTimeout(() => { btnText.textContent = original; }, 2500); }
             });
 
-          document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { if (imageFullscreen.classList.contains('active')) closeImageFullscreen(); else if (galleryModal.classList.contains('active')) closeGalleryModal(); else if (videoModal.classList.contains('active')) closeVideoModal(); else if (cardPlayerOverlay.classList.contains('active')) closeCardPlayer(); else if (hamburgerPanel.classList.contains('active')) closeHamburger(); } if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement !== navSearch)) { e.preventDefault(); navSearch.focus(); } });
+            document.addEventListener('keydown', function(e) { if (e.key === 'Escape') { if (imageFullscreen.classList.contains('active')) closeImageFullscreen(); else if (galleryModal.classList.contains('active')) closeGalleryModal(); else if (videoModal.classList.contains('active')) closeVideoModal(); else if (cardPlayerOverlay.classList.contains('active')) closeCardPlayer(); else if (hamburgerPanel.classList.contains('active')) closeHamburger(); } if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && document.activeElement !== navSearch)) { e.preventDefault(); navSearch.focus(); } });
 
             backToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
             document.getElementById('bottom-home').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
@@ -765,3 +793,4 @@
     </script>
 </body>
 </html>
+          
