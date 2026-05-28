@@ -13,7 +13,6 @@
             --accent-glow: rgba(229, 9, 20, 0.4);
             --white: #ffffff;
         }
-
         * { margin:0; padding:0; box-sizing:border-box; }
         html { scroll-behavior:smooth; background:#000; }
         body {
@@ -48,19 +47,9 @@
             animation:introLineGrow 2.2s cubic-bezier(0.22,0.05,0.18,1) forwards;
             box-shadow:0 0 12px var(--accent-glow);
         }
-        @keyframes introGlowPulse {
-            0%{ opacity:0; transform:scale(0.5); } 50%{ opacity:0.8; transform:scale(1); } 100%{ opacity:0.5; transform:scale(1); }
-        }
-        @keyframes introReveal {
-            0%{ filter:blur(6px); transform:scale(0.92); opacity:0; }
-            35%{ filter:blur(2px); opacity:0.5; }
-            75%{ filter:blur(0px); transform:scale(1); opacity:1; }
-            100%{ filter:blur(0px); transform:scale(1); opacity:1; }
-        }
-        @keyframes introLineGrow {
-            0%{ width:0; opacity:0; } 55%{ width:0; opacity:0; }
-            75%{ width:70px; opacity:0.8; } 100%{ width:90px; opacity:0.6; }
-        }
+        @keyframes introGlowPulse { 0%{ opacity:0; transform:scale(0.5); } 50%{ opacity:0.8; transform:scale(1); } 100%{ opacity:0.5; transform:scale(1); } }
+        @keyframes introReveal { 0%{ filter:blur(6px); transform:scale(0.92); opacity:0; } 35%{ filter:blur(2px); opacity:0.5; } 75%{ filter:blur(0px); transform:scale(1); opacity:1; } 100%{ filter:blur(0px); transform:scale(1); opacity:1; } }
+        @keyframes introLineGrow { 0%{ width:0; opacity:0; } 55%{ width:0; opacity:0; } 75%{ width:70px; opacity:0.8; } 100%{ width:90px; opacity:0.6; } }
 
         /* ─────────────── MAIN SITE ─────────────── */
         #main-site { opacity:0; transition:opacity 0.5s; }
@@ -92,7 +81,6 @@
         .yt-sub-btn { background:var(--red); border:none; color:#fff; font-size:0.75rem; font-weight:700; padding:8px 14px; border-radius:20px; cursor:pointer; display:flex; align-items:center; gap:6px; transition:all 0.3s; letter-spacing:0.03em; white-space:nowrap; box-shadow:0 0 15px var(--accent-glow); text-decoration:none; }
         .yt-sub-btn:hover { background:#ff1a25; box-shadow:0 0 25px var(--accent-glow); transform:translateY(-1px); }
         .yt-sub-btn i { font-size:0.9rem; }
-
         @media (max-width:768px) {
             #top-nav { backdrop-filter:none; -webkit-backdrop-filter:none; background:rgba(0,0,0,0.92); }
             .yt-sub-btn { padding:6px 10px; font-size:0.7rem; }
@@ -150,7 +138,6 @@
         .slider-arrow.right { right:5px; }
         .slider-arrow:hover { background:var(--red); }
         @media (max-width:768px) { .slider-arrow { display:none; } }
-
         .swipe-hint { position:absolute; top:50%; right:15px; transform:translateY(-50%); color:rgba(255,255,255,0.7); font-size:1.8rem; z-index:6; pointer-events:none; animation:swipePulse 1.8s ease-in-out infinite; transition:opacity 0.5s; }
         .swipe-hint.hidden { opacity:0; }
         @keyframes swipePulse { 0%,100%{ transform:translateY(-50%) translateX(0); opacity:0.6; } 50%{ transform:translateY(-50%) translateX(8px); opacity:1; } }
@@ -165,7 +152,7 @@
         .poster-card:hover .play-icon-center { color:var(--red); transform:translate(-50%,-50%) scale(1.15); }
 
         /* ─────────────── PRICING ─────────────── */
-        #section-pricing { background:#080808; padding:60px 24px 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:800px; }
+        #section-pricing { background:#080808; padding:60px 24px 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:600px; }
         #section-pricing::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 40% at 20% 10%, var(--accent-glow) 0%, transparent 70%), radial-gradient(ellipse 50% 50% at 80% 90%, rgba(229,9,20,0.05) 0%, transparent 70%); pointer-events:none; }
         .pricing-service-section { margin-bottom:60px; }
         .pricing-service-section:last-child { margin-bottom:0; }
@@ -196,16 +183,15 @@
         .card-cta.outline:hover { border-color:var(--red); color:var(--red); }
         .card-cta.red { background:var(--red); color:#fff; border:1px solid var(--red); }
         .card-cta.red:hover { background:transparent; color:var(--red); }
-
         .addons-title { font-size:13px; font-weight:600; color:#aaa; letter-spacing:0.05em; margin-bottom:10px; }
         .addons-grid { display:flex; flex-wrap:wrap; gap:10px 16px; margin-bottom:20px; }
         .addon-item { font-size:12px; color:#888; display:flex; align-items:center; gap:6px; }
         .addon-item::before { content:'➕'; font-size:10px; color:var(--red); }
         .addon-price { color:#ccc; font-weight:500; }
         .bottom-note { text-align:center; font-size:12.5px; color:#444; font-weight:300; margin-top:20px; }
-  
-          /* ─────────────── TESTIMONIALS ─────────────── */
-        #section-testimonials { background:#060606; padding:60px 0 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:800px; }
+    
+            /* ─────────────── TESTIMONIALS ─────────────── */
+        #section-testimonials { background:#060606; padding:60px 0 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:500px; }
         #section-testimonials::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background:linear-gradient(90deg,transparent,var(--red),transparent); }
         #section-testimonials::after { content:'"'; font-family:'Bebas Neue',sans-serif; font-size:400px; color:rgba(229,9,20,0.03); position:absolute; top:-60px; left:-30px; line-height:1; pointer-events:none; user-select:none; }
         .testi-label { text-align:center; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:var(--red); margin-bottom:12px; }
@@ -229,7 +215,7 @@
         .testi-bottom p { color:#555; font-size:14px; font-weight:300; margin-bottom:20px; }
 
         /* ─────────────── FAQ ─────────────── */
-        #section-faq { background:#080808; padding:60px 24px 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:800px; }
+        #section-faq { background:#080808; padding:60px 24px 70px; position:relative; overflow:hidden; font-family:'DM Sans',sans-serif; scroll-margin-top:110px; content-visibility:auto; contain-intrinsic-size:500px; }
         #section-faq::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 70% 50% at 100% 50%, rgba(229,9,20,0.04) 0%, transparent 70%); pointer-events:none; }
         .faq-inner { max-width:820px; margin:0 auto; }
         .faq-label { text-align:center; font-size:11px; font-weight:600; letter-spacing:0.3em; text-transform:uppercase; color:var(--red); margin-bottom:12px; }
@@ -263,8 +249,13 @@
         .agent-avatar { width:90px; height:90px; border-radius:50%; border:3px solid var(--red); box-shadow:0 0 20px var(--accent-glow); object-fit:cover; }
         .agent-name { font-weight:800; font-size:1.1rem; }
         .agent-bio { color:#bbb; font-size:0.85rem; line-height:1.4; max-width:260px; }
-        .agent-chat-btn { padding:10px 22px; background:var(--red); color:#fff; border:none; border-radius:24px; font-weight:700; cursor:pointer; letter-spacing:0.04em; transition:all 0.3s; box-shadow:0 0 15px var(--accent-glow); }
-        .agent-chat-btn:hover { background:#ff1a25; box-shadow:0 0 25px var(--accent-glow); }
+        .agent-whatsapp-btn {
+            padding:10px 22px; background:var(--whatsapp); color:#fff; border:none;
+            border-radius:24px; font-weight:700; cursor:pointer; letter-spacing:0.04em;
+            transition:all 0.3s; box-shadow:0 0 15px rgba(37,211,102,0.4);
+            text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+        }
+        .agent-whatsapp-btn:hover { background:#20b859; box-shadow:0 0 25px rgba(37,211,102,0.6); }
         .contact-form { display:flex; flex-direction:column; gap:12px; }
         .contact-form input, .contact-form select, .contact-form textarea { width:100%; padding:11px 14px; border-radius:8px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.45); color:#fff; font-size:0.9rem; outline:none; transition:border 0.3s, box-shadow 0.3s; font-family:inherit; }
         .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-color:var(--red); box-shadow:0 0 10px var(--accent-glow); }
@@ -273,8 +264,8 @@
         .submit-btn { padding:12px; background:var(--red); color:#fff; border:none; border-radius:24px; font-weight:700; font-size:0.95rem; cursor:pointer; letter-spacing:0.04em; transition:all 0.3s; box-shadow:0 0 18px var(--accent-glow); }
         .submit-btn:hover { background:#ff1a25; }
         .submit-btn:disabled { opacity:0.6; pointer-events:none; }
-  
-          /* ─────────────── EXPANDED CARD PLAYER ─────────────── */
+
+        /* ─────────────── EXPANDED CARD PLAYER ─────────────── */
         .card-player-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.75); backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px); z-index:9400; display:flex; align-items:center; justify-content:center; opacity:0; pointer-events:none; transition:opacity 0.35s ease; }
         .card-player-overlay.active { opacity:1; pointer-events:all; }
         .card-player-container { position:relative; width:95vw; max-width:1000px; background:#000; border-radius:12px; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,0.8); animation:cardExpand 0.35s ease-out forwards; }
@@ -296,8 +287,16 @@
         #image-fullscreen.active { opacity:1; pointer-events:all; }
         #image-fullscreen img { max-width:95vw; max-height:95vh; object-fit:contain; }
 
-        /* ─────────────── CHAT BUTTON ─────────────── */
-        #floating-chat-btn { position:fixed; bottom:22px; right:22px; z-index:9300; width:50px; height:50px; border-radius:50%; background:#0078FF; border:none; color:#fff; font-size:1.2rem; cursor:pointer; box-shadow:0 4px 18px rgba(0,120,255,0.4); display:flex; align-items:center; justify-content:center; }
+        /* ─────────────── WHATSAPP FLOATING BUTTON ─────────────── */
+        #whatsapp-floating-btn {
+            position:fixed; bottom:22px; right:22px; z-index:9300;
+            width:55px; height:55px; border-radius:50%; background:var(--whatsapp);
+            border:none; color:#fff; font-size:1.4rem; cursor:pointer;
+            box-shadow:0 4px 18px rgba(37,211,102,0.5);
+            display:flex; align-items:center; justify-content:center;
+            text-decoration:none;
+        }
+        #whatsapp-floating-btn:hover { box-shadow:0 6px 24px rgba(37,211,102,0.7); transform:scale(1.05); }
 
         /* ─────────────── BOTTOM MOBILE NAV ─────────────── */
         #bottom-mobile-nav { display:none; position:fixed; bottom:0; left:0; right:0; z-index:9200; background:rgba(0,0,0,0.9); border-top:1px solid rgba(255,255,255,0.1); padding:8px 0; }
@@ -305,7 +304,7 @@
         #bottom-mobile-nav button { background:none; border:none; color:#aaa; font-size:0.75rem; display:flex; flex-direction:column; align-items:center; gap:4px; cursor:pointer; transition:color 0.3s; }
         #bottom-mobile-nav button:hover { color:#fff; }
         #bottom-mobile-nav button i { font-size:1.2rem; }
-        @media (max-width:768px) { #bottom-mobile-nav { display:block; } #floating-chat-btn { bottom:70px; } }
+        @media (max-width:768px) { #bottom-mobile-nav { display:block; } #whatsapp-floating-btn { bottom:70px; } }
 
         /* ─────────────── BACK TO TOP ─────────────── */
         #back-to-top { position:fixed; bottom:80px; left:22px; z-index:9400; width:44px; height:44px; border-radius:50%; background:var(--red); border:none; color:#fff; font-size:1.2rem; cursor:pointer; box-shadow:0 4px 15px var(--accent-glow); display:none; align-items:center; justify-content:center; transition:transform 0.3s; }
@@ -327,7 +326,7 @@
 </head>
 <body>
 
-    <div id="intro-overlay">
+        <div id="intro-overlay">
         <div id="intro-inner">
             <div id="intro-glow-ring"></div>
             <div id="intro-brand">Reinblacks Creativz</div>
@@ -391,8 +390,8 @@
                 <a href="#section-visualizers" class="hero-play-btn"><i class="fas fa-play"></i> Explore Services</a>
             </div>
         </section>
-      
-              <section class="content-section fade-up-section" id="section-visualizers">
+
+        <section class="content-section fade-up-section" id="section-visualizers">
             <div class="section-header"><span class="red-accent"></span> AI Video Music Visualizers</div>
             <div class="slider-container">
                 <button class="slider-arrow left" data-target="row-visualizers"><i class="fas fa-chevron-left"></i></button>
@@ -405,7 +404,8 @@
                 </div>
                 <button class="slider-arrow right" data-target="row-visualizers"><i class="fas fa-chevron-right"></i></button>
             </div>
-            <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional cinematic visuals with ultra-realistic storytelling that feels natural, emotional, and human — never artificial. From realistic AI filmmaking to professional music video editing, every frame is crafted with industry-level detail, motion, lighting, and sound design.<br>Discover more visuals, films, and music experiences on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
+
+                        <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional cinematic visuals with ultra-realistic storytelling that feels natural, emotional, and human — never artificial. From realistic AI filmmaking to professional music video editing, every frame is crafted with industry-level detail, motion, lighting, and sound design.<br>Discover more visuals, films, and music experiences on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
         </section>
 
         <section class="content-section fade-up-section" id="section-ads">
@@ -423,27 +423,25 @@
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create high-converting professional advertising campaigns for brands, businesses, and creators — including Meta Ads, Google Ads, and cinematic promotional content designed to attract real customers and increase engagement. Every campaign is backed by strategic research, audience targeting, and creative storytelling to deliver strong visual impact and measurable results.<br>Explore more advertising visuals and campaign showcases on <a href="https://youtube.com/@reinblacks_music" target="_blank" style="color:var(--red);">Reinblacks Music YouTube</a>.</p>
         </section>
 
-        <!-- AI Photos & Cloning — Fixed poster images using q_auto,f_auto like the JS galleries -->
         <section class="content-section fade-up-section" id="section-photos">
             <div class="section-header"><span class="red-accent"></span> AI Photos &amp; Cloning</div>
             <div class="category-row" data-row="photos">
-                <div class="poster-card tall" data-gallery="cloning"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg" alt="Photo Cloning" loading="lazy" decoding="async"><div class="poster-overlay">Photo Cloning</div></div>
-                <div class="poster-card tall" data-gallery="editing"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg" alt="AI Photo Editing" loading="lazy" decoding="async"><div class="poster-overlay">AI Photo Editing</div></div>
+                <div class="poster-card tall" data-gallery="cloning"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg" alt="Photo Cloning" loading="lazy" decoding="async" width="170" height="255"><div class="poster-overlay">Photo Cloning</div></div>
+                <div class="poster-card tall" data-gallery="editing"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg" alt="AI Photo Editing" loading="lazy" decoding="async" width="170" height="255"><div class="poster-overlay">AI Photo Editing</div></div>
             </div>
             <p style="color:#aaa;font-size:0.9rem;margin-top:10px;">We create professional AI photo editing and realistic AI cloning with high-end cinematic quality, natural skin texture, accurate lighting, and lifelike detail that blends seamlessly with reality. From creative transformations to ultra-realistic portrait enhancement, every edit is crafted to look authentic, polished, and visually powerful — never fake or overprocessed.</p>
         </section>
 
-        <!-- Graphics Design — Fixed poster images -->
         <section class="content-section fade-up-section" id="section-graphics">
             <div class="section-header"><span class="red-accent"></span> Graphics Design</div>
             <div class="category-row" data-row="graphics">
-                <div class="poster-card tall" data-gallery="logos"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg" alt="Logos" loading="lazy" decoding="async"><div class="poster-overlay">Logos</div></div>
-                <div class="poster-card tall" data-gallery="posters"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png" alt="Posters" loading="lazy" decoding="async"><div class="poster-overlay">Posters</div></div>
-                <div class="poster-card tall" data-gallery="branding"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg" alt="Branding" loading="lazy" decoding="async"><div class="poster-overlay">Branding</div></div>
+                <div class="poster-card tall" data-gallery="logos"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778656537/1778654790796_e6wgiy.jpg" alt="Logos" loading="lazy" decoding="async" width="170" height="255"><div class="poster-overlay">Logos</div></div>
+                <div class="poster-card tall" data-gallery="posters"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778687890/3e207a10-4ebc-11f1-8671-0d0c60b1ec57_hosa8u.png" alt="Posters" loading="lazy" decoding="async" width="170" height="255"><div class="poster-overlay">Posters</div></div>
+                <div class="poster-card tall" data-gallery="branding"><img src="https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688667/1778656761326_dlquo0.jpg" alt="Branding" loading="lazy" decoding="async" width="170" height="255"><div class="poster-overlay">Branding</div></div>
             </div>
         </section>
 
-        <!-- PRICING -->
+                <!-- PRICING -->
         <section id="section-pricing" class="fade-up-section">
             <div class="pricing-service-section">
                 <p class="service-label">AI Music Visualizers</p>
@@ -480,8 +478,9 @@
                 <p class="service-sub">High-converting cinematic AI advertisements crafted for brands, businesses, products, and social media campaigns.</p>
                 <div class="pricing-grid two-cols">
                     <div class="pricing-card"><p class="card-tier">Starter</p><div class="card-price"><span class="currency">From $</span><span class="amount">30</span><span class="period">/ project</span></div><p class="card-desc">Affordable cinematic AI advertisement package perfect for startups, personal brands, and small promotional campaigns.</p><div class="card-divider"></div><ul class="card-features"><li>10–30 second AI advertisement</li><li>1080p HD delivery</li><li>Basic cinematic editing</li><li>AI-generated promotional visuals</li><li>Social media optimized format</li><li>Basic motion graphics</li><li>1 revision round</li><li>3–5 day turnaround</li></ul><a href="#contact-section" class="card-cta outline pricing-cta" data-package="Starter AI Video Ads — From $30">Start Project</a></div>
-                    <div class="pricing-card featured"><p class="card-tier">Professional</p><div class="card-price"><span class="currency">From $</span><span class="amount">60</span><span class="period">/ project</span></div><p class="card-desc">High-converting cinematic AI ad designed for Meta, Google, TikTok, and modern digital campaigns.</p><div class="card-divider"></div><ul class="card-features"><li>15–60 second cinematic advertisement</li><li>4K Ultra HD delivery</li><li>Script & storyboard included</li><li>AI-generated ultra-realistic visuals</li><li>Professional cinematic editing</li><li>Platform-optimized export formats</li><li>Motion graphics & transitions</li><li>Brand-focused creative direction</li><li>2 revision rounds</li><li>2–4 day turnaround</li></ul><a href="#contact-section" class="card-cta red pricing-cta" data-package="Professional AI Video Ads — From $60">Start Project</a></div>
-                   </div>
+
+                                        <div class="pricing-card featured"><p class="card-tier">Professional</p><div class="card-price"><span class="currency">From $</span><span class="amount">60</span><span class="period">/ project</span></div><p class="card-desc">High-converting cinematic AI ad designed for Meta, Google, TikTok, and modern digital campaigns.</p><div class="card-divider"></div><ul class="card-features"><li>15–60 second cinematic advertisement</li><li>4K Ultra HD delivery</li><li>Script & storyboard included</li><li>AI-generated ultra-realistic visuals</li><li>Professional cinematic editing</li><li>Platform-optimized export formats</li><li>Motion graphics & transitions</li><li>Brand-focused creative direction</li><li>2 revision rounds</li><li>2–4 day turnaround</li></ul><a href="#contact-section" class="card-cta red pricing-cta" data-package="Professional AI Video Ads — From $60">Start Project</a></div>
+                </div>
                 <p class="addons-title" style="text-align:center; margin-top:20px;">Optional Add‑ons</p>
                 <div class="addons-grid" style="justify-content:center;"><span class="addon-item">Extra ad variations <span class="addon-price">From $20</span></span><span class="addon-item">Voice‑over integration <span class="addon-price">From $25</span></span><span class="addon-item">Social media cutdowns <span class="addon-price">From $15</span></span><span class="addon-item">Thumbnail design <span class="addon-price">From $10</span></span><span class="addon-item">Additional revisions <span class="addon-price">From $10</span></span><span class="addon-item">Express 24hr delivery <span class="addon-price">From $30</span></span></div>
                 <p class="bottom-note">Final pricing depends on ad complexity, runtime, scripting requirements, and creative direction.</p>
@@ -501,7 +500,7 @@
             </div>
         </section>
 
-        <!-- TESTIMONIALS -->
+                <!-- TESTIMONIALS -->
         <section id="section-testimonials" class="fade-up-section">
             <p class="testi-label">Client Reviews</p>
             <h2 class="testi-heading">What Clients Say</h2>
@@ -527,8 +526,8 @@
                 <p>Have you worked with us? We'd love to feature your review.</p>
             </div>
         </section>
-      
-              <!-- FAQ -->
+
+                <!-- FAQ -->
         <section id="section-faq" class="fade-up-section">
             <div class="faq-inner">
                 <p class="faq-label">Got Questions?</p>
@@ -549,13 +548,15 @@
             </div>
         </section>
 
-        <section id="contact-section" class="fade-up-section">
+                <section id="contact-section" class="fade-up-section">
             <div class="contact-split">
                 <div class="agent-card">
                     <img src="https://res.cloudinary.com/dmnwlnpr5/image/upload/w_200,h_200,c_fill,g_auto,q_auto,f_auto/v1779377239/1779377042276_wm4vey.png" alt="Live Support" class="agent-avatar" loading="lazy" decoding="async">
                     <div class="agent-name">Live Support Chat</div>
-                    <p class="agent-bio">Need help? Chat with us live. We're here to answer your questions and bring your creative vision to life.</p>
-                    <button class="agent-chat-btn" id="agent-chat-btn"><i class="fas fa-comment-dots"></i> Chat Now</button>
+                    <p class="agent-bio">Need help? Chat with us on WhatsApp. We're here to answer your questions and bring your creative vision to life.</p>
+                    <a href="https://wa.me/254794299237?text=Hello%20Reinblacks%20Creativz%2C%20I%20need%20help!" target="_blank" rel="noopener" class="agent-whatsapp-btn">
+                        <i class="fab fa-whatsapp"></i> WhatsApp Chat
+                    </a>
                 </div>
                 <div class="contact-form-wrapper" style="display:flex; flex-direction:column; gap:12px;">
                     <h3 style="color:var(--red); text-align:center; font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:0.05em;">Book Your Project Below</h3>
@@ -623,7 +624,11 @@
     <div class="modal-overlay" id="gallery-modal"><button class="modal-close" id="gallery-modal-close">✕</button><div class="gallery-grid" id="gallery-grid-content"></div></div>
     <div id="image-fullscreen"><button class="modal-close" id="image-fullscreen-close">✕</button><img src="" alt="Fullscreen" id="image-fullscreen-img"></div>
 
-    <button id="floating-chat-btn" title="Chat"><i class="fas fa-comment"></i></button>
+    <!-- WHATSAPP FLOATING BUTTON -->
+    <a href="https://wa.me/254794299237?text=Hello%20Reinblacks%20Creativz%2C%20I%20need%20assistance!" target="_blank" rel="noopener" id="whatsapp-floating-btn" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
     <button id="back-to-top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
 
     <nav id="bottom-mobile-nav">
@@ -636,6 +641,8 @@
 
     <script>
         (function() {
+            // No Tidio – removed entirely. All chat is now WhatsApp.
+
             const galleries = {
                 cloning: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666613/InCollage_20260513_121924997_tp86ie.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666611/InCollage_20260513_125608805_wiv4cr.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666655/InCollage_20260513_124510812_nlzdfz.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666631/InCollage_20260513_122126172_fswgee.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666672/InCollage_20260513_123021610_yegew8.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666681/InCollage_20260513_122923395_tabaye.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666607/InCollage_20260513_122756844_w7xzeg.jpg'],
                 editing: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666590/InCollage_20260513_124719161_ksw2kt.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666587/InCollage_20260513_124952807_prs7y9.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666601/InCollage_20260513_125222266_ps9ns0.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123901457_pjncvz.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666603/InCollage_20260513_123322422_k064go.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666608/InCollage_20260513_122415667_dhvmfc.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666604/InCollage_20260513_125742367_qq6jve.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124826854_mr1uqt.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666593/InCollage_20260513_124609559_vj0ns8.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666597/InCollage_20260513_124255345_ah7oej.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666586/InCollage_20260513_125310559_d2ncgy.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666584/InCollage_20260513_125034406_tnoth1.jpg','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778666591/InCollage_20260513_125512053_vkoytx.jpg'],
@@ -644,7 +651,7 @@
                 branding: ['https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688512/1778656906608_q7ekkl.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688511/1778657055403_swp3qs.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657206860_z9gonp.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688508/1778656989394_uwmfwp.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688510/1778657276427_fswuhy.png','https://res.cloudinary.com/datfuxotx/image/upload/q_auto,f_auto/v1778688513/1778657145970_h7kutd.png']
             };
 
-                        const introOverlay = document.getElementById('intro-overlay');
+const introOverlay = document.getElementById('intro-overlay');
             const mainSite = document.getElementById('main-site');
             function completeIntro() { introOverlay.classList.add('fade-out'); mainSite.classList.add('visible'); setTimeout(() => { if (introOverlay.parentNode) introOverlay.style.display = 'none'; }, 600); }
             setTimeout(completeIntro, 2600);
@@ -657,8 +664,6 @@
             const hamburgerClose = document.getElementById('hamburger-close');
             const searchIconBtn = document.getElementById('search-icon-btn');
             const navSearch = document.getElementById('nav-search');
-            const floatingChatBtn = document.getElementById('floating-chat-btn');
-            const agentChatBtn = document.getElementById('agent-chat-btn');
             const videoModal = document.getElementById('video-modal');
             const videoModalContent = document.getElementById('video-modal-content');
             const videoModalClose = document.getElementById('video-modal-close');
@@ -699,7 +704,7 @@
             document.querySelectorAll('.slider-arrow').forEach(btn => { btn.addEventListener('click', () => { const row = document.getElementById(btn.dataset.target); if (row) row.scrollBy({ left: btn.classList.contains('left') ? -300 : 300, behavior: 'smooth' }); }); });
             document.querySelectorAll('.slider-container').forEach(container => { const row = container.querySelector('.category-row'); if (!row) return; const hint = document.createElement('div'); hint.className = 'swipe-hint'; hint.innerHTML = '<i class="fas fa-chevron-right"></i>'; container.appendChild(hint); function hideHint() { hint.classList.add('hidden'); } row.addEventListener('scroll', function() { const atEnd = row.scrollLeft + row.clientWidth >= row.scrollWidth - 10; if (atEnd) hint.classList.add('hidden'); else hint.classList.remove('hidden'); }, { passive: true }); row.addEventListener('touchstart', hideHint, { once: true }); row.addEventListener('wheel', hideHint, { once: true }); });
 
-            allCatBtns.forEach(btn => { btn.addEventListener('click', function() { const target = document.getElementById(this.getAttribute('data-scroll')); if (target) target.scrollIntoView({ behavior: 'smooth' }); allCatBtns.forEach(b => b.classList.remove('active-cat')); this.classList.add('active-cat'); }); });
+              allCatBtns.forEach(btn => { btn.addEventListener('click', function() { const target = document.getElementById(this.getAttribute('data-scroll')); if (target) target.scrollIntoView({ behavior: 'smooth' }); allCatBtns.forEach(b => b.classList.remove('active-cat')); this.classList.add('active-cat'); }); });
             function updateActiveCatBtn() { let activeIdx = null; const scrollPos = window.scrollY + 160; const map = ['section-visualizers','section-ads','section-photos','section-graphics','section-pricing','section-faq','contact-section']; map.forEach((id, i) => { const el = document.getElementById(id); if (el && el.offsetTop <= scrollPos) activeIdx = i; }); if (activeIdx !== null) allCatBtns.forEach((b,i) => b.classList.toggle('active-cat', i === activeIdx)); }
             window.addEventListener('scroll', updateActiveCatBtn, { passive: true });
 
@@ -741,29 +746,23 @@
             imageFullscreenClose.addEventListener('click', closeImageFullscreen);
             imageFullscreen.addEventListener('click', e => { if (e.target === imageFullscreen) closeImageFullscreen(); });
 
-            // Poster card click handler — opens gallery or video
             document.addEventListener('click', function(e) {
                 const card = e.target.closest('.poster-card');
                 if (!card) return;
                 const videoId = card.getAttribute('data-video');
                 const galleryKey = card.getAttribute('data-gallery');
-                if (videoId) {
-                    openCardPlayer(videoId);
-                } else if (galleryKey && galleries[galleryKey]) {
-                    openGalleryModal(galleryKey);
-                }
+                if (videoId) openCardPlayer(videoId);
+                else if (galleryKey && galleries[galleryKey]) openGalleryModal(galleryKey);
             });
-            
-                       // Search
+
+            // Search
             let searchHighlightSpans = [];
             function clearHighlights() { searchHighlightSpans.forEach(span => { const parent = span.parentNode; if (parent) { parent.replaceChild(document.createTextNode(span.textContent), span); parent.normalize(); } }); searchHighlightSpans = []; }
             function searchAndScroll(query) { clearHighlights(); if (!query || query.trim().length < 2) return; const q = query.trim().toLowerCase(); const walker = document.createTreeWalker(document.getElementById('main-site'), NodeFilter.SHOW_TEXT, null, false); const textNodes = []; while (walker.nextNode()) { const node = walker.currentNode; if (node.textContent.toLowerCase().includes(q) && node.parentElement && !['SCRIPT','STYLE','IFRAME','NOSCRIPT'].includes(node.parentElement.tagName) && node.parentElement.offsetParent) textNodes.push(node); } if (!textNodes.length) return; const firstNode = textNodes[0]; const text = firstNode.textContent; const idx = text.toLowerCase().indexOf(q); if (idx >= 0) { const span = document.createElement('span'); span.className = 'search-highlight'; span.textContent = text.slice(idx, idx+q.length); const frag = document.createDocumentFragment(); frag.appendChild(document.createTextNode(text.slice(0, idx))); frag.appendChild(span); frag.appendChild(document.createTextNode(text.slice(idx+q.length))); firstNode.parentNode.replaceChild(frag, firstNode); searchHighlightSpans.push(span); span.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(clearHighlights, 2800); } }
             navSearch.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); searchAndScroll(navSearch.value); } });
             navSearch.addEventListener('input', function() { if (navSearch.value.trim().length >= 3) { clearTimeout(navSearch._debounce); navSearch._debounce = setTimeout(() => searchAndScroll(navSearch.value), 400); } else clearHighlights(); });
 
-            floatingChatBtn.addEventListener('click', () => { agentChatBtn.click(); });
-
-            const contactForm = document.getElementById('contact-form');
+const contactForm = document.getElementById('contact-form');
             const submitBtn = document.getElementById('submit-btn');
             contactForm.addEventListener('submit', async function(e) {
                 e.preventDefault();
@@ -793,4 +792,6 @@
     </script>
 </body>
 </html>
-          
+
+
+  
